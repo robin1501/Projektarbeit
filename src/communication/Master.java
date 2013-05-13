@@ -12,12 +12,12 @@ import roles.Student;
 import roles.User;
 
 /**
- * Die Masterklasse dient zur Trennung zwischen Gui und dem Rest des Codes. Über
- * den Master können dynamisch die spezifischen Methoden der Rollen aufgerufen
- * und weitergegeben werden.
- * 
- * 
- * 
+ * Die Masterklasse dient zur Trennung zwischen der GUI und der restlichen
+ * Codeschichten, sodass es für die jeweiligen Seite unwichtig ist, was auf der
+ * anderen Seite passiert.<br>
+ * Durch die klare Schnittstellendefinition kann über sehr wenige Methoden die
+ * komplette Interaktion abgehandelt werden.<br>
+ * Hierzu wird das Konzept der Polymorphie genutzt. 
  */
 public class Master {
 
@@ -28,12 +28,32 @@ public class Master {
 
 	private static User myDynamicUser = null;
 
+	/**
+	 * In der getUserClass() wird die aktuelle Klasse des Users als String
+	 * zurück gegeben.
+	 * 
+	 * @return (String) Name des dynamischen Objekts
+	 */
 	public String getUserClass() {
 
 		return myDynamicUser.getClass().toString();
 	}
 
-	public static void setMyDynamicUSer(char role, String isHead, String name,
+	/**
+	 * Der User wird anhand des Login gesetzt.<br>
+	 * Übergeben werden alle Parameter die, für die Auwsahl der Rolle und die
+	 * Objekterzeugung, benötigt werden, sodass "myDynamicUser" richtig initialisiert wird. <br>
+	 * User selbst ist eineabstrakte Klasse und dient hier der Polymorphie.<br>
+	 * Bei fehlerhafter Zuweisung wird eine Message ausgegeben, die auf diesen Umstand hinweist.
+	 * 
+	 * @param role
+	 * @param isHead
+	 * @param name
+	 * @param firstname
+	 * @param id
+	 * @param course
+	 */
+	public static void setMyDynamicUser(char role, String isHead, String name,
 			String firstname, String id, String course) {
 
 		if (!isHead.equals("true")) {
@@ -67,7 +87,26 @@ public class Master {
 	 * Methoden aufrufe
 	 * -----------------------------------------------------------------
 	 */
-
+	/**
+	 * <p><b>Es folgen nun die Methoden der Masterklasse, die die Schnittstellen der Klasse bilden.</b><br> 
+	 * Es gibt drei Hauptmethoden für Methoden die double und ArrayList als Rückgabewerte haben, wie auch für Voidaufrufe.<br>
+	 * Durch die Interfaces wird definiert in welcher Art alle Objektmethoden aufgebaut und benannt sind.<br>
+	 * Dadurch ist es möglich die gewünschte Methode zusammenzustellen und aufzurufen.<br>
+	 * <b>Diese Definitionen einzuhalten ist essentiel für die Funktionsfähigkeit dieser Aufrufe.</b><br>
+	 * </p>
+	 * <br>
+	 * <p>
+	 * Die Funktion <b>getMyDouble</b> kann immer dann angewendet werden, wenn ein Doublewert erwartet wird.<br>
+	 * Es muss der gewünschte Methodenname ,sowie die erwarteten Parameter mitgegeben werden.<br>
+	 * Über IF-Else-Verzweigungen wird nun der Methodenaufruf realisiert.<br>
+	 * Bei fehlerhaftem Aufruf wird per MessageBox auf die Fehlerursache hingewiesen.
+	 
+	 * </p>
+	 * @param methodName
+	 * @param parameterArrayList
+	 * @param parameterString
+	 * @return
+	 */
 	@SuppressWarnings("finally")
 	public static double getMyDouble(String methodName,
 			ArrayList<String> parameterArrayList, String parameterString) {
@@ -99,6 +138,17 @@ public class Master {
 
 	}
 
+	/**
+	 * Die Funktion <b>getMyArrayList</b> kann immer dann angewendet werden, wenn eine ArrayList erwartet wird.<br>
+	 * Es muss der gewünschte Methodenname ,sowie die erwarteten Parameter mitgegeben werden.<br>
+	 * Über IF-Else-Verzweigungen wird nun der Methodenaufruf realisiert.<br>
+	 * Bei fehlerhaftem Aufruf wird per MessageBox auf die Fehlerursache hingewiesen.
+	 * 
+	 * @param methodName
+	 * @param parameterArrayList
+	 * @param parameterString
+	 * @return
+	 */
 	@SuppressWarnings({ "finally", "unchecked" })
 	public static ArrayList<String> getMyArrayList(String methodName,
 			ArrayList<String> parameterArrayList, String parameterString) {
@@ -137,6 +187,15 @@ public class Master {
 		}
 	}
 
+	/**
+	 * Die Funktion <b>voidCaller</b> kann immer dann angewendet werden wenn eine VoidFunktion aufgerufen wird.<br>
+	 * Es muss der gewünschte Methodenname ,sowie die erwarteten Parameter mitgegeben werden.<br>
+	 * Über IF-Else-Verzweigungen wird nun der Methodenaufruf realisiert.<br>
+	 * Bei fehlerhaftem Aufruf wird per MessageBox auf die Fehlerursache hingewiesen.
+	 * 
+	 * @param methodName
+	 * @param parameterString
+	 */
 	public static void voidCaller(String methodName, String parameterString) {
 
 		try {
@@ -160,6 +219,12 @@ public class Master {
 		}
 	}
 
+	/**
+	 * Öffnet einen JOptionPane die auf einen Fehler hinweist.<br>
+	 * Die Funktion wird in den Methoden des dynamischen Users in den
+	 * Catch-Blöcken aufgerufen und weißt auf einen fehlerhaften Methodenaufruf
+	 * hin.
+	 */
 	private static void ErroMessenger() {
 
 		JOptionPane.showMessageDialog(null,

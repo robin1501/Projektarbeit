@@ -11,7 +11,7 @@ public class danielConsoleTest {
 	public static void main(String[] args) {
 
 		// Student my = new Student("Trefzer","Daniel","Dt");
-		Master.setMyDynamicUSer('D',"false","Trefzer","danie", "if", "studiengang");
+		Master.setMyDynamicUser('D',"false","Trefzer","danie", "if", "studiengang");
 		ArrayList<String> zwei = new ArrayList<String>();
 		zwei = Master.getMyArrayList("test", zwei, null);
 
