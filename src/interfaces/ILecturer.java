@@ -2,10 +2,11 @@ package interfaces;
 
 import java.util.ArrayList;
 
-/**  
- * ArrayList in den Parametern immer als Erstes angeben. Elementar für den Master!
- *
- */
+/**
+* Rechte für die Erstellung der Noten und Ansicht der Durchschnitte des eigenen Kurses.<br>
+* Wird implementiert von der Rolle Lecturer,Professor und HeadOfDepartment.<br>
+*<b> ArrayList in den Parametern immer als Erstes angeben. Elementar für den Master!</B>
+*/
 public interface ILecturer {
 	
 	public ArrayList <String >getMyLectures();

@@ -137,6 +137,7 @@ public class Master {
 		}
 
 	}
+	
 
 	/**
 	 * Die Funktion <b>getMyArrayList</b> kann immer dann angewendet werden, wenn eine ArrayList erwartet wird.<br>

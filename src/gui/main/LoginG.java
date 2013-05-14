@@ -18,8 +18,11 @@ import communication.InsertAndValidationChecks;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 /**
- * Login GUI
- *  * 
+ * Startfenster zur Eingabe der Login-Daten.
+ * Nach den InserAndValidationChecks wird der dynamische User im Master gesetz <br>
+ * und die GUI mit den entsprechenden Rechten aufgebaut.
+ * Nach einer Passwortänderung wird wieder das Loginfenster aufgerufen,<br>
+ * sodass ein erneutes Login möglich ist.
  *
  */
 public class LoginG extends JFrame {

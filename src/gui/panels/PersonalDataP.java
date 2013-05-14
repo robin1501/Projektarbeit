@@ -8,12 +8,15 @@ import communication.Master;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-
+/**
+ * Panel für die persönlichen Daten der jeweiligen Benutzer.<br>
+ * Wir von den Hauptseiten eingebunden.<br>
+ * Panel befüllt sich selbstständig.<br>
+ * Programmieraufwand also nur einmal nötig.<br>
+ * 
+ */
 public class PersonalDataP extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	/**

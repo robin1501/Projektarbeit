@@ -6,7 +6,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
+/**
+ * Hauptansicht für den Studenten.<br>
+ * Die Rechte der Rolle sind den implementierten Interfaces zu entnehmen.<br>
+ * Sie besteht aus den persönlichen Daten, der Ansicht seiner Noten und <br>
+ * Makierung der Noten, in denen das Ziel von 4,0 nicht erreicht wurde.
+ *
+ *
+ */
 public class StudentG extends JFrame {
 
 	private JPanel contentPane;

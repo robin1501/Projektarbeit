@@ -7,7 +7,13 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+/** Der SaveDialog wird geöffnet wenn das Hauptfenster ohne vorheriges Speichern geschlossen wird.
+ * Gewisse Rollen (Student) können nicht Speichern, dort entfällt der SaveDialog.
+ * Es gibt keine Auswirkungen auf das SaveEvent!
 
+ * @author Daniel
+ *
+ */
 public class SaveDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();

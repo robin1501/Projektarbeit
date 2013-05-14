@@ -1,10 +1,12 @@
 package interfaces;
 
 import java.util.ArrayList;
-/**  
- * ArrayList in den Parametern immer als Erstes angeben. Elementar für den Master!
- *
- */
+/**
+* Rechte für Gesamtübersicht an Noten eines Studiengangs.<br>
+* Wird implementiert von der Rolle Professor und HeadOfDepartment.<br>
+*<b> ArrayList in den Parametern immer als Erstes angeben. Elementar für den Master!</B>
+*/
+
 public interface IProf {
 
 

@@ -7,7 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
+/**
+ * Standard Dialog zur Bestätigung von Usereingaben
+ * 
+ *
+ */
 public class AffirmDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();

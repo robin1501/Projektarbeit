@@ -7,7 +7,18 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
+/**
+ * 
+ * Dialog zur Passwortänderung. 
+ * Dieser Dialog wird als PopUp aus dem Panel "Pesönliche Daten" aufgerufen.<br>
+ * Es bietet die Möglichkeit das Passwort abzuändern.Hierzu werden 2 Textboxen abgefragt.<br>
+ * Das Passwort <b>muss </b>aus Buchstaben und Zahlen keine Sonderzeichen<br><br>
+ * Nach den InsertAndValidation Checks wird das neue Passwort direkt abgespeichert,<br>
+ * das Hauptfenster geschlossen und das Loginfenster aufgerufen.
+ * 
+ * 
+ *
+ */
 public class ChangePasswordDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();

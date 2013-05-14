@@ -1,11 +1,14 @@
 package interfaces;
-/**  
- * ArrayList in den Parametern immer als Erstes angeben. Elementar für den Master!
- *
- */
+
 import java.util.ArrayList;
 
-
+/**  
+ * Rechte für die eigene Notenansicht.<br>
+ * Wird implementiert von der Rolle Student.<br>
+ *<b> ArrayList in den Parametern immer als Erstes angeben. Elementar für den Master!</B>
+ * 
+ *
+ */
 public interface IShowMyMarks {	
 	
 	public ArrayList <String > getMyMarks(String vorlesung);

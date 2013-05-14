@@ -1,6 +1,5 @@
 package roles;
 
-
 /**
  * User Klasse die zur Polymorphie im Master verwendet wird. Von ihr leiten alle
  * anderen Rollenklassen ab. Von den Rollenklassen hängen die Fähigkeiten der
