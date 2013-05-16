@@ -17,7 +17,7 @@ import roles.User;
  * anderen Seite passiert.<br>
  * Durch die klare Schnittstellendefinition kann über sehr wenige Methoden die
  * komplette Interaktion abgehandelt werden.<br>
- * Hierzu wird das Konzept der Polymorphie genutzt. 
+ * Hierzu wird das Konzept der Polymorphie genutzt.
  */
 public class Master {
 
@@ -42,9 +42,11 @@ public class Master {
 	/**
 	 * Der User wird anhand des Login gesetzt.<br>
 	 * Übergeben werden alle Parameter die, für die Auwsahl der Rolle und die
-	 * Objekterzeugung, benötigt werden, sodass "myDynamicUser" richtig initialisiert wird. <br>
+	 * Objekterzeugung, benötigt werden, sodass "myDynamicUser" richtig
+	 * initialisiert wird. <br>
 	 * User selbst ist eineabstrakte Klasse und dient hier der Polymorphie.<br>
-	 * Bei fehlerhafter Zuweisung wird eine Message ausgegeben, die auf diesen Umstand hinweist.
+	 * Bei fehlerhafter Zuweisung wird eine Message ausgegeben, die auf diesen
+	 * Umstand hinweist.
 	 * 
 	 * @param role
 	 * @param isHead
@@ -88,20 +90,30 @@ public class Master {
 	 * -----------------------------------------------------------------
 	 */
 	/**
-	 * <p><b>Es folgen nun die Methoden der Masterklasse, die die Schnittstellen der Klasse bilden.</b><br> 
-	 * Es gibt drei Hauptmethoden für Methoden die double und ArrayList als Rückgabewerte haben, wie auch für Voidaufrufe.<br>
-	 * Durch die Interfaces wird definiert in welcher Art alle Objektmethoden aufgebaut und benannt sind.<br>
-	 * Dadurch ist es möglich die gewünschte Methode zusammenzustellen und aufzurufen.<br>
-	 * <b>Diese Definitionen einzuhalten ist essentiel für die Funktionsfähigkeit dieser Aufrufe.</b><br>
+	 * <p>
+	 * <b>Es folgen nun die Methoden der Masterklasse, die die Schnittstellen
+	 * der Klasse bilden.</b><br>
+	 * Es gibt vier Hauptmethoden für Methoden die double, String und ArrayList
+	 * als Rückgabewerte haben, wie auch für Voidaufrufe.<br>
+	 * Durch die Interfaces wird definiert in welcher Art alle Objektmethoden
+	 * aufgebaut und benannt sind.<br>
+	 * Dadurch ist es möglich die gewünschte Methode zusammenzustellen und
+	 * aufzurufen.<br>
+	 * <b>Diese Definitionen einzuhalten ist essentiel für die
+	 * Funktionsfähigkeit dieser Aufrufe.</b><br>
 	 * </p>
 	 * <br>
 	 * <p>
-	 * Die Funktion <b>getMyDouble</b> kann immer dann angewendet werden, wenn ein Doublewert erwartet wird.<br>
-	 * Es muss der gewünschte Methodenname ,sowie die erwarteten Parameter mitgegeben werden.<br>
+	 * Die Funktion <b>getMyDouble</b> kann immer dann angewendet werden, wenn
+	 * ein Doublewert erwartet wird.<br>
+	 * Es muss der gewünschte Methodenname ,sowie die erwarteten Parameter
+	 * mitgegeben werden.<br>
 	 * Über IF-Else-Verzweigungen wird nun der Methodenaufruf realisiert.<br>
-	 * Bei fehlerhaftem Aufruf wird per MessageBox auf die Fehlerursache hingewiesen.
-	 
+	 * Bei fehlerhaftem Aufruf wird per MessageBox auf die Fehlerursache
+	 * hingewiesen.
+	 * 
 	 * </p>
+	 * 
 	 * @param methodName
 	 * @param parameterArrayList
 	 * @param parameterString
@@ -137,13 +149,31 @@ public class Master {
 		}
 
 	}
-	
+
+	public static String getMyStrings(String methodName) {
+		String retVal = null;
+
+		try {
+			retVal = (String) myDynamicUser.getClass().getMethod(methodName)
+					.invoke(myDynamicUser);
+		} catch (IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException | NoSuchMethodException
+				| SecurityException e) {
+			
+			ErroMessenger();
+		}
+
+		return retVal;
+	}
 
 	/**
-	 * Die Funktion <b>getMyArrayList</b> kann immer dann angewendet werden, wenn eine ArrayList erwartet wird.<br>
-	 * Es muss der gewünschte Methodenname ,sowie die erwarteten Parameter mitgegeben werden.<br>
+	 * Die Funktion <b>getMyArrayList</b> kann immer dann angewendet werden,
+	 * wenn eine ArrayList erwartet wird.<br>
+	 * Es muss der gewünschte Methodenname ,sowie die erwarteten Parameter
+	 * mitgegeben werden.<br>
 	 * Über IF-Else-Verzweigungen wird nun der Methodenaufruf realisiert.<br>
-	 * Bei fehlerhaftem Aufruf wird per MessageBox auf die Fehlerursache hingewiesen.
+	 * Bei fehlerhaftem Aufruf wird per MessageBox auf die Fehlerursache
+	 * hingewiesen.
 	 * 
 	 * @param methodName
 	 * @param parameterArrayList
@@ -189,10 +219,13 @@ public class Master {
 	}
 
 	/**
-	 * Die Funktion <b>voidCaller</b> kann immer dann angewendet werden wenn eine VoidFunktion aufgerufen wird.<br>
-	 * Es muss der gewünschte Methodenname ,sowie die erwarteten Parameter mitgegeben werden.<br>
+	 * Die Funktion <b>voidCaller</b> kann immer dann angewendet werden wenn
+	 * eine VoidFunktion aufgerufen wird.<br>
+	 * Es muss der gewünschte Methodenname ,sowie die erwarteten Parameter
+	 * mitgegeben werden.<br>
 	 * Über IF-Else-Verzweigungen wird nun der Methodenaufruf realisiert.<br>
-	 * Bei fehlerhaftem Aufruf wird per MessageBox auf die Fehlerursache hingewiesen.
+	 * Bei fehlerhaftem Aufruf wird per MessageBox auf die Fehlerursache
+	 * hingewiesen.
 	 * 
 	 * @param methodName
 	 * @param parameterString

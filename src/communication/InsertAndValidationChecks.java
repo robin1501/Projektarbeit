@@ -7,10 +7,7 @@ import java.util.ArrayList;
  *
  *
  */
-public class InsertAndValidationChecks {
-
-	
-	
+public class InsertAndValidationChecks {	
 
 	
 	
