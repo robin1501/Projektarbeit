@@ -15,5 +15,9 @@ package data;
  * 
  */
 public class Save {
-
+/*
+ * bitte mit der save noch warten.. da hab ich noch ne frage an euch wie ihr das machen würdet.
+ * 
+ * Daniel
+ */
 }

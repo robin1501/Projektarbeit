@@ -11,8 +11,8 @@ import java.util.ArrayList;
  */
 public interface IShowMyMarks {	
 	
-	public ArrayList <String > getMyMarks(String vorlesung);
-	public double getMyTotalAverage(ArrayList<String > allMarks);
+	public ArrayList <ArrayList<String >> getMyMarks(String vorlesung);
+	public double getMyTotalAverage();
 	
 
 }

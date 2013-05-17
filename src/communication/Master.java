@@ -117,7 +117,7 @@ public class Master {
 	 * @param methodName
 	 * @param parameterArrayList
 	 * @param parameterString
-	 * @return
+	 * @return double
 	 */
 	@SuppressWarnings("finally")
 	public static double getMyDouble(String methodName,
@@ -126,12 +126,18 @@ public class Master {
 		double retValue = 0;
 
 		try {
-			if (parameterString == null) {
+			if (parameterString == null && parameterArrayList == null) {
+
+				retValue = (double) myDynamicUser.getClass()
+						.getMethod(methodName).invoke(myDynamicUser);
+
+			} else if (parameterString == null && parameterArrayList != null) {
+
 				retValue = (double) myDynamicUser.getClass()
 						.getMethod(methodName, ArrayList.class)
 						.invoke(myDynamicUser, parameterArrayList);
-
 			} else {
+
 				retValue = (double) myDynamicUser.getClass()
 						.getMethod(methodName, String.class)
 						.invoke(myDynamicUser, parameterString);
@@ -149,7 +155,21 @@ public class Master {
 		}
 
 	}
-
+	/**
+	 * Die Funktion <b>getMyStrings</b> kann immer dann angewendet werden,
+	 * wenn ein Rückgabewert vom Typ String erwartet wird.<br>
+	 * Es muss der gewünschte Methodenname ,sowie die erwarteten Parameter
+	 * mitgegeben werden.<br>
+	 * Über IF-Else-Verzweigungen wird nun der Methodenaufruf realisiert.<br>
+	 * Bei fehlerhaftem Aufruf wird per MessageBox auf die Fehlerursache
+	 * hingewiesen.
+	 * 
+	 * @param methodName
+	 * @param parameterArrayList
+	 * @param parameterString
+	 * @return String
+	 */
+	
 	public static String getMyStrings(String methodName) {
 		String retVal = null;
 
@@ -159,7 +179,7 @@ public class Master {
 		} catch (IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException | NoSuchMethodException
 				| SecurityException e) {
-			
+
 			ErroMessenger();
 		}
 
@@ -178,7 +198,7 @@ public class Master {
 	 * @param methodName
 	 * @param parameterArrayList
 	 * @param parameterString
-	 * @return
+	 * @return ArrayList
 	 */
 	@SuppressWarnings({ "finally", "unchecked" })
 	public static ArrayList<String> getMyArrayList(String methodName,
@@ -194,7 +214,7 @@ public class Master {
 						.getMethod(methodName).invoke(myDynamicUser);
 
 			} else {
-				if (parameterArrayList == null) {
+				if (parameterArrayList == null && parameterString != null) {
 
 					retVal = (ArrayList<String>) myDynamicUser.getClass()
 							.getMethod(methodName, String.class)
@@ -202,6 +222,59 @@ public class Master {
 				} else {
 					retVal = (ArrayList<String>) myDynamicUser.getClass()
 							.getMethod(methodName, ArrayList.class)
+							.invoke(myDynamicUser, parameterArrayList);
+				}
+
+			}
+
+		} catch (IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException | NoSuchMethodException
+				| SecurityException e) {
+
+			ErroMessenger();
+
+		} finally {
+			return retVal;
+		}
+	}
+
+	/**
+	 * Die Funktion <b>getMyTwoDimensionalArrayList</b> kann immer dann angewendet werden,
+	 * wenn eine 2 Dimensionale ArrayList erwartet wird.<br>
+	 * Es muss der gewünschte Methodenname ,sowie die erwarteten Parameter
+	 * mitgegeben werden.<br>
+	 * Über IF-Else-Verzweigungen wird nun der Methodenaufruf realisiert.<br>
+	 * Bei fehlerhaftem Aufruf wird per MessageBox auf die Fehlerursache
+	 * hingewiesen.
+	 * 
+	 * @param methodName
+	 * @param parameterArrayList
+	 * @param parameterString
+	 * @return 2 Dimensionale ArrayList
+	 */
+	@SuppressWarnings({ "finally", "unchecked" })
+	public static ArrayList<ArrayList<String>> getMyTwoDimensionalArrayList(
+			String methodName, ArrayList<String> parameterArrayList,
+			String parameterString) {
+
+		ArrayList<ArrayList<String>> retVal = new ArrayList<ArrayList<String>>();
+
+		try {
+
+			if (parameterString == null && parameterArrayList == null) {
+
+				retVal = (ArrayList<ArrayList<String>>) myDynamicUser
+						.getClass().getMethod(methodName).invoke(myDynamicUser);
+
+			} else {
+				if (parameterArrayList == null && parameterString != null) {
+
+					retVal = (ArrayList<ArrayList<String>>) myDynamicUser
+							.getClass().getMethod(methodName, String.class)
+							.invoke(myDynamicUser, parameterString);
+				} else {
+					retVal = (ArrayList<ArrayList<String>>) myDynamicUser
+							.getClass().getMethod(methodName, ArrayList.class)
 							.invoke(myDynamicUser, parameterArrayList);
 				}
 
@@ -229,6 +302,7 @@ public class Master {
 	 * 
 	 * @param methodName
 	 * @param parameterString
+	 * 
 	 */
 	public static void voidCaller(String methodName, String parameterString) {
 
@@ -253,12 +327,14 @@ public class Master {
 		}
 	}
 
+	
 	/**
 	 * Öffnet einen JOptionPane die auf einen Fehler hinweist.<br>
 	 * Die Funktion wird in den Methoden des dynamischen Users in den
 	 * Catch-Blöcken aufgerufen und weißt auf einen fehlerhaften Methodenaufruf
 	 * hin.
 	 */
+	
 	private static void ErroMessenger() {
 
 		JOptionPane.showMessageDialog(null,

@@ -70,7 +70,7 @@ public class HeadOfDepartment extends User implements ILecturer, IProf, IHead {
 	}
 
 	@Override
-	public ArrayList<String> AllFailedStudentsOfCourse(
+	public ArrayList<ArrayList<String>> AllFailedStudentsOfCourse(
 			ArrayList<String> allCourseLectures) {
 		// TODO Auto-generated method stub
 		return null;
@@ -89,7 +89,7 @@ public class HeadOfDepartment extends User implements ILecturer, IProf, IHead {
 	}
 
 	@Override
-	public ArrayList<String> getAllStudentsOfLecture(String SelectedLecture) {
+	public ArrayList<ArrayList<String>> getAllStudentsOfLecture(String SelectedLecture) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -107,7 +107,7 @@ public class HeadOfDepartment extends User implements ILecturer, IProf, IHead {
 	}
 
 	@Override
-	public ArrayList<String> getAllFailedOrUnmarkedStudents(
+	public ArrayList<ArrayList<String>> getAllFailedOrUnmarkedStudents(
 			ArrayList<String> allMyLectures) {
 		// TODO Auto-generated method stub
 		return null;

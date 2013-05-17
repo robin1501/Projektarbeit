@@ -10,10 +10,10 @@ import java.util.ArrayList;
 public interface ILecturer {
 	
 	public ArrayList <String >getMyLectures();
-	public ArrayList <String > getAllStudentsOfLecture(String SelectedLecture);
+	public ArrayList <ArrayList <String >> getAllStudentsOfLecture(String SelectedLecture);
 	public double getLectureAverage(String SelectedLecture);
 	public double getAllAverage(ArrayList<String > allMyLectures);
-	public ArrayList <String > getAllFailedOrUnmarkedStudents(ArrayList <String > allMyLectures);
+	public ArrayList <ArrayList <String >> getAllFailedOrUnmarkedStudents(ArrayList <String > allMyLectures);
 	
 
 }

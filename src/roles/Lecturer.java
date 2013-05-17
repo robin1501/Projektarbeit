@@ -53,7 +53,7 @@ public class Lecturer extends User implements ILecturer {
 	}
 
 	@Override
-	public ArrayList<String> getAllStudentsOfLecture(String SelectedLecture) {
+	public ArrayList<ArrayList<String>> getAllStudentsOfLecture(String SelectedLecture) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -71,7 +71,7 @@ public class Lecturer extends User implements ILecturer {
 	}
 
 	@Override
-	public ArrayList<String> getAllFailedOrUnmarkedStudents(
+	public ArrayList<ArrayList<String>> getAllFailedOrUnmarkedStudents(
 			ArrayList<String> allMyLectures) {
 		// TODO Auto-generated method stub
 		return null;
@@ -81,11 +81,6 @@ public class Lecturer extends User implements ILecturer {
 	
 	/* Methoden aus Oberklasse ------------------------------- */
 	/* Eigene Methoden ------------------------------- */
-	public  ArrayList<String> test (ArrayList<String> zwei) {
-		
-		ArrayList<String> test2 = new ArrayList<String>();
-		test2.add("hallo");
-		
-		 return test2;
-	}
+	
+	
 }

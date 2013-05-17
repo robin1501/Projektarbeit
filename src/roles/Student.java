@@ -50,14 +50,17 @@ public class Student extends User implements IShowMyMarks {
 	/* Implementationen aus Interfaces ---------------- */
 
 	@Override
-	public ArrayList<String> getMyMarks(String vorlesung) {
+	public ArrayList <ArrayList<String>> getMyMarks(String vorlesung) {
 		// id bitte aus dem Objekt ziehen 
+		// sowas wie "student id und vorlesung sollen alle seine noten und vorlesungen hoch geben "deutsch" "2" usw
+		
+		
 		return null;
 	}
 
 	@Override
-	public double getMyTotalAverage(ArrayList <String> allMarks) {
-		// TODO Auto-generated method stub
+	public double getMyTotalAverage() {
+		//durchschnitt aus den Noten berechene die in getMyMarks gezogen wurden 
 		return 0;
 	}
 
