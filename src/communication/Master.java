@@ -1,5 +1,7 @@
 package communication;
 
+import gui.main.StudentG;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
@@ -44,7 +46,8 @@ public class Master {
 	 * Übergeben werden alle Parameter die, für die Auwsahl der Rolle und die
 	 * Objekterzeugung, benötigt werden, sodass "myDynamicUser" richtig
 	 * initialisiert wird. <br>
-	 * User selbst ist eineabstrakte Klasse und dient hier der Polymorphie.<br>
+	 * Hierbei wird auch die richtige GUI aufgerufen
+	 * User selbst ist eine abstrakte Klasse und dient hier der Polymorphie.<br>
 	 * Bei fehlerhafter Zuweisung wird eine Message ausgegeben, die auf diesen
 	 * Umstand hinweist.
 	 * 
@@ -63,6 +66,8 @@ public class Master {
 
 			case 'S':
 				myDynamicUser = new Student(name, firstname, id, course);
+				StudentG Gui = new StudentG();
+				Gui.setVisible(true);
 				break;
 			case 'D':
 				myDynamicUser = new Lecturer(name, firstname, id, course);
@@ -341,6 +346,13 @@ public class Master {
 				"Aktion konnte nicht ausgeführt werden.",
 				"Fehler beim Methodenaufruf", JOptionPane.ERROR_MESSAGE);
 
+	}
+
+	public static boolean Login(char[] pswd, String user) {
+		InsertAndValidationChecks.Login(pswd, user);
+		
+		return false;
+		
 	}
 
 }

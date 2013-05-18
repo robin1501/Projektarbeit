@@ -14,9 +14,11 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
 import communication.InsertAndValidationChecks;
+import communication.Master;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JRadioButtonMenuItem;
 /**
  * Startfenster zur Eingabe der Login-Daten.
  * Nach den InserAndValidationChecks wird der dynamische User im Master gesetz <br>
@@ -25,11 +27,15 @@ import java.awt.event.ActionEvent;
  * sodass ein erneutes Login möglich ist.
  *
  */
-public class LoginG extends JFrame {
+public class LoginG extends JFrame{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5207612747990419028L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JPasswordField passwordField;
+	public JTextField textField;
+	public JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -51,55 +57,57 @@ public class LoginG extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginG() {
+		
 		setTitle("Login zur Studentenverwaltung");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 377, 272);
+		setBounds(100, 100, 331, 221);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JRadioButton rdbtnCsv = new JRadioButton("CSV");
-		rdbtnCsv.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnCsv.setBounds(57, 128, 58, 23);
-		contentPane.add(rdbtnCsv);
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Datenbank");
-		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnNewRadioButton.setBounds(157, 128, 119, 23);
-		contentPane.add(rdbtnNewRadioButton);
-		
 		JLabel lblId = new JLabel("ID");
-		lblId.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblId.setBounds(57, 37, 90, 23);
+		lblId.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblId.setBounds(36, 49, 90, 23);
 		contentPane.add(lblId);
 		
 		JLabel lblPasswort = new JLabel("Passwort");
-		lblPasswort.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblPasswort.setBounds(57, 79, 90, 29);
+		lblPasswort.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblPasswort.setBounds(36, 81, 80, 20);
 		contentPane.add(lblPasswort);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.setToolTipText("Click to Login");
 		
-		//btnLogin.addActionListener(new ActionListener() {			
-
-//			public void actionPerformed(ActionEvent e) {
-//				String pswd = passwortField.getPasswort();
-//				
-//				InsertAndValidationChecks.Login();
-//			}
-//		});
+		btnLogin.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				
+				char[] pswd = passwordField.getPassword();
+				String user = textField.getText();
+				// Wie close ich das Login Fenser , sodass der Rest offen bleibt? 18.05
+				Master.Login(pswd,user);
+						
+			}
+		});		
+		
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnLogin.setBounds(75, 172, 196, 39);
+		btnLogin.setBounds(36, 127, 80, 22);
 		contentPane.add(btnLogin);
 		
 		textField = new JTextField();
-		textField.setBounds(157, 40, 114, 20);
+		textField.setBounds(148, 52, 114, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		 passwordField = new JPasswordField();
-		passwordField.setBounds(157, 85, 114, 20);
+		passwordField.setBounds(149, 82, 112, 20);
 		contentPane.add(passwordField);
+		
+		JLabel lblLogin = new JLabel("LOGIN");
+		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblLogin.setBounds(39, 14, 66, 21);
+		contentPane.add(lblLogin);
+		setLocationRelativeTo(null);
 	}
 }
