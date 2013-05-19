@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import data.Save;
+
 import roles.HeadOfDepartment;
 import roles.Lecturer;
 import roles.Professor;
@@ -29,6 +31,7 @@ public class Master {
 	 */
 
 	private static User myDynamicUser = null;
+	private static String guiName = null;
 
 	/**
 	 * In der getUserClass() wird die aktuelle Klasse des Users als String
@@ -66,16 +69,18 @@ public class Master {
 
 			case 'S':
 				myDynamicUser = new Student(name, firstname, id, course);
-				
+				guiName = "Student";
 				StudentG Gui = new StudentG();
 				Gui.setVisible(true);
 				
 				break;
 			case 'D':
 				myDynamicUser = new Lecturer(name, firstname, id, course);
+				guiName = "Lecturer";
 				break;
 			case 'P':
 				myDynamicUser = new Professor(name, firstname, id, course);
+				guiName = "Professor";
 				break;
 			default:
 				JOptionPane
@@ -89,6 +94,7 @@ public class Master {
 
 		} else {
 			myDynamicUser = new HeadOfDepartment(name, firstname, id, course);
+			guiName = "HeadOfDepartment";
 		}
 	}
 
@@ -349,12 +355,53 @@ public class Master {
 				"Fehler beim Methodenaufruf", JOptionPane.ERROR_MESSAGE);
 
 	}
-
+/**
+ * Weiterreichen der Loginanfrage an die InsertAndValidation-Klasse.<br>
+ * Rückgabe des Wertes für die LoginGui.<br>
+ * Genaue Beschreibung jeweils in der Klasse und der Gui selbst.
+ * 
+ * 
+ * @param pswd
+ * @param user
+ * @return Funktionswert des InsertAndValidationCheks
+ */
 	public static boolean Login(char[] pswd, String user) {
 		
 		
 		return InsertAndValidationChecks.Login(pswd, user);
 		
 	}
+/**
+ * Aufruf der ChangePasswort-Funktion in der Save-Klasse.<br>
+ * ChangePasswort wird vom ChangePasswortDialog aufgerufen, der über das PersonalDataP Panel aufgerufen wird.<br>
+ * Es bekommt das, bereits auf Regelkonformität geprüfte, Passwort übergeben und gibt es zusammen mit der User-Id,<br>
+ * die hier aus der User-Id gezogen wird,an die Save-Klasse weiter.<br> <br>
+ * Ist die Speicherung erfolgreich, wird das aktuelle Fenster(Ermittlung über die User-Klasse) geschlossen und ein neues Loginfenster aufgerufen. <br>
+ * Sicherung das jede HauptGUI einen Disposeaufruf hat, wird über das Interface "IDisposeMe" sichergestellt.
+ * @param pswd
+ */
+	public static void ChangePassword(String pswd) {
+		
+		if(Save.ChangePassword(pswd,getMyStrings("getId"))){
+			
+			JOptionPane.showMessageDialog(null,
+				    "Passwortänderung erfolgreich.\n Das Fenster wird sich automatisch schließen,sodass Sie sich neu einloggen können.\n Ihre Änderungen werden gespeichert.",
+				    "Passwortänderung",
+				    JOptionPane.INFORMATION_MESSAGE);
+			
+		//	disposeGUI());
+			
+			
+		}
+		
+		
+		
+	}
+
+	private static void disposeGUI() {
+	// TODO Auto-generated method stub
+	
+	}
+	
 
 }
