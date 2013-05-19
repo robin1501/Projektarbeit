@@ -73,8 +73,11 @@ public class InsertAndValidationChecks {
 	}
 
 	/**
-	 * Überprüfung, ob in den Übergabewerten Werte gespeichert sind und diese keine Leerzeichen enthalten.<br>
-	 * Auf Fehler wird durch eine ErrorMessage, die Fehlerabhängig aufgebaut wird, hingewiesen.
+	 * Überprüfung, ob in den Übergabewerten Werte gespeichert sind und diese
+	 * keine Leerzeichen enthalten.<br>
+	 * Auf Fehler wird durch eine ErrorMessage, die Fehlerabhängig aufgebaut
+	 * wird, hingewiesen.
+	 * 
 	 * @param pswd
 	 * @param user
 	 * @return Booleanwert für notNullorWhitespace
@@ -87,50 +90,49 @@ public class InsertAndValidationChecks {
 		String userError = "";
 
 		// User -------------------------------------
-		
+
 		if (noWhiteSpace(user) && !user.equals("")) {
 			userRetVal = true;
 		} else {
-			
-		
-			userError = "Bitte User-Id eingeben \n ";			
+
+			userError = "Bitte User-Id eingeben \n ";
 			userRetVal = false;
 		}
 
 		// Passwort ----------------------------------
-		
+
 		if (pswd.length > 0 && noWhiteSpace(pswd)) {
 			pswdRetVal = true;
 
 		} else {
-			
-	
+
 			pswdError = "Bitte Passwort eingeben\n";
 			pswdRetVal = false;
 		}
-		
+
 		// Entscheidung und ErrorMessageBuilder-------
-		
+
 		if (pswdRetVal && userRetVal) {
 
 			return true;
 
 		} else {
 
-			JOptionPane.showMessageDialog(null,
-					pswdError+userError + "\n (Keine Leerzeichen)",
-					"Eingabefehler", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, pswdError + userError
+					+ "\n (Keine Leerzeichen)", "Eingabefehler",
+					JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
 	}
-/**
- * Prüft ob Leerzeichen im zu überprüfenden Char-Array vorhanden sind.<br>
- * Es wird über eine foreach schleife durchlaufen.
- * 
- * @param checkArray
- * @return retval ob Leerzeichen vorhanden sind.
- */
+
+	/**
+	 * Prüft ob Leerzeichen im zu überprüfenden Char-Array vorhanden sind.<br>
+	 * Es wird über eine foreach schleife durchlaufen.
+	 * 
+	 * @param checkArray
+	 * @return retval ob Leerzeichen vorhanden sind.
+	 */
 	private static boolean noWhiteSpace(char[] checkArray) {
 
 		boolean retVal = true;
@@ -143,32 +145,37 @@ public class InsertAndValidationChecks {
 		}
 		return retVal;
 	}
-	
+
 	/**
 	 * Prüft ob Leerzeichen im zu überprüfenden String vorhanden sind.<br>
 	 * Der String wird in ein Char-Array umgewandelt. <br>
 	 * Dieses wird an die Methode noWhiteSpace übergeben.<br>
 	 * Der zurückgegebene Wert wird dann ebenfalls zurückgegeben.
+	 * 
 	 * @param checkArray
 	 * @return Funktionswert von noWhiteSpace(char [] checkArray)
 	 */
 	private static boolean noWhiteSpace(String checkString) {
-		
+
 		char[] charArray = checkString.toCharArray();
 
 		return noWhiteSpace(charArray);
 	}
-/**
- * Überprüfung auf Ziffern im übergebenen String <br>
- * Der String wird zuerst in ein Char-Array umgewandelt, sodass die Zeichen einzeln betrachtet werden können. <br><br>
- * 
- * Nun wird diese Char-Array durchlaufen.<br>
- *  Jedes Einzelzeichen wird versucht in ein Integer zu parsen. Gelingt dies wird sofort "true" zurückgegeben.<br>
- *  Schlägt es aber fehl, wird im Catch-Block die retVal auf false gesetzt.
- * 
- * @param checkString
- * @return Value zur Fragestellung "isNumberInsideString"
- */
+
+	/**
+	 * Überprüfung auf Ziffern im übergebenen String <br>
+	 * Der String wird zuerst in ein Char-Array umgewandelt, sodass die Zeichen
+	 * einzeln betrachtet werden können. <br>
+	 * <br>
+	 * 
+	 * Nun wird diese Char-Array durchlaufen.<br>
+	 * Jedes Einzelzeichen wird versucht in ein Integer zu parsen. Gelingt dies
+	 * wird sofort "true" zurückgegeben.<br>
+	 * Schlägt es aber fehl, wird im Catch-Block die retVal auf false gesetzt.
+	 * 
+	 * @param checkString
+	 * @return Value zur Fragestellung "isNumberInsideString"
+	 */
 	private static boolean isNumberInsideString(String checkString) {
 
 		boolean retVal = false;
@@ -190,6 +197,26 @@ public class InsertAndValidationChecks {
 
 		}
 		return retVal;
+
+	}
+/**
+ * Überprüfung der Passwortregeln im Dialog "ChangePasswordDialog". <br>
+ * Es wird auf Leerzeichen und Länge des neuen Passwortes getestet.<br>
+ * Länge des neuen Passwortes soll zwischen 5 und 15 zeichen liegen.<br>
+ * 
+ * @param newPswd1
+ * @return isRegelKonform 
+ */
+	public static boolean RegelCheck(char[] newPswd1) {
+		boolean isRegelKonform = false;
+
+		if (noWhiteSpace(newPswd1) && newPswd1.length >= 5
+				&& newPswd1.length <= 15) {
+			isRegelKonform = true;
+
+		}
+
+		return isRegelKonform;
 
 	}
 

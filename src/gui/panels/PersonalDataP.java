@@ -1,16 +1,20 @@
 package gui.panels;
 
+import gui.Dialogs.ChangePasswordDialog;
+
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 /**
  * Panel für die persönlichen Daten der jeweiligen Benutzer.<br>
- * Wir von den Hauptseiten eingebunden.<br>
- * Panel befüllt sich selbstständig.<br>
- * Programmieraufwand also nur einmal nötig.<br>
+ * Es wirdvon den Hauptseiten eingebunden.<br>
+ * Das Panel wird über Parameter befüllt.<br>
+ * Dies macht den Programmieraufwand also nur einmal nötig.<br>
  * 
  */
 public class PersonalDataP extends JPanel {
@@ -24,9 +28,21 @@ public class PersonalDataP extends JPanel {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setLayout(null);
 		
+		
 		JButton btnNewButton = new JButton("Passwort \u00E4ndern");
+		btnNewButton.addActionListener(new ActionListener() {
+		/**
+		 * Öffnet den Dialog zur Passwortänderung.
+		 * 
+		 */
+			
+			public void actionPerformed(ActionEvent arg0) {
+				ChangePasswordDialog myNewPasswort = new ChangePasswordDialog();
+				myNewPasswort.setVisible(true);
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton.setBounds(25, 277, 205, 42);
+		btnNewButton.setBounds(10, 279, 143, 42);
 		add(btnNewButton);
 		
 		JLabel lblPersnlicheDaten = new JLabel("Pers\u00F6nliche Daten");

@@ -15,6 +15,12 @@ package data;
  * 
  */
 public class Save {
+
+	public static boolean ChangePassword(String pswd1, String USerId) {
+		//passwort ändern wenn ja ture zurück geben wenn failed dann false.
+		// Daniel 19.05 
+		return false;
+	}
 /*
  * bitte mit der save noch warten.. da hab ich noch ne frage an euch wie ihr das machen würdet.
  * 
