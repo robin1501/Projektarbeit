@@ -17,6 +17,12 @@ public class Load {
 		// bitte den Rollen entnehmen !!! wichtig
 		// DANIEl
 		//string role, String isHead, String name,String firstname, String id, String course
+		
+		/* falls der user nicht gefunden wird bitte Kriterium über prüfen. und per Errormessage angeben 
+		 * also zb login fehlgeschlagen falscher oder nicht vorhandener benutzername
+		 * und falsches passwort
+		 * 
+		 */
 		return null;
 		
 		

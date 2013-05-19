@@ -59,15 +59,17 @@ public class Master {
 	 * @param course
 	 */
 	public static void setMyDynamicUser(char role, String isHead, String name,
-			String firstname, String id, String course) {
+			String firstname, String id, String course) throws NullPointerException {
 
 		if (!isHead.equals("true")) {
 			switch (role) {
 
 			case 'S':
 				myDynamicUser = new Student(name, firstname, id, course);
+				
 				StudentG Gui = new StudentG();
 				Gui.setVisible(true);
+				
 				break;
 			case 'D':
 				myDynamicUser = new Lecturer(name, firstname, id, course);
@@ -349,9 +351,9 @@ public class Master {
 	}
 
 	public static boolean Login(char[] pswd, String user) {
-		InsertAndValidationChecks.Login(pswd, user);
 		
-		return false;
+		
+		return InsertAndValidationChecks.Login(pswd, user);
 		
 	}
 

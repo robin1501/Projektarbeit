@@ -36,6 +36,10 @@ public class StudentG extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param course 
+	 * @param id 
+	 * @param firstname 
+	 * @param name 
 	 */
 	public StudentG() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,5 +49,7 @@ public class StudentG extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 	}
+
+	
 
 }
