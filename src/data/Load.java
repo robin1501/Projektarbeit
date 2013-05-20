@@ -62,7 +62,6 @@ public class Load {
 				{
 					if(column[4] == pswd)
 					{
-						//string role, String isHead, String name,String firstname, String id, String course
 						data.add(column[2]);	//Rolle
 						data.add(column[6]);	//Studiengang
 						data.add(column[0]);	//Nachname
