@@ -71,7 +71,12 @@ public class InsertAndValidationChecks {
 		return isValidData;
 
 	}
-
+/**
+ * Methode zur Umwandlung von CharArrays in Strings. 
+ * 
+ * @param pswd
+ * @return zu String konvertiertes CharArray
+ */
 	private static String charArrayToString(char[] pswd) {
 		
 		String retVal = "";

@@ -45,10 +45,10 @@ public class Load {
 		
 		/* falls der user nicht gefunden wird bitte Kriterium über prüfen. und per Errormessage angeben 
 		 * also zb login fehlgeschlagen falscher oder nicht vorhandener benutzername
-		 * und falsches passwort
+		 * und falsches passwort 
 		 * 
 		 */
-		
+	
 		FileReader fr = null;
 		
 		try {
