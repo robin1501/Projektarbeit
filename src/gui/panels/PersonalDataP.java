@@ -7,13 +7,16 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
+
+import communication.Master;
+
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 /**
  * Panel für die persönlichen Daten der jeweiligen Benutzer.<br>
- * Es wirdvon den Hauptseiten eingebunden.<br>
- * Das Panel wird über Parameter befüllt.<br>
+ * Es wird von den Hauptseiten eingebunden.<br>
+ * Das Panel wird direkt über den Master befülltt.<br>
  * Dies macht den Programmieraufwand also nur einmal nötig.<br>
  * 
  */
@@ -24,7 +27,7 @@ public class PersonalDataP extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public PersonalDataP(String name, String firstname, String ID, String course, String role) {
+	public PersonalDataP() {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setLayout(null);
 		
@@ -42,12 +45,12 @@ public class PersonalDataP extends JPanel {
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton.setBounds(10, 279, 143, 42);
+		btnNewButton.setBounds(10, 229, 143, 42);
 		add(btnNewButton);
 		
 		JLabel lblPersnlicheDaten = new JLabel("Pers\u00F6nliche Daten");
 		lblPersnlicheDaten.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		lblPersnlicheDaten.setBounds(10, 11, 345, 42);
+		lblPersnlicheDaten.setBounds(10, 11, 175, 42);
 		add(lblPersnlicheDaten);
 		
 		JLabel lblName = new JLabel("Name");
@@ -70,35 +73,42 @@ public class PersonalDataP extends JPanel {
 		lblStudiengang.setBounds(10, 169, 85, 35);
 		add(lblStudiengang);
 		
-		JLabel lblRolle = new JLabel("Rolle");
-		lblRolle.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblRolle.setBounds(10, 215, 85, 14);
-		add(lblRolle);
-		
-		JLabel lblMyname = new JLabel(name);
+		JLabel lblMyname = new JLabel(Master.getMyStrings("getName"));
 		lblMyname.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblMyname.setBounds(169, 69, 143, 20);
 		add(lblMyname);
 		
-		JLabel lblMyfirstname = new JLabel(firstname);
+		JLabel lblMyfirstname = new JLabel(Master.getMyStrings("getFirstname"));
 		lblMyfirstname.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblMyfirstname.setBounds(169, 110, 143, 20);
 		add(lblMyfirstname);
 		
-		JLabel lblMyid = new JLabel(ID);
+		JLabel lblMyid = new JLabel(Master.getMyStrings("getId"));
 		lblMyid.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblMyid.setBounds(169, 146, 143, 20);
 		add(lblMyid);
 		
-		JLabel lblMycourse = new JLabel(course);
+		JLabel lblMycourse = new JLabel(Master.getMyStrings("getCourse"));
 		lblMycourse.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblMycourse.setBounds(169, 181, 143, 23);
 		add(lblMycourse);
 		
-		JLabel lblNewLabel = new JLabel(role);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel.setBounds(169, 217, 143, 23);
-		add(lblNewLabel);
+		JButton btnNewButton_1 = new JButton("Abmelden");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			/**
+			 * Abmelde Vorgang wird eingeleitet über den Aufruf DisposeGUI() in der MasterKlasse.<br>
+			 * Der Aufruf hat das Schließen der HauptGui zur Folge. <br>
+			 * Danach wird ein Neues LogIn Fenster geöffnet. 
+			 * 
+			 */
+			
+			public void actionPerformed(ActionEvent arg0) {
+				Master.disposeGUI();
+			}
+		});
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton_1.setBounds(163, 229, 143, 42);
+		add(btnNewButton_1);
 
 	}
 }

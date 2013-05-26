@@ -1,5 +1,7 @@
 package communication;
 
+import gui.main.LecturerG;
+import gui.main.LoginG;
 import gui.main.StudentG;
 
 import java.lang.reflect.InvocationTargetException;
@@ -32,6 +34,8 @@ public class Master {
 
 	private static User myDynamicUser = null;
 	private static String guiName = null;
+	private static StudentG GUIS = null;
+	private static LecturerG GUIL = null;
 
 	/**
 	 * In der getUserClass() wird die aktuelle Klasse des Users als String
@@ -49,8 +53,8 @@ public class Master {
 	 * Übergeben werden alle Parameter die, für die Auwsahl der Rolle und die
 	 * Objekterzeugung, benötigt werden, sodass "myDynamicUser" richtig
 	 * initialisiert wird. <br>
-	 * Hierbei wird auch die richtige GUI aufgerufen
-	 * User selbst ist eine abstrakte Klasse und dient hier der Polymorphie.<br>
+	 * Hierbei wird auch die richtige GUI aufgerufen User selbst ist eine
+	 * abstrakte Klasse und dient hier der Polymorphie.<br>
 	 * Bei fehlerhafter Zuweisung wird eine Message ausgegeben, die auf diesen
 	 * Umstand hinweist.
 	 * 
@@ -62,7 +66,8 @@ public class Master {
 	 * @param course
 	 */
 	public static void setMyDynamicUser(char role, String isHead, String name,
-			String firstname, String id, String course) throws NullPointerException {
+			String firstname, String id, String course)
+			throws NullPointerException {
 
 		if (!isHead.equals("true")) {
 			switch (role) {
@@ -70,9 +75,9 @@ public class Master {
 			case 'S':
 				myDynamicUser = new Student(name, firstname, id, course);
 				guiName = "Student";
-				StudentG Gui = new StudentG();
-				Gui.setVisible(true);
-				
+				GUIS = new StudentG();
+				GUIS.setVisible(true);
+
 				break;
 			case 'D':
 				myDynamicUser = new Lecturer(name, firstname, id, course);
@@ -168,9 +173,10 @@ public class Master {
 		}
 
 	}
+
 	/**
-	 * Die Funktion <b>getMyStrings</b> kann immer dann angewendet werden,
-	 * wenn ein Rückgabewert vom Typ String erwartet wird.<br>
+	 * Die Funktion <b>getMyStrings</b> kann immer dann angewendet werden, wenn
+	 * ein Rückgabewert vom Typ String erwartet wird.<br>
 	 * Es muss der gewünschte Methodenname ,sowie die erwarteten Parameter
 	 * mitgegeben werden.<br>
 	 * Über IF-Else-Verzweigungen wird nun der Methodenaufruf realisiert.<br>
@@ -182,7 +188,7 @@ public class Master {
 	 * @param parameterString
 	 * @return String
 	 */
-	
+
 	public static String getMyStrings(String methodName) {
 		String retVal = null;
 
@@ -252,8 +258,8 @@ public class Master {
 	}
 
 	/**
-	 * Die Funktion <b>getMyTwoDimensionalArrayList</b> kann immer dann angewendet werden,
-	 * wenn eine 2 Dimensionale ArrayList erwartet wird.<br>
+	 * Die Funktion <b>getMyTwoDimensionalArrayList</b> kann immer dann
+	 * angewendet werden, wenn eine 2 Dimensionale ArrayList erwartet wird.<br>
 	 * Es muss der gewünschte Methodenname ,sowie die erwarteten Parameter
 	 * mitgegeben werden.<br>
 	 * Über IF-Else-Verzweigungen wird nun der Methodenaufruf realisiert.<br>
@@ -340,14 +346,13 @@ public class Master {
 		}
 	}
 
-	
 	/**
 	 * Öffnet einen JOptionPane die auf einen Fehler hinweist.<br>
 	 * Die Funktion wird in den Methoden des dynamischen Users in den
 	 * Catch-Blöcken aufgerufen und weißt auf einen fehlerhaften Methodenaufruf
 	 * hin.
 	 */
-	
+
 	private static void ErroMessenger() {
 
 		JOptionPane.showMessageDialog(null,
@@ -355,53 +360,77 @@ public class Master {
 				"Fehler beim Methodenaufruf", JOptionPane.ERROR_MESSAGE);
 
 	}
-/**
- * Weiterreichen der Loginanfrage an die InsertAndValidation-Klasse.<br>
- * Rückgabe des Wertes für die LoginGui.<br>
- * Genaue Beschreibung jeweils in der Klasse und der Gui selbst.
- * 
- * 
- * @param pswd
- * @param user
- * @return Funktionswert des InsertAndValidationCheks
- */
+
+	/**
+	 * Weiterreichen der Loginanfrage an die InsertAndValidation-Klasse.<br>
+	 * Rückgabe des Wertes für die LoginGui.<br>
+	 * Genaue Beschreibung jeweils in der Klasse und der Gui selbst.
+	 * 
+	 * 
+	 * @param pswd
+	 * @param user
+	 * @return Funktionswert des InsertAndValidationCheks
+	 */
 	public static boolean Login(char[] pswd, String user) {
-		
-		
+
 		return InsertAndValidationChecks.Login(pswd, user);
-		
-	}
-/**
- * Aufruf der ChangePasswort-Funktion in der Save-Klasse.<br>
- * ChangePasswort wird vom ChangePasswortDialog aufgerufen, der über das PersonalDataP Panel aufgerufen wird.<br>
- * Es bekommt das, bereits auf Regelkonformität geprüfte, Passwort übergeben und gibt es zusammen mit der User-Id,<br>
- * die hier aus der User-Id gezogen wird,an die Save-Klasse weiter.<br> <br>
- * Ist die Speicherung erfolgreich, wird das aktuelle Fenster(Ermittlung über die User-Klasse) geschlossen und ein neues Loginfenster aufgerufen. <br>
- * Sicherung das jede HauptGUI einen Disposeaufruf hat, wird über das Interface "IDisposeMe" sichergestellt.
- * @param pswd
- */
-	public static void ChangePassword(String pswd) {
-		
-		if(Save.ChangePassword(pswd,getMyStrings("getId"))){
-			
-			JOptionPane.showMessageDialog(null,
-				    "Passwortänderung erfolgreich.\n Das Fenster wird sich automatisch schließen,sodass Sie sich neu einloggen können.\n Ihre Änderungen werden gespeichert.",
-				    "Passwortänderung",
-				    JOptionPane.INFORMATION_MESSAGE);
-			
-		//	disposeGUI());
-			
-			
-		}
-		
-		
-		
+
 	}
 
-	private static void disposeGUI() {
-	// TODO Auto-generated method stub
-	
+	/**
+	 * Aufruf der ChangePasswort-Funktion in der Save-Klasse.<br>
+	 * ChangePasswort wird vom ChangePasswortDialog aufgerufen, der über das
+	 * PersonalDataP Panel aufgerufen wird.<br>
+	 * Es bekommt das, bereits auf Regelkonformität geprüfte, Passwort übergeben
+	 * und gibt es zusammen mit der User-Id,<br>
+	 * die hier aus der User-Id gezogen wird,an die Save-Klasse weiter.<br>
+	 * <br>
+	 * Ist die Speicherung erfolgreich, wird das aktuelle Fenster(Ermittlung
+	 * über die User-Klasse) geschlossen und ein neues Loginfenster aufgerufen. <br>
+	 * Sicherung das jede HauptGUI einen Disposeaufruf hat, wird über das
+	 * Interface "IDisposeMe" sichergestellt.
+	 * 
+	 * @param pswd
+	 */
+	public static void ChangePassword(String pswd) {
+
+		if (Save.ChangePassword(pswd, getMyStrings("getId"))) {
+
+			JOptionPane
+					.showMessageDialog(
+							null,
+							"Passwortänderung erfolgreich.\n Das Fenster wird sich automatisch schließen, sodass Sie sich neu einloggen können.\n Ihre Änderungen werden gespeichert.",
+							"Passwortänderung", JOptionPane.INFORMATION_MESSAGE);
+
+			disposeGUI();
+		
+
+		}
+
 	}
-	
+/**
+ * Es wird ein neues Login Fenster geöffnet.<br>
+ * Dies geschieht beim Abmeldevorgang sowie bei erfolgreicher Passwortänderung. <br>
+ * 
+ */
+	private static void openNewLogin() {
+		LoginG neuesLogin = new LoginG();
+		neuesLogin.setVisible(true);
+		
+	}
+/**
+ * Disposen der aktuellen HauptGui.<br>
+ * Das Disposing hat GUI-Intern das Speichern der jeweiligen Vorgänge zur Folge.<br>
+ * Danach wird ein neues LogIn Fenster über die Funktion "openNewLogin" geöffnet.<br>
+ */
+	public static void disposeGUI() {
+
+		if (GUIS != null) {
+			GUIS.disposeMeFromExtern();
+		} else {
+			GUIL.disposeMeFromExtern();
+		}
+		openNewLogin();
+	}
 
 }
