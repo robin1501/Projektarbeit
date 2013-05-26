@@ -41,7 +41,7 @@ public class InsertAndValidationChecks {
 
 		if (isSecureLoginInsert && !numberInName) {
 
-			ArrayList<String> userData = Load.TryLoadUser(user, pswd);
+			ArrayList<String> userData = Load.TryLoadUser(user, charArrayToString(pswd));
 
 			/*
 			 * ArrayList wird wie folgt hochgegeben --> string role, String
@@ -70,6 +70,15 @@ public class InsertAndValidationChecks {
 		}
 		return isValidData;
 
+	}
+
+	private static String charArrayToString(char[] pswd) {
+		
+		String retVal = "";
+		for(char i :pswd){
+			retVal = retVal + Character.toString(i);
+		}
+		return retVal;
 	}
 
 	/**

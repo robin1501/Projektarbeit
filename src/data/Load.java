@@ -18,9 +18,9 @@ import javax.swing.JOptionPane;
  */
 public class Load {
 
-	static String user;
-	static String pw;
-	static String line;
+	private static String user;
+	private static String pw;
+	private static String line;
 
 	static String[] column = new String[50];
 	
@@ -36,7 +36,7 @@ public class Load {
 	 * }
 	 */
 
-	public static ArrayList<String> TryLoadUser(String userID, char[] pswd) throws FileNotFoundException {
+	public static ArrayList<String> TryLoadUser(String userID, String pswd){ // throws FileNotFoundException {
 		
 		// wenn laden möglich, dann bitte die ArrayList mit allen daten die man für den Konstruktor einer rolle Braucht mitgeben und zwar in der Richtigen Reihenfolge!  SONST NULL
 		// bitte den Rollen entnehmen !!! wichtig
@@ -49,7 +49,16 @@ public class Load {
 		 * 
 		 */
 		
-		FileReader fr = new FileReader("");
+		FileReader fr = null;
+		
+		try {
+			
+			fr = new FileReader("");
+			
+		} catch (FileNotFoundException e1) {
+			// hier dann vlt ein file chooser hochkommen lassen der ihn das CS teil scuhen lässt ist ja eigentlich kein ding // GRUß Daniel
+			// oder ne normale message box. einfach bsichen creativ sein es ist dein part
+		}
 	    BufferedReader br = new BufferedReader(fr);
 
 	    try {
@@ -58,9 +67,9 @@ public class Load {
 			{
 				column = line.split(";");
 				
-				if(column[3] == userID)
+				if(column[3].equals(userID))
 				{
-					if(column[4] == pswd)
+					if(column[4].equals(pswd))
 					{
 						data.add(column[2]);	//Rolle
 						data.add(column[6]);	//Studiengang
