@@ -57,17 +57,20 @@ public class Load {
 		 */
 
 		try {
+			// Dateipfad muss mit 2 Backslash angegeben werden, da sonst die
+			// Datei
+			// nicht gefunden wird
 			URL l = Load.class.getResource("stud_info.csv");
-			File f = new File(l.toString());
-			if(f.exists())
-				new Object();
+			File f = new File(l.getPath().replace("/", "\\\\"));
 
 			FileReader fr = new FileReader(f);
 
 			BufferedReader br = new BufferedReader(fr);
 
 			try {
-
+				//Erste Zeile muss übersprungen werden da sie die Spaltennamen enthält
+				br.readLine();
+				
 				while ((line = br.readLine()) != null && !loginAccepted) {
 					column = line.split(";");
 
@@ -79,17 +82,22 @@ public class Load {
 							data.add(column[1]); // Vorname
 							data.add(column[3]); // ID
 							data.add(column[5]); // Studiengang
+							
+							loginAccepted = true;
 
 						} else {
 							JOptionPane.showMessageDialog(null,
 									"Falsches Passwort eingegeben",
 									"Login Error", JOptionPane.ERROR_MESSAGE);
 						}
-					} else {
-						JOptionPane.showMessageDialog(null,
-								"Benutzername inkorrekt", "Login Error",
-								JOptionPane.ERROR_MESSAGE);
 					}
+
+				}
+
+				if (!loginAccepted) {
+					JOptionPane.showMessageDialog(null,
+							"Benutzername nicht vorhanden", "Login Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 
 			} catch (IOException e) {
