@@ -1,9 +1,11 @@
 package data;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -54,17 +56,13 @@ public class Load {
 		 * nicht vorhandener benutzername und falsches passwort
 		 */
 
-		FileReader fr = null;
-
 		try {
+			URL l = Load.class.getResource("stud_info.csv");
+			File f = new File(l.toString());
+			if(f.exists())
+				new Object();
 
-			fr = new FileReader("stud_info.csv");
-
-		} catch (FileNotFoundException e1) {
-			// hier dann vlt ein file chooser hochkommen lassen der ihn das CS
-			// teil scuhen lässt ist ja eigentlich kein ding // GRUß Daniel
-			// oder ne normale message box. einfach bsichen creativ sein es ist
-			// dein part
+			FileReader fr = new FileReader(f);
 
 			BufferedReader br = new BufferedReader(fr);
 
@@ -99,6 +97,13 @@ public class Load {
 				e.printStackTrace();
 
 			}
+
+		} catch (FileNotFoundException e1) {
+			// hier dann vlt ein file chooser hochkommen lassen der ihn das CS
+			// teil scuhen lässt ist ja eigentlich kein ding // GRUß Daniel
+			// oder ne normale message box. einfach bsichen creativ sein es ist
+			// dein part
+			System.out.println("test");
 		}
 
 		return data;
