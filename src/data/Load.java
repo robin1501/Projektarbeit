@@ -23,7 +23,7 @@ public class Load {
 	private static String line;
 
 	static String[] column = new String[50];
-	
+
 	static ArrayList<String> data = new ArrayList<String>();
 
 	static boolean loginAccepted = false;
@@ -36,68 +36,72 @@ public class Load {
 	 * }
 	 */
 
-	public static ArrayList<String> TryLoadUser(String userID, String pswd){ // throws FileNotFoundException {
-		
-		// wenn laden möglich, dann bitte die ArrayList mit allen daten die man für den Konstruktor einer rolle Braucht mitgeben und zwar in der Richtigen Reihenfolge!  SONST NULL
+	public static ArrayList<String> TryLoadUser(String userID, String pswd) { // throws
+																				// FileNotFoundException
+																				// {
+
+		// wenn laden möglich, dann bitte die ArrayList mit allen daten die man
+		// für den Konstruktor einer rolle Braucht mitgeben und zwar in der
+		// Richtigen Reihenfolge! SONST NULL
 		// bitte den Rollen entnehmen !!! wichtig
 		// DANIEl
-		//string role, String isHead, String name,String firstname, String id, String course
-		
-		/* falls der user nicht gefunden wird bitte Kriterium über prüfen. und per Errormessage angeben 
-		 * also zb login fehlgeschlagen falscher oder nicht vorhandener benutzername
-		 * und falsches passwort 
-		 * 
-		 */
-	
-		FileReader fr = null;
-		
-		try {
-			
-			fr = new FileReader("");
-			
-		} catch (FileNotFoundException e1) {
-			// hier dann vlt ein file chooser hochkommen lassen der ihn das CS teil scuhen lässt ist ja eigentlich kein ding // GRUß Daniel
-			// oder ne normale message box. einfach bsichen creativ sein es ist dein part
-		}
-	    BufferedReader br = new BufferedReader(fr);
+		// string role, String isHead, String name,String firstname, String id,
+		// String course
 
-	    try {
-	    	
-			while((line = br.readLine()) != null && !loginAccepted)
-			{
-				column = line.split(";");
-				
-				if(column[3].equals(userID))
-				{
-					if(column[4].equals(pswd))
-					{
-						data.add(column[2]);	//Rolle
-						data.add(column[6]);	//Head
-						data.add(column[0]);	//Nachname
-						data.add(column[1]);	//Vorname
-						data.add(column[3]);	//ID
-						data.add(column[5]);	//Studiengang
-						
-					}
-					else
-					{
-						JOptionPane.showMessageDialog(null, "Falsches Passwort eingegeben", "Login Error", JOptionPane.ERROR_MESSAGE);
+		/*
+		 * falls der user nicht gefunden wird bitte Kriterium über prüfen. und
+		 * per Errormessage angeben also zb login fehlgeschlagen falscher oder
+		 * nicht vorhandener benutzername und falsches passwort
+		 */
+
+		FileReader fr = null;
+
+		try {
+
+			fr = new FileReader("stud_info.csv");
+
+		} catch (FileNotFoundException e1) {
+			// hier dann vlt ein file chooser hochkommen lassen der ihn das CS
+			// teil scuhen lässt ist ja eigentlich kein ding // GRUß Daniel
+			// oder ne normale message box. einfach bsichen creativ sein es ist
+			// dein part
+
+			BufferedReader br = new BufferedReader(fr);
+
+			try {
+
+				while ((line = br.readLine()) != null && !loginAccepted) {
+					column = line.split(";");
+
+					if (column[3].equals(userID)) {
+						if (column[4].equals(pswd)) {
+							data.add(column[2]); // Rolle
+							data.add(column[6]); // Head
+							data.add(column[0]); // Nachname
+							data.add(column[1]); // Vorname
+							data.add(column[3]); // ID
+							data.add(column[5]); // Studiengang
+
+						} else {
+							JOptionPane.showMessageDialog(null,
+									"Falsches Passwort eingegeben",
+									"Login Error", JOptionPane.ERROR_MESSAGE);
+						}
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"Benutzername inkorrekt", "Login Error",
+								JOptionPane.ERROR_MESSAGE);
 					}
 				}
-				else
-				{
-					JOptionPane.showMessageDialog(null, "Benutzername inkorrekt", "Login Error", JOptionPane.ERROR_MESSAGE);
-				}
+
+			} catch (IOException e) {
+
+				e.printStackTrace();
+
 			}
-			
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		
 		}
-		
+
 		return data;
-		
-		
+
 	}
 }
