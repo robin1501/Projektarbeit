@@ -1,5 +1,6 @@
 package gui.main;
 
+import gui.panels.PersonalDataP;
 import interfaces.IDisposeMe;
 
 import java.awt.BorderLayout;
@@ -8,6 +9,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 /**
  * Hauptansicht für den Studenten.<br>
  * Die Rechte der Rolle sind den implementierten Interfaces zu entnehmen.<br>
@@ -44,14 +50,24 @@ public class StudentG extends JFrame implements IDisposeMe {
 	 * @param name 
 	 */
 	public StudentG() {
+		setTitle("Student - Hauptansicht");
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 909, 518);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		PersonalDataP persoPanel = new PersonalDataP();
+		persoPanel.setBounds(24, 29, 284, 421);
+		contentPane.add(persoPanel);
+		
+		JPanel Calls = new JPanel();
+		Calls.setBorder(new LineBorder(new Color(0, 0, 0)));
+		Calls.setBounds(339, 29, 544, 104);
+		contentPane.add(Calls);
 	}
 
 	@Override
@@ -59,7 +75,4 @@ public class StudentG extends JFrame implements IDisposeMe {
 		this.dispose();
 		
 	}
-
-	
-
 }
