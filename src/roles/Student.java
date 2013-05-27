@@ -48,9 +48,14 @@ public class Student extends User implements IShowMyMarks {
 	}
 	
 	/* Implementationen aus Interfaces ---------------- */
-
+/*
+ *  Kommentar von Daniel ---> bitte den Schnitt auf 2 nach kommastellen gerundet anzeigen!!!!
+ *  
+ *  (non-Javadoc)
+ * @see interfaces.IShowMyMarks#getMyMarks(java.lang.String)
+ */
 	@Override
-	public ArrayList <ArrayList<String>> getMyMarks(String vorlesung) {
+	public ArrayList <ArrayList<String>> getMyMarks() {
 		// id bitte aus dem Objekt ziehen 
 		// sowas wie "student id und vorlesung sollen alle seine noten und vorlesungen hoch geben "deutsch" "2" usw
 		
