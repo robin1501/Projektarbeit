@@ -72,7 +72,7 @@ public class Load {
 					if(column[4].equals(pswd))
 					{
 						data.add(column[2]);	//Rolle
-						data.add(column[6]);	//Studiengang
+						data.add(column[6]);	//Head
 						data.add(column[0]);	//Nachname
 						data.add(column[1]);	//Vorname
 						data.add(column[3]);	//ID
