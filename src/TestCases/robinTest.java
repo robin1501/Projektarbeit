@@ -3,6 +3,7 @@ package TestCases;
 import java.util.ArrayList;
 
 import data.Load;
+import data.Save;
 
 public class robinTest {
 
@@ -11,10 +12,8 @@ public class robinTest {
 	 */
 	public static void main(String[] args) {
 		
-		ArrayList<String> arr = new ArrayList<>();
-		arr = Load.TryLoadUser("Uwe_Bein", "5rezudn");
-		
-		System.out.println(arr.isEmpty() + "");
+	
+	
 	}
 
 }
