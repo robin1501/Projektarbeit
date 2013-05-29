@@ -5,7 +5,6 @@ package interfaces;
 *<b> ArrayList in den Parametern immer als Erstes angeben. Elementar für den Master!</B>
 */
 public interface IHead {
- public void createNewLecture();
  public void assignLectureTo(String nameOfPerson);
- public void createNewMembers();
+ public void addUser();
 }

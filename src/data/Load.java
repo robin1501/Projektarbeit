@@ -28,6 +28,7 @@ public class Load {
 
 	static ArrayList<String> data = new ArrayList<String>();
 
+	static boolean pswdChecked = false;
 	static boolean loginAccepted = false;
 
 	/*
@@ -60,60 +61,72 @@ public class Load {
 			// Dateipfad muss mit 2 Backslash angegeben werden, da sonst die
 			// Datei
 			// nicht gefunden wird
-			URL l = Load.class.getResource("stud_info.csv");
-			File f = new File(l.getPath().replace("/", "\\\\"));
+			URL url = Load.class.getResource("stud_info.csv");
+			if (url != null) {
+				File f = new File(url.getPath().replace("/", "\\\\"));
 
-			FileReader fr = new FileReader(f);
+				FileReader fr = new FileReader(f);
 
-			BufferedReader br = new BufferedReader(fr);
+				BufferedReader br = new BufferedReader(fr);
 
-			try {
-				//Erste Zeile muss übersprungen werden da sie die Spaltennamen enthält
-				br.readLine();
-				
-				while ((line = br.readLine()) != null && !loginAccepted) {
-					column = line.split(";");
+				try {
+					// Erste Zeile muss übersprungen werden da sie die
+					// Spaltennamen enthält
+					br.readLine();
 
-					if (column[3].equals(userID)) {
-						if (column[4].equals(pswd)) {
-							data.add(column[2]); // Rolle
-							data.add(column[6]); // Head
-							data.add(column[0]); // Nachname
-							data.add(column[1]); // Vorname
-							data.add(column[3]); // ID
-							data.add(column[5]); // Studiengang
+					while ((line = br.readLine()) != null && !loginAccepted && !pswdChecked) {
+						column = line.split(";");
+
+						if (column[3].equals(userID)) {
+							if (column[4].equals(pswd)) {
+								data.add(column[2]); // Rolle
+								data.add(column[6]); // Head
+								data.add(column[0]); // Nachname
+								data.add(column[1]); // Vorname
+								data.add(column[3]); // ID
+								data.add(column[5]); // Studiengang
+
+								loginAccepted = true;
+
+							} else {
+								JOptionPane.showMessageDialog(null,
+										"Falsches Passwort eingegeben",
+										"Login Error",
+										JOptionPane.ERROR_MESSAGE);
+								return null;
+							}
 							
-							loginAccepted = true;
-
-						} else {
-							JOptionPane.showMessageDialog(null,
-									"Falsches Passwort eingegeben",
-									"Login Error", JOptionPane.ERROR_MESSAGE);
+							pswdChecked = true;
+							
 						}
+
 					}
+
+
+				} catch (IOException e) {
+
+					e.printStackTrace();
 
 				}
 
-				if (!loginAccepted) {
+				if (!loginAccepted && !pswdChecked) {
 					JOptionPane.showMessageDialog(null,
 							"Benutzername nicht vorhanden", "Login Error",
 							JOptionPane.ERROR_MESSAGE);
+					return null;
 				}
-
-			} catch (IOException e) {
-
-				e.printStackTrace();
-
+				
+			} else {
+				JOptionPane.showMessageDialog(null, "Login Daten nicht vorhanden",
+						"Datenbankfehler", JOptionPane.ERROR_MESSAGE);
 			}
+				
 
 		} catch (FileNotFoundException e1) {
-			// hier dann vlt ein file chooser hochkommen lassen der ihn das CS
-			// teil scuhen lässt ist ja eigentlich kein ding // GRUß Daniel
-			// oder ne normale message box. einfach bsichen creativ sein es ist
-			// dein part
-			System.out.println("test");
+			JOptionPane.showMessageDialog(null, "Login Daten nicht vorhanden",
+					"Datenbankfehler", JOptionPane.ERROR_MESSAGE);
 		}
-
+		
 		return data;
 
 	}

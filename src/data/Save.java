@@ -17,13 +17,25 @@ package data;
 public class Save {
 
 	public static boolean ChangePassword(String pswd1, String USerId) {
-		//passwort ändern wenn ja ture zurück geben wenn failed dann false.
-		// Daniel 19.05 
-		return false;
+		 
+		return true;
 	}
-/*
- * bitte mit der save noch warten.. da hab ich noch ne frage an euch wie ihr das machen würdet.
- * 
- * Daniel
- */
+	
+	//Ein neuer User wird angelegt
+	//übergeben werden die einzelnen Spaltendaten
+	public static boolean addUser(String[] userData){
+		return true;
+	}
+	
+	//Eine Vorlesung wird einem User zugeordnet
+	//Übergeben wird die UserID und die jeweilige Vorlesung
+	public static boolean assignLectureTo(String id, String lecture){
+		return true;
+	}
+	
+	//Speicherung neuer Noten für Studenten
+	public static boolean saveMarks(){
+		return true;
+	}
+	
 }

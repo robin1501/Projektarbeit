@@ -43,12 +43,6 @@ public class HeadOfDepartment extends User implements ILecturer, IProf, IHead {
 	}
 	
 	/* Implementationen aus Interfaces ---------------- */
-	
-	@Override
-	public void createNewLecture() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void assignLectureTo(String nameOfPerson) {
@@ -57,7 +51,7 @@ public class HeadOfDepartment extends User implements ILecturer, IProf, IHead {
 	}
 
 	@Override
-	public void createNewMembers() {
+	public void addUser() {
 		// TODO Auto-generated method stub
 		
 	}
