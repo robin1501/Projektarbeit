@@ -59,12 +59,18 @@ public class Load {
 
 		try {
 			// Dateipfad muss mit 2 Backslash angegeben werden, da sonst die
-			// Datei
-			// nicht gefunden wird
+			// Datei nicht gefunden wird
+			
 			URL url = Load.class.getResource("stud_info.csv");
 			if (url != null) {
-				File f = new File(url.getPath().replace("/", "\\\\"));
-
+				File tst = new File (url.getPath());
+				if(tst.exists()){
+					System.out.println("test");
+				}
+				File f = new File(url.getPath().replace("/", "\\\\").replace("%20", " "));
+				if(f.exists()){
+					System.out.println("test2");
+				}
 				FileReader fr = new FileReader(f);
 
 				BufferedReader br = new BufferedReader(fr);
