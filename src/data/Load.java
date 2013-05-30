@@ -31,17 +31,7 @@ public class Load {
 	static boolean pswdChecked = false;
 	static boolean loginAccepted = false;
 
-	/*
-	 * public Load(String user, char[] pswd) {
-	 * 
-	 * this.pswd = pswd; this.user = user;
-	 * 
-	 * }
-	 */
-
-	public static ArrayList<String> TryLoadUser(String userID, String pswd) { // throws
-																				// FileNotFoundException
-																				// {
+	public static ArrayList<String> TryLoadUser(String userID, String pswd) {
 
 		// wenn laden möglich, dann bitte die ArrayList mit allen daten die man
 		// für den Konstruktor einer rolle Braucht mitgeben und zwar in der
