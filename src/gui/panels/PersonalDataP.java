@@ -44,8 +44,8 @@ public class PersonalDataP extends JPanel {
 				myNewPasswort.setVisible(true);
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton.setBounds(10, 298, 157, 35);
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setBounds(10, 350, 132, 35);
 		add(btnNewButton);
 		
 		JLabel lblPersnlicheDaten = new JLabel("Pers\u00F6nliche Daten");
@@ -70,27 +70,27 @@ public class PersonalDataP extends JPanel {
 		
 		JLabel lblStudiengang = new JLabel("Studiengang");
 		lblStudiengang.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblStudiengang.setBounds(10, 191, 85, 35);
+		lblStudiengang.setBounds(10, 211, 85, 35);
 		add(lblStudiengang);
 		
 		JLabel lblMyname = new JLabel(Master.getMyStrings("getName"));
 		lblMyname.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblMyname.setBounds(169, 88, 143, 20);
+		lblMyname.setBounds(141, 88, 190, 20);
 		add(lblMyname);
 		
 		JLabel lblMyfirstname = new JLabel(Master.getMyStrings("getFirstname"));
 		lblMyfirstname.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblMyfirstname.setBounds(169, 127, 143, 20);
+		lblMyfirstname.setBounds(141, 127, 190, 20);
 		add(lblMyfirstname);
 		
 		JLabel lblMyid = new JLabel(Master.getMyStrings("getId"));
 		lblMyid.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblMyid.setBounds(169, 163, 143, 20);
+		lblMyid.setBounds(141, 163, 190, 20);
 		add(lblMyid);
 		
 		JLabel lblMycourse = new JLabel(Master.getMyStrings("getCourse"));
 		lblMycourse.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblMycourse.setBounds(169, 197, 143, 23);
+		lblMycourse.setBounds(10, 256, 321, 23);
 		add(lblMycourse);
 		
 		JButton btnNewButton_1 = new JButton("Abmelden");
@@ -106,13 +106,13 @@ public class PersonalDataP extends JPanel {
 				Master.disposeGUI();
 			}
 		});
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton_1.setBounds(10, 351, 157, 33);
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_1.setBounds(152, 351, 132, 33);
 		add(btnNewButton_1);
 		
 		JLabel lblFunktionen = new JLabel("Funktionen:");
 		lblFunktionen.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblFunktionen.setBounds(10, 264, 143, 14);
+		lblFunktionen.setBounds(10, 312, 143, 14);
 		add(lblFunktionen);
 
 	}
