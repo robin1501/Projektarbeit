@@ -77,16 +77,22 @@ public class Master {
 				guiName = "Student";
 				GUIS = new StudentG();
 				GUIS.setVisible(true);
-
 				break;
+
 			case 'D':
 				myDynamicUser = new Lecturer(name, firstname, id, course);
 				guiName = "Lecturer";
+				GUIL = new LecturerG();
+				GUIL.setVisible(true);
 				break;
+
 			case 'P':
 				myDynamicUser = new Professor(name, firstname, id, course);
 				guiName = "Professor";
+				GUIL = new LecturerG();
+				GUIL.setVisible(true);
 				break;
+
 			default:
 				JOptionPane
 						.showMessageDialog(
@@ -100,6 +106,8 @@ public class Master {
 		} else {
 			myDynamicUser = new HeadOfDepartment(name, firstname, id, course);
 			guiName = "HeadOfDepartment";
+			GUIL = new LecturerG();
+			GUIL.setVisible(true);
 		}
 	}
 
@@ -403,26 +411,30 @@ public class Master {
 							"Passwortänderung", JOptionPane.INFORMATION_MESSAGE);
 
 			disposeGUI();
-		
 
 		}
 
 	}
-/**
- * Es wird ein neues Login Fenster geöffnet.<br>
- * Dies geschieht beim Abmeldevorgang sowie bei erfolgreicher Passwortänderung. <br>
- * 
- */
+
+	/**
+	 * Es wird ein neues Login Fenster geöffnet.<br>
+	 * Dies geschieht beim Abmeldevorgang sowie bei erfolgreicher
+	 * Passwortänderung. <br>
+	 * 
+	 */
 	private static void openNewLogin() {
 		LoginG neuesLogin = new LoginG();
 		neuesLogin.setVisible(true);
-		
+
 	}
-/**
- * Disposen der aktuellen HauptGui.<br>
- * Das Disposing hat GUI-Intern das Speichern der jeweiligen Vorgänge zur Folge.<br>
- * Danach wird ein neues LogIn Fenster über die Funktion "openNewLogin" geöffnet.<br>
- */
+
+	/**
+	 * Disposen der aktuellen HauptGui.<br>
+	 * Das Disposing hat GUI-Intern das Speichern der jeweiligen Vorgänge zur
+	 * Folge.<br>
+	 * Danach wird ein neues LogIn Fenster über die Funktion "openNewLogin"
+	 * geöffnet.<br>
+	 */
 	public static void disposeGUI() {
 
 		if (GUIS != null) {

@@ -73,6 +73,7 @@ public class StudentG extends JFrame implements IDisposeMe {
 	 * @param name
 	 */
 	public StudentG() {
+		setResizable(false);
 		setTitle("Student - Hauptansicht");
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
