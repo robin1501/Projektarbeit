@@ -1,9 +1,11 @@
 package data;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,8 +27,8 @@ public class Save {
 
 	public static boolean ChangePassword(String pswd, String userId) {
 
-		ArrayList<ArrayList<String>> data = new ArrayList<>();
-		data = readFile("stud_info.csv");
+		ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
+		data = Data.read("stud_info.csv");
 
 		for (int i = 0; i < data.size(); i++) {
 			if (data.get(i).get(3).equals(userId)) {
@@ -34,7 +36,7 @@ public class Save {
 			}
 		}
 		
-		writeFile("stud_info.csv", data);
+		Data.write("stud_info.csv", data);
 
 		return true;
 	}
@@ -54,63 +56,6 @@ public class Save {
 	// Speicherung neuer Noten für Studenten
 	public static boolean saveMarks() {
 		return true;
-	}
-
-	public static ArrayList<ArrayList<String>> readFile(String file) {
-
-		ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
-		ArrayList<String> colList;
-
-		String line;
-		String[] column;
-
-		try {
-
-			URL url = Load.class.getResource(file);
-			if (url != null) {
-				File f = new File(url.getPath().replace("/", "\\\\"));
-
-				FileReader fr = new FileReader(f);
-
-				BufferedReader br = new BufferedReader(fr);
-
-				try {
-
-					while ((line = br.readLine()) != null) {
-						colList = new ArrayList<String>();
-						column = line.split(";");
-
-						for (int i = 0; i < column.length; i++) {
-							System.out.print(column[i] + ";");
-							colList.add(column[i]);
-						}
-						System.out.println("");
-
-						data.add(colList);
-					}
-
-				} catch (IOException e) {
-
-					e.printStackTrace();
-
-				}
-
-			} else {
-				JOptionPane.showMessageDialog(null,
-						"Login Daten nicht vorhanden", "Datenbankfehler",
-						JOptionPane.ERROR_MESSAGE);
-			}
-
-		} catch (FileNotFoundException e1) {
-			JOptionPane.showMessageDialog(null, "Login Daten nicht vorhanden",
-					"Datenbankfehler", JOptionPane.ERROR_MESSAGE);
-		}
-
-		return data;
-	}
-
-	private static void writeFile(String file, ArrayList<ArrayList<String>> data) {
-		
-	}
+	}	
 
 }

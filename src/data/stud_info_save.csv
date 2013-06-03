@@ -1,0 +1,19 @@
+Nachname;Vorname;Rolle;ID;Passwort;Studiengang;Studiengangsleiter;Vorlesung
+Bein;Uwe;Student;Uwe_Bein;5rezudn;Angewandte Informatik;false;
+Ulmen;Christian;Student;Chri_Ulm;dewrj44;Angewandte Informatik;false;
+Lisicki;Sabine;Student;Sab_Lis;saeojfe;Angewandte Informatik;false;
+Curie;Marie;Student;Mar_Cur;sa3834h;Angewandte Informatik;false;
+Mijatovic;Helen;Student;Hel_Mij;845hfdf;Angewandte Informatik;false;
+Dantona;Franziska;Student;Fra_Dan;dvnfjr4k;Angewandte Informatik;false;
+Langbein;Rüdiger;Student;Rüd_Lan;289fjsds;Angewandte Informatik;false;
+Großkopf;Jutta;Student;Jut_Gro;aqq12okd;Angewandte Informatik;false;
+Wolf;Richard;Dozent;Ric_Wol;ll994f4;Angewandte Informatik;false;Programmieren II
+Holle;Margret;Professor;Mar_Hol;uzt84de;Angewandte Informatik;true;Systemanalyse und Entwurf,Algorithmen
+Kaman;Christian;Professor;Chr_Kam;cvcvcdjs;Angewandte Informatik;false;Technische Informatik II
+Lottner;Christina;Student;Chr_Lot;aaq2222;Life Sciene Informatik;false;
+Ballack;Michael;Student;Mic_Bal;w23weie;Life Sciene Informatik;false;
+Frings;Thorsten;Student;Lut_Fri;349569j;Life Sciene Informatik;false;
+Hausmann;Hanna;Student;Han_Hau;yxyxiss;Life Sciene Informatik;false;
+Xi;Mang;Student;Man_Xi;otpz95tr;Life Sciene Informatik;false;
+Kantmann;Sabrina;Dozent;Sab_Kan;cmser34iu;Life Sciene Informatik;false;Chemie II,Grundlagen der Biologie
+Pagliuca;Francesco;Professor;Fra_Pag;brti455jji;Life Sciene Informatik;true;Digitaltechnik,Programmieren II,Algorithmen
