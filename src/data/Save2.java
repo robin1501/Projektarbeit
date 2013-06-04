@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import communication.Master;
+
 /**
  * 
  * * Grundsäzliche Save Klasse. Es werden ArrayLists heurntergeben die dann je
@@ -50,7 +52,7 @@ public class Save2 {
 			}
 		}
 
-		writeFile("stud_info.csv", data);
+		writeFile(userFile, data);
 
 		return true;
 	}
@@ -67,20 +69,67 @@ public class Save2 {
 		}
 		data.add(newUser);
 
-		writeFile("stud_info.csv", data);
+		writeFile(userFile, data);
 
 		return true;
 	}
 
 	// Eine Vorlesung wird einem User zugeordnet
 	// Übergeben wird die UserID und die jeweilige Vorlesung
-	public static boolean assignLectureTo(String id, String lecture) {
-		return true;
+	public static void assignLectureTo(String id, boolean isLecturer,
+			String lecture) {
+		ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
+		ArrayList<String> colData = new ArrayList<String>();
+		File f;
+
+		if (isLecturer) {
+			f = userFile;
+			data = readFile(f);
+
+			for (int i = 0; i < data.size(); i++) {
+				if (data.get(i).get(3).equals(id)) {
+					if (data.get(i).get(7) != "") {
+						data.get(i).set(7, data.get(i).get(7) + "," + lecture);
+					} else {
+						data.get(i).set(7, lecture);
+					}
+				}
+			}
+		} else {
+			f = markFile;
+			data = readFile(f);
+
+			colData.add(id);
+			colData.add(lecture);
+			colData.add("0");
+
+			data.add(colData);
+		}
+
+		writeFile(f, data);
 	}
 
 	// Speicherung neuer Noten für Studenten
-	public static boolean saveMarks() {
-		return true;
+	//Die Daten UserID, Vorlesung und Note müssen in einer 2 dimensionalen ArrayList übergeben werden
+	public static void saveMarks(ArrayList<ArrayList<String>> newMarks) {
+		ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
+		boolean userFound = false;
+		
+		data = readFile(markFile);
+		
+		for (int i = 0; i < data.size(); i++) {
+			for (int j = 0; j < newMarks.size() && !userFound; j++) {
+				if(data.get(i).get(0).equals(newMarks.get(j).get(0)) &&
+						data.get(i).get(1).equals(newMarks.get(j).get(1))){
+					data.get(i).set(2, newMarks.get(j).get(2));
+					userFound = true;
+				}
+			}
+			userFound = false;
+		}
+		
+		writeFile(markFile, data);
+		
 	}
 
 	public static ArrayList<ArrayList<String>> readFile(File file) {
@@ -126,7 +175,7 @@ public class Save2 {
 		return data;
 	}
 
-	private static void writeFile(String file, ArrayList<ArrayList<String>> data) {
+	private static void writeFile(File file, ArrayList<ArrayList<String>> data) {
 
 	}
 
