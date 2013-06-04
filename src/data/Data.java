@@ -13,7 +13,21 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class Data {
-	public static ArrayList<ArrayList<String>> read(String file) {
+
+	public static File fileReplacer(String file) {
+		File f = null;
+		URL url = URL.class.getResource(file);
+
+		if (url != null) {
+			f = new File(url.getPath().replace("/", "\\\\").replace("%20", " "));
+		} else {
+			JOptionPane.showMessageDialog(null, "Login Daten nicht vorhanden",
+					"Datenbankfehler", JOptionPane.ERROR_MESSAGE);
+		}
+		return f;
+	}
+
+	public static ArrayList<ArrayList<String>> read(File file) {
 
 		ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
 		ArrayList<String> colList;
@@ -23,39 +37,29 @@ public class Data {
 
 		try {
 
-			URL url = Load.class.getResource(file);
-			if (url != null) {
-				File f = new File(url.getPath().replace("/", "\\\\"));
+			FileReader fr = new FileReader(file);
 
-				FileReader fr = new FileReader(f);
+			BufferedReader br = new BufferedReader(fr);
 
-				BufferedReader br = new BufferedReader(fr);
+			try {
 
-				try {
+				while ((line = br.readLine()) != null) {
+					colList = new ArrayList<String>();
+					column = line.split(";");
 
-					while ((line = br.readLine()) != null) {
-						colList = new ArrayList<String>();
-						column = line.split(";");
-
-						for (int i = 0; i < column.length; i++) {
-							System.out.print(column[i] + ";");
-							colList.add(column[i]);
-						}
-						System.out.println("");
-
-						data.add(colList);
+					for (int i = 0; i < column.length; i++) {
+						System.out.print(column[i] + ";");
+						colList.add(column[i]);
 					}
+					System.out.println("");
 
-				} catch (IOException e) {
-
-					e.printStackTrace();
-
+					data.add(colList);
 				}
 
-			} else {
-				JOptionPane.showMessageDialog(null,
-						"Login Daten nicht vorhanden", "Datenbankfehler",
-						JOptionPane.ERROR_MESSAGE);
+			} catch (IOException e) {
+
+				e.printStackTrace();
+
 			}
 
 		} catch (FileNotFoundException e1) {
@@ -66,7 +70,7 @@ public class Data {
 		return data;
 	}
 
-	public static void write(String file, ArrayList<ArrayList<String>> data) {
+	public static void write(File file, ArrayList<ArrayList<String>> data) {
 		try {
 			String row;
 

@@ -20,116 +20,98 @@ import javax.swing.JOptionPane;
  */
 public class Load {
 
-	private static String user;
-	private static String pw;
-	private static String line;
-
-	static String[] column = new String[50];
-
-	static ArrayList<String> data = new ArrayList<String>();
-
-	static boolean pswdChecked = false;
-	static boolean loginAccepted = false;
+	public static File userFile = Data.fileReplacer("stud_info.csv");
+	public static File markFile = Data.fileReplacer("mark_info.csv");
 
 	public static ArrayList<String> TryLoadUser(String userID, String pswd) {
+		
+		ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
+		ArrayList<String> userData = new ArrayList<String>();
 
-		// wenn laden möglich, dann bitte die ArrayList mit allen daten die man
-		// für den Konstruktor einer rolle Braucht mitgeben und zwar in der
-		// Richtigen Reihenfolge! SONST NULL
-		// bitte den Rollen entnehmen !!! wichtig
-		// DANIEl
-		// string role, String isHead, String name,String firstname, String id,
-		// String course
+		boolean pswdChecked = false;
+		boolean loginAccepted = false;
 
-		/*
-		 * falls der user nicht gefunden wird bitte Kriterium über prüfen. und
-		 * per Errormessage angeben also zb login fehlgeschlagen falscher oder
-		 * nicht vorhandener benutzername und falsches passwort
-		 */
+		data = Data.read(userFile);
 
-		try {
-			// Dateipfad muss mit 2 Backslash angegeben werden, da sonst die
-			// Datei nicht gefunden wird
-			
-			URL url = Load.class.getResource("stud_info.csv");
-			if (url != null) {
-							
-				File f = new File(url.getPath().replace("/", "\\\\").replace("%20", " "));
-				
-				FileReader fr = new FileReader(f);
+		for (int i = 0; i < data.size() && !loginAccepted && !pswdChecked; i++) {
+			if (data.get(i).get(3).equals(userID)) {
+				if (data.get(i).get(4).equals(pswd)) {
+					userData.add(data.get(i).get(2)); // Rolle
+					userData.add(data.get(i).get(6)); // Head
+					userData.add(data.get(i).get(0)); // Nachname
+					userData.add(data.get(i).get(1)); // Vorname
+					userData.add(data.get(i).get(3)); // ID
+					userData.add(data.get(i).get(5)); // Studiengang
 
-				BufferedReader br = new BufferedReader(fr);
+					loginAccepted = true;
 
-				try {
-					// Erste Zeile muss übersprungen werden da sie die
-					// Spaltennamen enthält
-					br.readLine();
-
-					while ((line = br.readLine()) != null && !loginAccepted && !pswdChecked) {
-						column = line.split(";");
-
-						if (column[3].equals(userID)) {
-							if (column[4].equals(pswd)) {
-								data.add(column[2]); // Rolle
-								data.add(column[6]); // Head
-								data.add(column[0]); // Nachname
-								data.add(column[1]); // Vorname
-								data.add(column[3]); // ID
-								data.add(column[5]); // Studiengang
-
-								loginAccepted = true;
-
-							} else {
-								JOptionPane.showMessageDialog(null,
-										"Falsches Passwort eingegeben",
-										"Login Error",
-										JOptionPane.ERROR_MESSAGE);
-								return null;
-							}
-							
-							pswdChecked = true;
-							
-						}
-
-					}
-
-
-				} catch (IOException e) {
-
-					e.printStackTrace();
-
-				}
-
-				if (!loginAccepted && !pswdChecked) {
+				} else {
 					JOptionPane.showMessageDialog(null,
-							"Benutzername nicht vorhanden", "Login Error",
+							"Falsches Passwort eingegeben", "Login Error",
 							JOptionPane.ERROR_MESSAGE);
 					return null;
 				}
-				
-			} else {
-				JOptionPane.showMessageDialog(null, "Login Daten nicht vorhanden",
-						"Datenbankfehler", JOptionPane.ERROR_MESSAGE);
-			}
-				
 
-		} catch (FileNotFoundException e1) {
-			JOptionPane.showMessageDialog(null, "Login Daten nicht vorhanden",
-					"Datenbankfehler", JOptionPane.ERROR_MESSAGE);
+				pswdChecked = true;
+
+			}else {
+				JOptionPane.showMessageDialog(null,
+						"Falschen Benutzernamen eingegeben", "Login Error",
+						JOptionPane.ERROR_MESSAGE);
+				return null;
+			}
+		}
+
+		return userData;
+
+	}
+
+	
+	//Die Funktion gibt die jeweiligen Vorlesungen und dazugehörigen Noten des Studenten zurück
+	public static ArrayList<ArrayList<String>> getMarks(String userID) {
+		ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
+		ArrayList<ArrayList<String>> allMarks = new ArrayList<ArrayList<String>>();
+		ArrayList<String> courseMark; 
+
+		data = Data.read(markFile);
+		
+		for (int i = 0; i < data.size(); i++) {
+			courseMark = new ArrayList<String>();
+			
+			if(data.get(i).get(0).equals(userID))
+			{
+				courseMark.add(data.get(i).get(0));
+				courseMark.add(data.get(i).get(2));
+			}
+			
+			allMarks.add(courseMark);
 		}
 		
-		return data;
+		return allMarks;
+	}
 
-	}
-	
-	public static ArrayList<ArrayList<String>> getMarks(String userID){
+	public static ArrayList<String> getLectures(String userID) {
+		ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
+		ArrayList<String> lectures = new ArrayList<String>();
 		
+		String[] lectArr;
 		
-		return null;
+		boolean userFound = false;
 		
-	}
-	
-	public static ArrayList<String> getLectures(String userID){
-		return null;
+		data = Data.read(userFile);
+		
+		for (int i = 0; i < data.size() && !userFound; i++) {
+			if (data.get(i).get(3).equals(userID)) {
+				lectArr = data.get(i).get(7).split(",");
+				
+				for (int j = 0; j < lectArr.length; j++) {
+					lectures.add(lectArr[j]);
+				}
+				
+				userFound = true;
+			}
+		}
+		
+		return lectures;
 	}
 }
