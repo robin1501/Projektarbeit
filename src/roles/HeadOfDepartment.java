@@ -6,7 +6,7 @@ import interfaces.IHead;
 import interfaces.ILecturer;
 import interfaces.IProf;
 
-public class HeadOfDepartment extends User implements ILecturer, IProf, IHead {
+public class HeadOfDepartment extends User implements ILecturer, IProf {
 	
 	/* Variablen -------------------------------------- */
 
@@ -43,18 +43,6 @@ public class HeadOfDepartment extends User implements ILecturer, IProf, IHead {
 	}
 	
 	/* Implementationen aus Interfaces ---------------- */
-
-	@Override
-	public void assignLectureTo(String nameOfPerson) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addUser() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public double totalAverageOfAllLecturesInMyCourse(
