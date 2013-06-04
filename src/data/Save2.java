@@ -75,9 +75,9 @@ public class Save2 {
 	}
 
 	// Eine Vorlesung wird einem User zugeordnet
-	// Übergeben wird die UserID und die jeweilige Vorlesung
+	// Übergeben wird die UserID, der dazugehörige Kurs und die jeweilige Vorlesung
 	public static void assignLectureTo(String id, boolean isLecturer,
-			String lecture) {
+			String course, String lecture) {
 		ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
 		ArrayList<String> colData = new ArrayList<String>();
 		File f;
@@ -100,6 +100,7 @@ public class Save2 {
 			data = readFile(f);
 
 			colData.add(id);
+			colData.add(course);
 			colData.add(lecture);
 			colData.add("0");
 
@@ -110,26 +111,27 @@ public class Save2 {
 	}
 
 	// Speicherung neuer Noten für Studenten
-	//Die Daten UserID, Vorlesung und Note müssen in einer 2 dimensionalen ArrayList übergeben werden
+	// Die Daten UserID, Vorlesung und Note müssen in einer 2 dimensionalen
+	// ArrayList übergeben werden
 	public static void saveMarks(ArrayList<ArrayList<String>> newMarks) {
 		ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
 		boolean userFound = false;
-		
+
 		data = readFile(markFile);
-		
+
 		for (int i = 0; i < data.size(); i++) {
 			for (int j = 0; j < newMarks.size() && !userFound; j++) {
-				if(data.get(i).get(0).equals(newMarks.get(j).get(0)) &&
-						data.get(i).get(1).equals(newMarks.get(j).get(1))){
-					data.get(i).set(2, newMarks.get(j).get(2));
+				if (data.get(i).get(0).equals(newMarks.get(j).get(0))
+						&& data.get(i).get(2).equals(newMarks.get(j).get(1))) {
+					data.get(i).set(3, newMarks.get(j).get(2));
 					userFound = true;
 				}
 			}
 			userFound = false;
 		}
-		
+
 		writeFile(markFile, data);
-		
+
 	}
 
 	public static ArrayList<ArrayList<String>> readFile(File file) {

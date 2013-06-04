@@ -121,4 +121,15 @@ public class Load {
 		return data;
 
 	}
+	
+	public static ArrayList<ArrayList<String>> getMarks(String userID){
+		
+		
+		return null;
+		
+	}
+	
+	public static ArrayList<String> getLectures(String userID){
+		return null;
+	}
 }
