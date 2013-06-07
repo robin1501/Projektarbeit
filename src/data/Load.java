@@ -33,7 +33,7 @@ public class Load {
 
 		data = Data.read(userFile);
 
-		for (int i = 0; i < data.size() && !loginAccepted && !pswdChecked; i++) {
+		for (int i = 1; i < data.size() && !loginAccepted && !pswdChecked; i++) {
 			if (data.get(i).get(3).equals(userID)) {
 				if (data.get(i).get(4).equals(pswd)) {
 					userData.add(data.get(i).get(2)); // Rolle
@@ -54,12 +54,15 @@ public class Load {
 
 				pswdChecked = true;
 
-			}else {
+			}
+		}
+		
+		if(!loginAccepted && !pswdChecked)
+		{
 				JOptionPane.showMessageDialog(null,
 						"Falschen Benutzernamen eingegeben", "Login Error",
 						JOptionPane.ERROR_MESSAGE);
 				return null;
-			}
 		}
 
 		return userData;

@@ -16,7 +16,7 @@ public class Data {
 
 	public static File fileReplacer(String file) {
 		File f = null;
-		URL url = URL.class.getResource(file);
+		URL url = Data.class.getResource(file);
 
 		if (url != null) {
 			f = new File(url.getPath().replace("/", "\\\\").replace("%20", " "));
@@ -48,10 +48,8 @@ public class Data {
 					column = line.split(";");
 
 					for (int i = 0; i < column.length; i++) {
-						System.out.print(column[i] + ";");
 						colList.add(column[i]);
 					}
-					System.out.println("");
 
 					data.add(colList);
 				}
