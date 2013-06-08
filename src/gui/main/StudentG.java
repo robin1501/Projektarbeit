@@ -44,9 +44,11 @@ public class StudentG extends JFrame implements IDisposeMe {
 	private JLabel lblAverage;
 	private ArrayList<ArrayList<String>> myMarks = null;
 	private String columnNames[] = { "Vorlesung", "Note" };
-	private String rowData[][] = { { "Row1-Column1", "Row1-Column2", "Row1-Column3"},
-            { "Row2-Column1", "Row2-Column2", "Row2-Column3"} };;
+	private String rowData[][] = {
+			{ "Row1-Column1", "Row1-Column2", "Row1-Column3" },
+			{ "Row2-Column1", "Row2-Column2", "Row2-Column3" } };;
 	private JPanel tablePanel;
+	JScrollPane scrollPane = null;
 
 	/**
 	 * Launch the application.
@@ -85,19 +87,22 @@ public class StudentG extends JFrame implements IDisposeMe {
 		contentPane.setLayout(null);
 
 		PersonalDataP persoPanel = new PersonalDataP();
-		persoPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		persoPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING,
+				TitledBorder.TOP, null, null));
 		persoPanel.setBounds(21, 29, 307, 403);
 		contentPane.add(persoPanel);
 
 		JPanel Calls = new JPanel();
-		Calls.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		Calls.setBorder(new TitledBorder(null, "", TitledBorder.LEADING,
+				TitledBorder.TOP, null, null));
 		Calls.setBounds(338, 29, 544, 99);
 		contentPane.add(Calls);
 		Calls.setLayout(null);
 
 		JButton btnNotenAnzeigenaktualisieren = new JButton(
 				"Noten anzeigen/aktualisieren");
-		btnNotenAnzeigenaktualisieren.setHorizontalAlignment(SwingConstants.LEFT);
+		btnNotenAnzeigenaktualisieren
+				.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNotenAnzeigenaktualisieren.addActionListener(new ActionListener() {
 			/**
 			 * Ruft die Noten des Studenten ab und ruft die fillTable Methode.
@@ -171,7 +176,7 @@ public class StudentG extends JFrame implements IDisposeMe {
 		tablePanel.setBounds(338, 144, 545, 292);
 		contentPane.add(tablePanel);
 		tablePanel.setLayout(null);
-		createandAddTable(rowData,columnNames);
+		createandAddTable(rowData, columnNames);
 
 	}
 
@@ -181,6 +186,7 @@ public class StudentG extends JFrame implements IDisposeMe {
 	}
 
 	private void createandAddTable(String[][] rowData2, String[] columnNames2) {
+		
 		
 		jtNotenAnzeige = new JTable(rowData2, columnNames2) {
 
@@ -194,7 +200,14 @@ public class StudentG extends JFrame implements IDisposeMe {
 		};
 		jtNotenAnzeige.setRowSelectionAllowed(false);
 		jtNotenAnzeige.getTableHeader().setReorderingAllowed(false);
-		JScrollPane scrollPane = new JScrollPane(jtNotenAnzeige);
+		
+		/// scrollPane removen weil dann tabelle !
+		if(scrollPane != null){
+			tablePanel.remove(scrollPane);
+		}
+		
+
+		scrollPane = new JScrollPane(jtNotenAnzeige);
 		scrollPane
 				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(10, 21, 525, 261);
@@ -202,7 +215,7 @@ public class StudentG extends JFrame implements IDisposeMe {
 
 	}
 
-	protected void fillTable() {		
+	protected void fillTable() {
 
 		int column = 2;
 		int row = myMarks.size();
