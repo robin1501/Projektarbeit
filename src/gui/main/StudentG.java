@@ -16,6 +16,7 @@ import java.awt.Font;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
@@ -44,9 +45,7 @@ public class StudentG extends JFrame implements IDisposeMe {
 	private JLabel lblAverage;
 	private ArrayList<ArrayList<String>> myMarks = null;
 	private String columnNames[] = { "Vorlesung", "Note" };
-	private String rowData[][] = {
-			{ "Row1-Column1", "Row1-Column2", "Row1-Column3" },
-			{ "Row2-Column1", "Row2-Column2", "Row2-Column3" } };;
+	private String rowData[][] = {{ "", "" } };;
 	private JPanel tablePanel;
 	JScrollPane scrollPane = null;
 
@@ -157,7 +156,6 @@ public class StudentG extends JFrame implements IDisposeMe {
 				} else {
 					myMarks = Master.getMyTwoDimensionalArrayList("getMyMarks",
 							null, null);
-					fillTable();
 					markWorserThanFour();
 
 				}
@@ -182,7 +180,9 @@ public class StudentG extends JFrame implements IDisposeMe {
 
 	protected void markWorserThanFour() {
 
-		// jtNotenAnzeige.isCellEditable(arg0, arg1)
+		DefaultTableCellRenderer rend = (DefaultTableCellRenderer)jtNotenAnzeige.getCellRenderer(1,1) ;
+		rend.setBackground(Color.RED);
+		repaint();
 	}
 
 	private void createandAddTable(String[][] rowData2, String[] columnNames2) {
@@ -200,6 +200,10 @@ public class StudentG extends JFrame implements IDisposeMe {
 		};
 		jtNotenAnzeige.setRowSelectionAllowed(false);
 		jtNotenAnzeige.getTableHeader().setReorderingAllowed(false);
+		
+		DefaultTableCellRenderer rend = (DefaultTableCellRenderer)jtNotenAnzeige.getCellRenderer(0,1) ;
+		rend.setForeground(Color.RED);
+		
 		
 		/// scrollPane removen weil dann tabelle !
 		if(scrollPane != null){
