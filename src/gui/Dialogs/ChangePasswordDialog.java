@@ -58,10 +58,12 @@ public class ChangePasswordDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public ChangePasswordDialog() {
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setResizable(false);
 		setLocationRelativeTo(null);
 
 		setTitle("Passwort\u00E4ndern");
-		setBounds(100, 100, 450, 268);
+		setBounds(100, 100, 347, 268);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -82,7 +84,7 @@ public class ChangePasswordDialog extends JDialog {
 		lblNeuesPasswort.setBounds(10, 102, 104, 27);
 		contentPanel.add(lblNeuesPasswort);
 
-		JLabel lblNeuesPasswort_1 = new JLabel("Neues Passwort");
+		JLabel lblNeuesPasswort_1 = new JLabel("Erneut eingeben");
 		lblNeuesPasswort_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNeuesPasswort_1.setBounds(10, 127, 104, 27);
 		contentPanel.add(lblNeuesPasswort_1);
@@ -101,7 +103,7 @@ public class ChangePasswordDialog extends JDialog {
 
 		final JLabel lblErrorlabel = new JLabel("");
 		lblErrorlabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblErrorlabel.setBounds(10, 159, 414, 27);
+		lblErrorlabel.setBounds(10, 159, 311, 27);
 		lblErrorlabel.setForeground(Color.RED);
 
 		contentPanel.add(lblErrorlabel);

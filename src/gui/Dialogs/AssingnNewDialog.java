@@ -12,7 +12,7 @@ import javax.swing.border.EmptyBorder;
  * 
  *
  */
-public class AffirmDialog extends JDialog {
+public class AssingnNewDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -21,7 +21,7 @@ public class AffirmDialog extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			AffirmDialog dialog = new AffirmDialog();
+			AssingnNewDialog dialog = new AssingnNewDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -32,7 +32,7 @@ public class AffirmDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public AffirmDialog() {
+	public AssingnNewDialog() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
