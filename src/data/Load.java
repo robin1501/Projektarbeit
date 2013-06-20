@@ -83,8 +83,8 @@ public class Load {
 			
 			if(data.get(i).get(0).equals(userID))
 			{
-				courseMark.add(data.get(i).get(0));
-				courseMark.add(data.get(i).get(2));
+				courseMark.add(data.get(i).get(2)); //Vorlesung
+				courseMark.add(data.get(i).get(3)); //Note
 			}
 			
 			allMarks.add(courseMark);

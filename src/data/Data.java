@@ -73,25 +73,27 @@ public class Data {
 			String row;
 
 			// Die Datei wird als erstes geleert
-			FileWriter fDel = new FileWriter(file, false);
-			BufferedWriter bDel = new BufferedWriter(fDel);
+			FileWriter fDel = new FileWriter(file, true);
 
-			bDel.write("");
-			bDel.close();
+			fDel.write("");
+			fDel.flush();
+			fDel.close();
 
 			// Nachdem die Datei geleert wurde, wird sie mit den neuen Werten
 			// befüllt
-			FileWriter fw = new FileWriter(file, true);
-			BufferedWriter bw = new BufferedWriter(fw);
+			FileWriter fw = new FileWriter(file, false);
 
 			for (int i = 0; i < data.size(); i++) {
 				row = "";
-				for (int j = 0; j < data.size(); j++) {
+				for (int j = 0; j < data.get(i).size(); j++) {
 					row = row + data.get(i).get(j) + ";";
 				}
 
-				bw.write(row + "\n");
+				fw.write(row + "\n");
 			}
+			
+			fw.flush();
+			fw.close();
 
 		} catch (IOException e) {
 			e.printStackTrace();
