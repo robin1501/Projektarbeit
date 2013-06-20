@@ -32,6 +32,8 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.ScrollPaneConstants;
 
+import com.sun.security.auth.module.JndiLoginModule;
+
 /**
  * Hauptansicht für den Studenten.<br>
  * Die Rechte der Rolle sind den implementierten Interfaces zu entnehmen.<br>
@@ -239,10 +241,7 @@ public class StudentG extends JFrame implements IDisposeMe {
 
 	private void createAndMarkAndAddTable(String[][] rowData2,
 			String[] columnNames2) {
-		/*
-		 * DefaultTableCellRenderer rend = (DefaultTableCellRenderer)
-		 * jtNotenAnzeige .getCellRenderer(0, 1); rend.setForeground(Color.RED);
-		 */
+
 		jtNotenAnzeige = new JTable(rowData2, columnNames2) {
 
 			private static final long serialVersionUID = 1L;
@@ -252,26 +251,13 @@ public class StudentG extends JFrame implements IDisposeMe {
 			}
 
 		};
+
 		jtNotenAnzeige.setRowSelectionAllowed(false);
 		jtNotenAnzeige.getTableHeader().setReorderingAllowed(false);
+		jtNotenAnzeige.setDefaultRenderer(Object.class, new
+		ColorTableCellRenderer());
+		
 
-		for (int i = 0; i < rowData2.length; i++) {
-
-			try {
-
-				if (Double.parseDouble(jtNotenAnzeige.getValueAt(i, 1).toString()) >= 4.0) {
-					jtNotenAnzeige.setDefaultRenderer( Color.class, new ColorTableCellRenderer());
-					
-
-				}
-
-			} catch (NumberFormatException ex) {
-				
-
-			}
-
-		}
-		// / scrollPane removen weil dann tabelle !
 		if (scrollPane != null) {
 			tablePanel.remove(scrollPane);
 		}

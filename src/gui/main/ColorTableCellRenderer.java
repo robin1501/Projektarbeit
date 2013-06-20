@@ -6,21 +6,24 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-class ColorTableCellRenderer extends DefaultTableCellRenderer{
-	
-    /**
+class ColorTableCellRenderer extends DefaultTableCellRenderer {
+
+	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	@Override
+    public Component getTableCellRendererComponent(JTable table, Object value,
+			boolean isSelected, boolean hasFocus, int row, int column) {
+		super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
+				row, column);
+		
+		if (column == 1 && Double.parseDouble(value.toString()) > 4.0) {
+			System.out.println(column + ": " + value.toString());
+			setForeground(Color.RED);
+		} else {
+			setForeground(Color.BLACK);
+		}
 
-	public Component getTableCellRendererComponent(JTable table, Object value,
-            boolean isSelected, boolean hasFocus, int row, int column) {
-        super.getTableCellRendererComponent(table, value, isSelected,
-                hasFocus, row, column);
-        
-        Color color = Color.red;         
-        setForeground( color );
-        
-        return this;
-    }
+		return this;
+	}
 }
