@@ -59,10 +59,12 @@ public class LoginG extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginG() {
+		setFont(new Font("Dialog", Font.PLAIN, 10));
+		setResizable(false);
 
 		setTitle("Login zur Studentenverwaltung");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 331, 221);
+		setBounds(100, 100, 319, 207);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
