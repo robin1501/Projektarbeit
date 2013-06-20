@@ -87,6 +87,8 @@ public class NewLectureDialog extends JDialog {
 		JButton btnZuweisen = new JButton("Zuweisen");
 		btnZuweisen.addActionListener(new ActionListener() {
 			/**
+			 * Gibt die Daten an den Master weiter. <br>
+			 * Die Daten bekommt man aus den beiden Comboboxen.
 			 * 
 			 */
 			public void actionPerformed(ActionEvent e) {
