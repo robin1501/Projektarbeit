@@ -26,7 +26,15 @@ import java.util.ArrayList;
 import javax.swing.UIManager;
 
 import communication.Master;
-
+/**
+ *Die GUI für die Lehrkräfte, die sich je nach Berechtigung und Rolle aufbauen.<br>
+ *Sie bietet die Möglichkeit sich Noten, Durchschnitte, gefährdete Studenten anzeigen zu lassen.<br>
+ *Desweitere ist es z.B. als "HeadofDepartment" möglich neue Nutzer und Vorlesungen zu erstellen<br>
+ * und den Vorlesungen die Studenten, die daran teilnehmen sollen zuzuweisen.
+ * 
+ * 
+ *
+ */
 public class LecturerG extends JFrame implements IDisposeMe {
 
 	/**
@@ -44,9 +52,10 @@ public class LecturerG extends JFrame implements IDisposeMe {
 	private JComboBox cbMyLectures;
 	private JComboBox cbAllLecturesOfCourse;
 	private JLabel lbllectureAverage;
-	private JLabel lblAverage;
-
-	JScrollPane scrollPane = null;
+	private JLabel lblAllLectureAverage;
+	private JLabel lblAverageprof;
+	private boolean changes = false;
+	private	JScrollPane scrollPane = null;
 
 	/**
 	 * Launch the application.
@@ -103,11 +112,20 @@ public class LecturerG extends JFrame implements IDisposeMe {
 
 		JButton btnschnitt = new JButton("Vorlesungsschnitt");
 		btnschnitt.addActionListener(new ActionListener() {
+
+			/**
+			 * Hier wird der Notenschnitt für die, in der Combobox angezeigte
+			 * Vorlesung,Vorlesung angezeigt.
+			 * 
+			 */
 			public void actionPerformed(ActionEvent arg0) {
+
 				int selIndex = cbMyLectures.getSelectedIndex();
-				String SelectedLecture = (String) cbMyLectures.getItemAt(selIndex);
-				double average = Master.getMyDouble("getLectureAverage", null, SelectedLecture);
-				
+				String SelectedLecture = (String) cbMyLectures
+						.getItemAt(selIndex);
+				double average = Master.getMyDouble("getLectureAverage", null,
+						SelectedLecture);
+
 				lbllectureAverage.setText(String.valueOf(average));
 			}
 		});
@@ -116,19 +134,52 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		pOptionsLec.add(btnschnitt);
 
 		JButton btngesamtschnitt = new JButton("Schnitt aller Vorlesungen");
+		btngesamtschnitt.addActionListener(new ActionListener() {
+			/**
+			 * Hier wird der Schnitt aller Vorlesungen des jeweiligen
+			 * Lehrkörpers angezeigt
+			 */
+			public void actionPerformed(ActionEvent arg0) {
+				ArrayList<String> myLectures = Master.getMyArrayList(
+						"getMyLectures", null, null);
+				double average = Master.getMyDouble("getAllAverage",
+						myLectures, null);
+
+				lblAllLectureAverage.setText(String.valueOf(average));
+			}
+		});
 		btngesamtschnitt.setHorizontalAlignment(SwingConstants.LEFT);
 		btngesamtschnitt.setBounds(10, 75, 180, 23);
 		pOptionsLec.add(btngesamtschnitt);
 
-		JLabel lbllectureAverage = new JLabel("");
+		lbllectureAverage = new JLabel("");
 		lbllectureAverage.setBounds(200, 45, 72, 19);
 		pOptionsLec.add(lbllectureAverage);
 
-		JLabel lblAllLectureAverage = new JLabel("");
+		lblAllLectureAverage = new JLabel("");
 		lblAllLectureAverage.setBounds(200, 76, 72, 19);
 		pOptionsLec.add(lblAllLectureAverage);
 
 		JButton btnunasigned = new JButton("Ohne Note & Note > 4");
+		btnunasigned.addActionListener(new ActionListener() {
+
+			/**
+			 * Hier werden alle Studenten in de Tabelle angeziegt zu denen noch
+			 * keine Noten eingetragen wurden, /n oder bei denen die Noten
+			 * schlechter als 4 sind.
+			 */
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<String> myLectures = Master.getMyArrayList(
+						"getMyLectures", null, null);
+				ArrayList<ArrayList<String>> getAllFailedOrUnmarkedStudents = Master
+						.getMyTwoDimensionalArrayList(
+								"getAllFailedOrUnmarkedStudents", myLectures,
+								null);
+				fillTable(getAllFailedOrUnmarkedStudents);
+
+			}
+
+		});
 		btnunasigned
 				.setToolTipText("Zeigt alle Ihre Studenten die das Notenziel nicht erreicht haben oder f\u00FCr die noch keine Note abgegeben wurde.");
 		btnunasigned.setHorizontalAlignment(SwingConstants.LEFT);
@@ -142,8 +193,6 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		// /-----
-
 		pOptionsProf.setBorder(new TitledBorder(UIManager
 				.getBorder("TitledBorder.border"), "Professoren-Funktionen",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -154,34 +203,69 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		JButton btnAverageOfAllLecturesInMyCourse = new JButton(
 				"Vorlesungsschnitt anzeigen");
 		btnAverageOfAllLecturesInMyCourse
+				.addActionListener(new ActionListener() {
+					/**
+					 * Zeigt den Notenschnitt der Vorlesung an, die ausgewählt
+					 * wurde.
+					 */
+					public void actionPerformed(ActionEvent e) {
+
+						int selIndex = cbAllLecturesOfCourse.getSelectedIndex();
+						String SelectedLecture = (String) cbAllLecturesOfCourse
+								.getItemAt(selIndex);
+						double average = Master.getMyDouble(
+								"getLectureAverage", null, SelectedLecture);
+
+						lblAverageprof.setText(String.valueOf(average));
+
+					}
+				});
+		btnAverageOfAllLecturesInMyCourse
 				.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAverageOfAllLecturesInMyCourse.setBounds(10, 87, 210, 23);
 		pOptionsProf.add(btnAverageOfAllLecturesInMyCourse);
 
 		cbAllLecturesOfCourse = new JComboBox();
-		
-		ArrayList<String> AllLecturesOfCourse = Master.getMyArrayList("getAllCourseLectures",
-				null, null);
+
+		ArrayList<String> AllLecturesOfCourse = Master.getMyArrayList(
+				"getAllCourseLectures", null, null);
 
 		for (String i : myLectures) {
 			cbAllLecturesOfCourse.addItem(i);
 		}
-		
+
 		cbAllLecturesOfCourse
 				.setToolTipText("Alle Vorlesung Ihres Studiengangs");
 		cbAllLecturesOfCourse.setBounds(10, 19, 210, 23);
 		pOptionsProf.add(cbAllLecturesOfCourse);
 
-		JButton btnNewButton = new JButton("Noten schlechter als 4");
-		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
-		btnNewButton
-				.setToolTipText("Zeigt alle Studenten in Ihrem Studiengang an, die das Notenziel nicht erreicht haben");
-		btnNewButton.setBounds(10, 53, 210, 23);
-		pOptionsProf.add(btnNewButton);
+		JButton btnschlechteralsVier = new JButton("Noten schlechter als 4");
+		btnschlechteralsVier.addActionListener(new ActionListener() {
 
-		JLabel lblAverage = new JLabel("");
-		lblAverage.setBounds(20, 113, 85, 19);
-		pOptionsProf.add(lblAverage);
+			/**
+			 * Zeigt alle Noten im Studiengang an die schlechter als 4 sind.
+			 */
+
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<String> AllLecturesOfCourse = Master.getMyArrayList(
+						"getAllCourseLectures", null, null);
+				ArrayList<ArrayList<String>> AllFailedStudentsOfCourse = Master
+						.getMyTwoDimensionalArrayList(
+								"AllFailedStudentsOfCourse",
+								AllLecturesOfCourse, null);
+				fillTable(AllFailedStudentsOfCourse);
+
+			}
+		});
+		btnschlechteralsVier.setHorizontalAlignment(SwingConstants.LEFT);
+		btnschlechteralsVier
+				.setToolTipText("Zeigt alle Studenten in Ihrem Studiengang an, die das Notenziel nicht erreicht haben");
+		btnschlechteralsVier.setBounds(10, 53, 210, 23);
+		pOptionsProf.add(btnschlechteralsVier);
+
+		lblAverageprof = new JLabel("");
+		lblAverageprof.setBounds(20, 113, 85, 19);
+		pOptionsProf.add(lblAverageprof);
 
 		pOptionsHead.setBorder(new TitledBorder(UIManager
 				.getBorder("TitledBorder.border"),
@@ -224,26 +308,32 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		btnStudentenassign.setBounds(10, 89, 157, 23);
 		pOptionsHead.add(btnStudentenassign);
 
-		contentPane.add(pOptionsLec);
 		
+
 		JButton btnNewButton_1 = new JButton("Anzeigen");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			/**
-			 * Die Tabelle wird mit den Werten der ausgewählten Vorlesung gefüllt.
-			 * Die Vorlesung wird der Combobox entnommen.
+			 * Die Tabelle wird mit den Werten der ausgewählten Vorlesung
+			 * gefüllt. Die Vorlesung wird der Combobox entnommen.
 			 */
 			public void actionPerformed(ActionEvent arg0) {
-				
-			int selIndex= cbMyLectures.getSelectedIndex();
-				
+
+				int selIndex = cbMyLectures.getSelectedIndex();
+				String SelectedLecture = (String) cbMyLectures
+						.getItemAt(selIndex);
+				ArrayList<ArrayList<String>> getAllStudentsOfLecture = Master
+						.getMyTwoDimensionalArrayList(
+								"getAllStudentsOfLecture", null,
+								SelectedLecture);
+				fillTable(getAllStudentsOfLecture);
+
 			}
 		});
 		btnNewButton_1.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton_1.setBounds(200, 21, 89, 23);
 		pOptionsLec.add(btnNewButton_1);
-		contentPane.add(pOptionsProf);
-		contentPane.add(pOptionsHead);
-
+		
+		
 		JButton btnNeuVorlesung = new JButton("Neue Vorlesung");
 		btnNeuVorlesung
 				.setToolTipText("Neue Vorlesung erstellen und einer Lehrkraft zuweisen");
@@ -270,20 +360,72 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		panel_1.setLayout(null);
 
 		JButton btnSave = new JButton("Speichern");
+		btnSave.addActionListener(new ActionListener() {
+			/**
+			 * Hier wird die Methode lookForChangesFirst aufgerufen,<br>
+			 * Sie ermöglicht es zu überprüfen ob etwas geändert wurde. Ist dies der Fall, <br>
+			 * werden die angezeigten Werte gespeichert.
+			 */
+			public void actionPerformed(ActionEvent e) {
+				lookForChangesFirst();
+				
+			}
+		});
 		btnSave.setHorizontalAlignment(SwingConstants.LEFT);
 		btnSave.setBounds(10, 21, 152, 23);
 		panel_1.add(btnSave);
 
 		JButton btn_cancel = new JButton("Verwerfen");
+		btn_cancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				changes = false;
+				// Zurücksetzen auf Default werte
+				String columnNames[] = { "User-ID", "Vorlesung", "Note" };
+				String rowData[][] = { { "", "", "" } };;
+				createandAddTable(rowData,columnNames);
+				
+			}
+		});
 		btn_cancel.setHorizontalAlignment(SwingConstants.LEFT);
 		btn_cancel.setBounds(10, 55, 152, 23);
 		panel_1.add(btn_cancel);
 
 		createandAddTable(rowData, columnNames);
-		// whoAmI();
+		whoAmI();
+//		contentPane.add(pOptionsProf);
+//		contentPane.add(pOptionsHead);
+//		contentPane.add(pOptionsLec);
+
 
 	}
+/**
+ * Hier wird die 2 Dimensionale ArrayList in ein 2 Dimensionales Array umgewandelt und sie dann an die Methode <br>
+ * createandAddTable übergeben.
+ * @param inserts
+ */
+	protected void fillTable(ArrayList<ArrayList<String>> inserts) {
+		int column = 3;
+		int row = inserts.size();
 
+		rowData = new String[row][column];
+
+		for (int i = 0; i < row; i++) {
+			for (int k = 0; k < column; k++) {
+
+				rowData[i][k] = inserts.get(i).get(k);
+			}
+		}
+		createandAddTable(rowData, columnNames);
+
+	}
+/**
+ * In der Funktion createandAddTable wird die eigentliche Tabelle erstellt.<br>
+ * Sie wird erstellt und dann der GUI hinzugefügt.
+ * 
+ * 
+ * @param rowData2
+ * @param columnNames2
+ */
 	private void createandAddTable(String[][] rowData2, String[] columnNames2) {
 
 		jtAnzeige = new JTable(rowData2, columnNames2) {
@@ -302,7 +444,6 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		jtAnzeige.setRowSelectionAllowed(false);
 		jtAnzeige.getTableHeader().setReorderingAllowed(false);
 
-		// / scrollPane removen weil dann tabelle !
 		if (scrollPane != null) {
 			panel.remove(scrollPane);
 		}
@@ -314,16 +455,20 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		panel.add(scrollPane);
 
 	}
-
+/**
+ * Hier wird überpüft mit welchen Rechten diese GUI gestartet wird. <br>
+ * Je nach Recht werden unterschiedliche Panels hinzugefügt.<br>
+ * 
+ */
 	private void whoAmI() {
-
-		String whoAmI = "prof";
-		if (whoAmI.equals("lect")) {
+		String iAm = Master.getWhoAmI();
+		
+		if (iAm.equals("lect")) {
 
 			contentPane.add(pOptionsLec);
 
 		} else {
-			if (whoAmI.equals("prof")) {
+			if (iAm.equals("prof")) {
 
 				contentPane.add(pOptionsLec);
 				contentPane.add(pOptionsProf);
@@ -338,17 +483,39 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		}
 
 	}
-
+/**
+ * Um die GUI von externen GUI's zu disposen, wird hier die Funktion disposeMeFromExtern aufgerufen. <br>
+ * Sie ruft die Methode lookforChangesFirst auf und schließt erst danach das Fenster.<br>
+ * Diese Methode wird zum Beispiel von "ChangePasswordDialog" aufgerufen, nachdem das Passwort geändert wurde.
+ * 
+ */
 	@Override
 	public void disposeMeFromExtern() {
 		lookForChangesFirst();
 		this.dispose();
 
 	}
-
+/**
+ * Hier wird überprüft ob Änderungen statt gefunden haben.<br>
+ * Ist dies der Fall wird hier gespeichert andernfalls nicht.
+ */
 	@Override
 	public void lookForChangesFirst() {
-		// TODO Auoto-generated method stub
+		
+		if(changes == true){
+			getCurrentTableValues();
+			
+		}
+		
 
 	}
+/**
+ * Die Methode getCurrentTableValues ließt die aktuellen Werte der Tabelle <br>
+ * ein und gibt sie über den Master an die Save Klasse weiter.
+ * 
+ */
+private void getCurrentTableValues() {
+	
+	
+}
 }

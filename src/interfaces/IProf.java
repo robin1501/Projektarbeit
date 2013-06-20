@@ -8,9 +8,7 @@ import java.util.ArrayList;
 */
 
 public interface IProf {
-
-
-	public double AverageOfAllLecturesInMyCourse();
+	
 	public ArrayList <ArrayList <String >> AllFailedStudentsOfCourse();
 	public ArrayList <String > getAllCourseLectures();
 	
