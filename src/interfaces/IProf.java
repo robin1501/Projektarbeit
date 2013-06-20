@@ -10,8 +10,9 @@ import java.util.ArrayList;
 public interface IProf {
 
 
-	public double AverageOfAllLecturesInMyCourse(ArrayList <String > allCourseLectures);
-	public ArrayList <ArrayList <String >> AllFailedStudentsOfCourse(ArrayList <String > allCourseLectures);
-	public ArrayList <String > getAllCourseLectures(String myCourse);
+	public double AverageOfAllLecturesInMyCourse();
+	public ArrayList <ArrayList <String >> AllFailedStudentsOfCourse();
+	public ArrayList <String > getAllCourseLectures();
+	
 	
 }

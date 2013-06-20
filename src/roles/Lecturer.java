@@ -80,7 +80,7 @@ public class Lecturer extends User implements ILecturer {
 		int count=0;
 		for(int i=0;i<data.size();i++){
 			if(data.get(i).get(2).toString().equals(SelectedLecture)){
-				if(Integer.parseInt(data.get(i).get(2).toString())!=0){
+				if(Double.parseDouble(data.get(i).get(2).toString())!=0){
 					sumMarks= sumMarks + Integer.parseInt(data.get(i).get(3).toString());
 					count ++;
 				}
@@ -92,22 +92,21 @@ public class Lecturer extends User implements ILecturer {
 
 	@Override
 	public double getAllAverage(ArrayList<String> allMyLectures) {
-		
 		ArrayList<ArrayList<String>> data = Data.read(markFile);
 		double sumMarks=0,average=0;
 		int count=0;
 		for(int i=0;i<data.size();i++){
 			for(int j =0; j<allMyLectures.size();j++){
 				if(data.get(i).get(2).toString().equals(allMyLectures.get(j).toString())){
-					if(Integer.parseInt(data.get(i).get(2).toString())!=0){
-						sumMarks= sumMarks + Integer.parseInt(data.get(i).get(3).toString());
+					if(Double.parseDouble(data.get(i).get(2).toString())!=0){
+						sumMarks= sumMarks + Double.parseDouble(data.get(i).get(3).toString());
 						count ++;
 					}
 				}
 			}
 		}
 		average = sumMarks / count;
-		return average;		
+		return average;
 	}
 
 	@Override
@@ -119,7 +118,7 @@ public class Lecturer extends User implements ILecturer {
 		for(int i=0;i<data.size();i++){
 			for(int j =0; j<allMyLectures.size();j++){
 				if(data.get(i).get(2).toString().equals(allMyLectures.get(j).toString())){
-					if(Integer.parseInt(data.get(i).get(2).toString())!=0 || Integer.parseInt(data.get(i).get(2).toString())!=0)
+					if(Double.parseDouble(data.get(i).get(2).toString())!=0 || Double.parseDouble(data.get(i).get(2).toString())>4)
 					{
 						stud.add(data.get(i).get(0).toString());
 						stud.add(data.get(i).get(2).toString());
@@ -133,4 +132,11 @@ public class Lecturer extends User implements ILecturer {
 		}
 		return failStud;
 	}
+	
+	/* Implementationen aus Interfaces ---------------- */	
+	
+	/* Methoden aus Oberklasse ------------------------------- */
+	/* Eigene Methoden ------------------------------- */
+	
+	
 }

@@ -17,7 +17,9 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.SwingConstants;
@@ -180,7 +182,6 @@ public class StudentG extends JFrame implements IDisposeMe {
 
 	}
 
-
 	private void createandAddTable(String[][] rowData2, String[] columnNames2) {
 
 		jtNotenAnzeige = new JTable(rowData2, columnNames2) {
@@ -222,13 +223,13 @@ public class StudentG extends JFrame implements IDisposeMe {
 				rowData[i][k] = myMarks.get(i).get(k);
 			}
 		}
-		
+
 		// ob markiert werden soll oder nicht
-		
+
 		if (marking == false) {
-			
+
 			createandAddTable(rowData, columnNames);
-			
+
 		} else {
 			createAndMarkAndAddTable(rowData, columnNames);
 
@@ -239,24 +240,37 @@ public class StudentG extends JFrame implements IDisposeMe {
 	private void createAndMarkAndAddTable(String[][] rowData2,
 			String[] columnNames2) {
 		/*
-		 * DefaultTableCellRenderer rend = (DefaultTableCellRenderer) jtNotenAnzeige
-				.getCellRenderer(0, 1);
-		rend.setForeground(Color.RED);
-
+		 * DefaultTableCellRenderer rend = (DefaultTableCellRenderer)
+		 * jtNotenAnzeige .getCellRenderer(0, 1); rend.setForeground(Color.RED);
 		 */
 		jtNotenAnzeige = new JTable(rowData2, columnNames2) {
 
 			private static final long serialVersionUID = 1L;
 
 			public boolean isCellEditable(int row, int column) {
-				// set table column uneditable
-				return false;
+				return true;
 			}
 
 		};
 		jtNotenAnzeige.setRowSelectionAllowed(false);
 		jtNotenAnzeige.getTableHeader().setReorderingAllowed(false);
 
+		for (int i = 0; i < rowData2.length; i++) {
+
+			try {
+
+				if (Double.parseDouble(jtNotenAnzeige.getValueAt(i, 1).toString()) >= 4.0) {
+					jtNotenAnzeige.setDefaultRenderer( Color.class, new ColorTableCellRenderer());
+					
+
+				}
+
+			} catch (NumberFormatException ex) {
+				
+
+			}
+
+		}
 		// / scrollPane removen weil dann tabelle !
 		if (scrollPane != null) {
 			tablePanel.remove(scrollPane);
@@ -267,8 +281,7 @@ public class StudentG extends JFrame implements IDisposeMe {
 				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(10, 21, 525, 261);
 		tablePanel.add(scrollPane);
-		
-		
+
 	}
 
 	@Override

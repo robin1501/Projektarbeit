@@ -50,10 +50,10 @@ public class Master {
 
 	/**
 	 * Der User wird anhand des Login gesetzt.<br>
-	 * Übergeben werden alle Parameter die, für die Auwsahl der Rolle und die
-	 * Objekterzeugung, benötigt werden, sodass "myDynamicUser" richtig
+	 * Übergeben werden alle Parameter, die für die Auwsahl der Rolle und die
+	 * Objekterzeugung benötigt werden, sodass "myDynamicUser" richtig
 	 * initialisiert wird. <br>
-	 * Hierbei wird auch die richtige GUI aufgerufen User selbst ist eine
+	 * Hierbei wird auch die richtige GUI aufgerufen. User selbst ist eine
 	 * abstrakte Klasse und dient hier der Polymorphie.<br>
 	 * Bei fehlerhafter Zuweisung wird eine Message ausgegeben, die auf diesen
 	 * Umstand hinweist.
@@ -119,7 +119,7 @@ public class Master {
 	 * <p>
 	 * <b>Es folgen nun die Methoden der Masterklasse, die die Schnittstellen
 	 * der Klasse bilden.</b><br>
-	 * Es gibt vier Hauptmethoden für Methoden die double, String und ArrayList
+	 * Es gibt vier Hauptmethoden für die Methoden, welche die double, String und ArrayList
 	 * als Rückgabewerte haben, wie auch für Voidaufrufe.<br>
 	 * Durch die Interfaces wird definiert in welcher Art alle Objektmethoden
 	 * aufgebaut und benannt sind.<br>
@@ -132,7 +132,7 @@ public class Master {
 	 * <p>
 	 * Die Funktion <b>getMyDouble</b> kann immer dann angewendet werden, wenn
 	 * ein Doublewert erwartet wird.<br>
-	 * Es muss der gewünschte Methodenname ,sowie die erwarteten Parameter
+	 * Es muss der gewünschte Methodenname, sowie die erwarteten Parameter
 	 * mitgegeben werden.<br>
 	 * Über IF-Else-Verzweigungen wird nun der Methodenaufruf realisiert.<br>
 	 * Bei fehlerhaftem Aufruf wird per MessageBox auf die Fehlerursache
@@ -319,7 +319,7 @@ public class Master {
 	}
 
 	/**
-	 * Die Funktion <b>voidCaller</b> kann immer dann angewendet werden wenn
+	 * Die Funktion <b>voidCaller</b> kann immer dann angewendet werden, wenn
 	 * eine VoidFunktion aufgerufen wird.<br>
 	 * Es muss der gewünschte Methodenname ,sowie die erwarteten Parameter
 	 * mitgegeben werden.<br>
@@ -377,7 +377,7 @@ public class Master {
 	 * 
 	 * @param pswd
 	 * @param user
-	 * @return Funktionswert des InsertAndValidationCheks
+	 * @return Funktionswert des InsertAndValidationChecks
 	 */
 	public static boolean Login(char[] pswd, String user) {
 
@@ -391,11 +391,11 @@ public class Master {
 	 * PersonalDataP Panel aufgerufen wird.<br>
 	 * Es bekommt das, bereits auf Regelkonformität geprüfte, Passwort übergeben
 	 * und gibt es zusammen mit der User-Id,<br>
-	 * die hier aus der User-Id gezogen wird,an die Save-Klasse weiter.<br>
+	 * die hier aus der Klasse gezogen wird,an die Save-Klasse weiter.<br>
 	 * <br>
 	 * Ist die Speicherung erfolgreich, wird das aktuelle Fenster(Ermittlung
 	 * über die User-Klasse) geschlossen und ein neues Loginfenster aufgerufen. <br>
-	 * Sicherung das jede HauptGUI einen Disposeaufruf hat, wird über das
+	 * Das jede HauptGUI einen Disposeaufruf hat, wird über das
 	 * Interface "IDisposeMe" sichergestellt.
 	 * 
 	 * @param pswd

@@ -20,14 +20,14 @@ public class InsertAndValidationChecks {
 	 * Es wird auf die Ergebnisse der Checks gewartet und dann versucht den User
 	 * zu laden. Gelingt dies, wird im Master der dynamischeUser gesetzt und die
 	 * rollenspezifische GUI aufgerufen <br>
-	 * Der Return werd wird auf true gesetzt<br>
+	 * Der Rückgabewert wird auf true gesetzt<br>
 	 * <br>
 	 * Schlägt das Laden oder das Setzen im Master fehl, wird der User auf den
 	 * möglichen Fehler hingewiesen. <br>
-	 * Der Return werd wird auf false gesetzt <br>
+	 * Der Rückgabewert wird auf false gesetzt <br>
 	 * <br>
 	 * Anhand des Return wird in de Login-Gui entschieden, ob die Gui
-	 * geschlossen wird oder ob ein erneuter Login ermöglicht wird.
+	 * geschlossen oder ob ein erneuter Login ermöglicht wird.
 	 * 
 	 * @param pswd
 	 * @param user
@@ -141,8 +141,8 @@ public class InsertAndValidationChecks {
 	}
 
 	/**
-	 * Prüft ob Leerzeichen im zu überprüfenden Char-Array vorhanden sind.<br>
-	 * Es wird über eine foreach schleife durchlaufen.
+	 * Prüft, ob Leerzeichen im zu überprüfenden Char-Array vorhanden sind.<br>
+	 * Es wird mit einer foreach schleife durchlaufen.
 	 * 
 	 * @param checkArray
 	 * @return retval ob Leerzeichen vorhanden sind.
@@ -161,7 +161,7 @@ public class InsertAndValidationChecks {
 	}
 
 	/**
-	 * Prüft ob Leerzeichen im zu überprüfenden String vorhanden sind.<br>
+	 * Prüft, ob Leerzeichen im zu überprüfenden String vorhanden sind.<br>
 	 * Der String wird in ein Char-Array umgewandelt. <br>
 	 * Dieses wird an die Methode noWhiteSpace übergeben.<br>
 	 * Der zurückgegebene Wert wird dann ebenfalls zurückgegeben.
@@ -177,13 +177,13 @@ public class InsertAndValidationChecks {
 	}
 
 	/**
-	 * Überprüfung auf Ziffern im übergebenen String <br>
+	 * Überprüfung auf Ziffern im übergebenen String. <br>
 	 * Der String wird zuerst in ein Char-Array umgewandelt, sodass die Zeichen
 	 * einzeln betrachtet werden können. <br>
 	 * <br>
 	 * 
-	 * Nun wird diese Char-Array durchlaufen.<br>
-	 * Jedes Einzelzeichen wird versucht in ein Integer zu parsen. Gelingt dies
+	 * Nun wird dieses Char-Array durchlaufen.<br>
+	 * Jedes Einzelzeichen wird versucht in einen Integerwert umzuwandeln. Gelingt dies
 	 * wird sofort "true" zurückgegeben.<br>
 	 * Schlägt es aber fehl, wird im Catch-Block die retVal auf false gesetzt.
 	 * 
@@ -215,8 +215,8 @@ public class InsertAndValidationChecks {
 	}
 /**
  * Überprüfung der Passwortregeln im Dialog "ChangePasswordDialog". <br>
- * Es wird auf Leerzeichen und Länge des neuen Passwortes getestet.<br>
- * Länge des neuen Passwortes soll zwischen 5 und 15 zeichen liegen.<br>
+ * Es wird auf Leerzeichen und die Länge des neuen Passwortes getestet.<br>
+ * Die Länge des neuen Passwortes soll zwischen 5 und 15 zeichen liegen.<br>
  * 
  * @param newPswd1
  * @return isRegelKonform 
