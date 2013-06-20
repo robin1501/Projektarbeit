@@ -465,4 +465,10 @@ public class Master {
 		Save.addUser(userdata);
 	}
 
+
+	public static void addLectureToStaff(String lect, String staff) {
+		Save.AssignLectureToStaff(lect,staff);
+		
+	}
+
 }
