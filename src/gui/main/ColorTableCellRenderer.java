@@ -18,7 +18,6 @@ class ColorTableCellRenderer extends DefaultTableCellRenderer {
 				row, column);
 		
 		if (column == 1 && Double.parseDouble(value.toString()) > 4.0) {
-			System.out.println(column + ": " + value.toString());
 			setForeground(Color.RED);
 		} else {
 			setForeground(Color.BLACK);
