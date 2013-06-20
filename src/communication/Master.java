@@ -28,14 +28,24 @@ import roles.User;
 public class Master {
 
 	/*
-	 * Erstellen und Handeln des DynamischenUsers
-	 * ---------------------------------------
+	 * Erstellen und Handeln
+	 *  des DynamischenUsers
 	 */
 
 	private static User myDynamicUser = null;
 	private static String guiName = null;
 	private static StudentG GUIS = null;
-	private static LecturerG GUIL = null;
+	private static LecturerG GUIL = null;	
+	private static String whoAmI = null;
+	/**
+	 * Gibt whoAmI zurück.<br>
+	 * Dies wird in der Lecturer GUI benötigt.
+	 * @return whoAmI
+	 */
+	public static String getWhoAmI() {
+		return whoAmI;
+	}
+	
 
 	/**
 	 * In der getUserClass() wird die aktuelle Klasse des Users als String
@@ -73,6 +83,7 @@ public class Master {
 			switch (role) {
 
 			case 'S':
+				whoAmI = "S";
 				myDynamicUser = new Student(name, firstname, id, course);
 				guiName = "Student";
 				GUIS = new StudentG();
@@ -80,6 +91,7 @@ public class Master {
 				break;
 
 			case 'D':
+				whoAmI = "D";
 				myDynamicUser = new Lecturer(name, firstname, id, course);
 				guiName = "Lecturer";
 				GUIL = new LecturerG();
@@ -87,6 +99,7 @@ public class Master {
 				break;
 
 			case 'P':
+				whoAmI = "P";
 				myDynamicUser = new Professor(name, firstname, id, course);
 				guiName = "Professor";
 				GUIL = new LecturerG();
@@ -104,6 +117,7 @@ public class Master {
 			}
 
 		} else {
+			whoAmI = "H";
 			myDynamicUser = new HeadOfDepartment(name, firstname, id, course);
 			guiName = "HeadOfDepartment";
 			GUIL = new LecturerG();

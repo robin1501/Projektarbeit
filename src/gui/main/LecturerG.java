@@ -308,7 +308,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		btnStudentenassign.setBounds(10, 89, 157, 23);
 		pOptionsHead.add(btnStudentenassign);
 
-		contentPane.add(pOptionsLec);
+		
 
 		JButton btnNewButton_1 = new JButton("Anzeigen");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -332,9 +332,8 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		btnNewButton_1.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton_1.setBounds(200, 21, 89, 23);
 		pOptionsLec.add(btnNewButton_1);
-		contentPane.add(pOptionsProf);
-		contentPane.add(pOptionsHead);
-
+		
+		
 		JButton btnNeuVorlesung = new JButton("Neue Vorlesung");
 		btnNeuVorlesung
 				.setToolTipText("Neue Vorlesung erstellen und einer Lehrkraft zuweisen");
@@ -392,7 +391,11 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		panel_1.add(btn_cancel);
 
 		createandAddTable(rowData, columnNames);
-		// whoAmI();
+		whoAmI();
+//		contentPane.add(pOptionsProf);
+//		contentPane.add(pOptionsHead);
+//		contentPane.add(pOptionsLec);
+
 
 	}
 /**
@@ -458,14 +461,14 @@ public class LecturerG extends JFrame implements IDisposeMe {
  * 
  */
 	private void whoAmI() {
-
-		String whoAmI = "prof";
-		if (whoAmI.equals("lect")) {
+		String iAm = Master.getWhoAmI();
+		
+		if (iAm.equals("lect")) {
 
 			contentPane.add(pOptionsLec);
 
 		} else {
-			if (whoAmI.equals("prof")) {
+			if (iAm.equals("prof")) {
 
 				contentPane.add(pOptionsLec);
 				contentPane.add(pOptionsProf);
