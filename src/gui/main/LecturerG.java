@@ -14,12 +14,18 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+
 import javax.swing.UIManager;
+
+import communication.Master;
 
 public class LecturerG extends JFrame implements IDisposeMe {
 
@@ -28,10 +34,19 @@ public class LecturerG extends JFrame implements IDisposeMe {
 	 */
 	private static final long serialVersionUID = 165886283281206589L;
 	private JPanel contentPane;
-	private JTable table;
 	private JPanel pOptionsLec = new JPanel();
-	private JPanel pOptionsHead =  new JPanel();
-	private JPanel pOptionsProf =  new JPanel();
+	private JPanel pOptionsHead = new JPanel();
+	private JPanel pOptionsProf = new JPanel();
+	private String columnNames[] = { "User-ID", "Vorlesung", "Note" };
+	private String rowData[][] = { { "", "", "" } };;
+	private JPanel panel;
+	private JTable jtAnzeige;
+	private JComboBox cbMyLectures;
+	private JComboBox cbAllLecturesOfCourse;
+	private JLabel lbllectureAverage;
+	private JLabel lblAverage;
+
+	JScrollPane scrollPane = null;
 
 	/**
 	 * Launch the application.
@@ -75,13 +90,25 @@ public class LecturerG extends JFrame implements IDisposeMe {
 
 		pOptionsLec.setLayout(null);
 
-		JComboBox cbMyLectures = new JComboBox();
+		cbMyLectures = new JComboBox();
+		ArrayList<String> myLectures = Master.getMyArrayList("getMyLectures",
+				null, null);
+
+		for (String i : myLectures) {
+			cbMyLectures.addItem(i);
+		}
+
 		cbMyLectures.setBounds(10, 21, 180, 23);
 		pOptionsLec.add(cbMyLectures);
 
 		JButton btnschnitt = new JButton("Vorlesungsschnitt");
 		btnschnitt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				int selIndex = cbMyLectures.getSelectedIndex();
+				String SelectedLecture = (String) cbMyLectures.getItemAt(selIndex);
+				double average = Master.getMyDouble("getLectureAverage", null, SelectedLecture);
+				
+				lbllectureAverage.setText(String.valueOf(average));
 			}
 		});
 		btnschnitt.setHorizontalAlignment(SwingConstants.LEFT);
@@ -108,17 +135,14 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		btnunasigned.setBounds(10, 109, 180, 23);
 		pOptionsLec.add(btnunasigned);
 
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING,
 				TitledBorder.TOP, null, null));
-		panel.setBounds(318, 163, 767, 263);
+		panel.setBounds(318, 163, 544, 263);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		table = new JTable();
-		table.setRowSelectionAllowed(false);
-		table.setBounds(10, 11, 747, 241);
-		panel.add(table);
+		// /-----
 
 		pOptionsProf.setBorder(new TitledBorder(UIManager
 				.getBorder("TitledBorder.border"), "Professoren-Funktionen",
@@ -134,7 +158,15 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		btnAverageOfAllLecturesInMyCourse.setBounds(10, 87, 210, 23);
 		pOptionsProf.add(btnAverageOfAllLecturesInMyCourse);
 
-		JComboBox cbAllLecturesOfCourse = new JComboBox();
+		cbAllLecturesOfCourse = new JComboBox();
+		
+		ArrayList<String> AllLecturesOfCourse = Master.getMyArrayList("getAllCourseLectures",
+				null, null);
+
+		for (String i : myLectures) {
+			cbAllLecturesOfCourse.addItem(i);
+		}
+		
 		cbAllLecturesOfCourse
 				.setToolTipText("Alle Vorlesung Ihres Studiengangs");
 		cbAllLecturesOfCourse.setBounds(10, 19, 210, 23);
@@ -166,7 +198,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 			 * Öffnet den Dialog, um neue Benutzer anzulegen.
 			 */
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				NewUserDialog myNewUser = new NewUserDialog();
 				myNewUser.setVisible(true);
 			}
@@ -178,29 +210,47 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		JButton btnStudentenassign = new JButton("Zuweisungen");
 		btnStudentenassign.addActionListener(new ActionListener() {
 			/**
-			 * Öffnet die Gui um Vorlesungen die Studenten, die daran Teilnehmen zuzuweisen.
+			 * Öffnet die Gui um Vorlesungen die Studenten, die daran Teilnehmen
+			 * zuzuweisen.
 			 */
 			public void actionPerformed(ActionEvent e) {
-				
-				
+
 			}
 		});
-		btnStudentenassign.setToolTipText("Studenten,Dozenten und Vorlesungen zuweisen");
+		btnStudentenassign
+				.setToolTipText("Studenten,Dozenten und Vorlesungen zuweisen");
 		btnStudentenassign.setHorizontalAlignment(SwingConstants.LEFT);
 		btnStudentenassign.setEnabled(true);
 		btnStudentenassign.setBounds(10, 89, 157, 23);
 		pOptionsHead.add(btnStudentenassign);
-		
-		
+
 		contentPane.add(pOptionsLec);
+		
+		JButton btnNewButton_1 = new JButton("Anzeigen");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			/**
+			 * Die Tabelle wird mit den Werten der ausgewählten Vorlesung gefüllt.
+			 * Die Vorlesung wird der Combobox entnommen.
+			 */
+			public void actionPerformed(ActionEvent arg0) {
+				
+			int selIndex= cbMyLectures.getSelectedIndex();
+				
+			}
+		});
+		btnNewButton_1.setHorizontalAlignment(SwingConstants.LEFT);
+		btnNewButton_1.setBounds(200, 21, 89, 23);
+		pOptionsLec.add(btnNewButton_1);
 		contentPane.add(pOptionsProf);
 		contentPane.add(pOptionsHead);
-		
+
 		JButton btnNeuVorlesung = new JButton("Neue Vorlesung");
-		btnNeuVorlesung.setToolTipText("Neue Vorlesung erstellen und einer Lehrkraft zuweisen");
+		btnNeuVorlesung
+				.setToolTipText("Neue Vorlesung erstellen und einer Lehrkraft zuweisen");
 		btnNeuVorlesung.addActionListener(new ActionListener() {
 			/**
-			 * Öffnet den Dialog, um neue Vorlesungen zu erstellen und einem Dozenten zuzuweisen.
+			 * Öffnet den Dialog, um neue Vorlesungen zu erstellen und einem
+			 * Dozenten zuzuweisen.
 			 */
 			public void actionPerformed(ActionEvent e) {
 				NewLectureDialog myNewLecture = new NewLectureDialog();
@@ -210,20 +260,71 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		btnNeuVorlesung.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNeuVorlesung.setBounds(10, 55, 157, 23);
 		pOptionsHead.add(btnNeuVorlesung);
-		//whoAmI();
+
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(UIManager
+				.getBorder("TitledBorder.border"), "\u00C4nderungen",
+				TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(880, 163, 205, 122);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+
+		JButton btnSave = new JButton("Speichern");
+		btnSave.setHorizontalAlignment(SwingConstants.LEFT);
+		btnSave.setBounds(10, 21, 152, 23);
+		panel_1.add(btnSave);
+
+		JButton btn_cancel = new JButton("Verwerfen");
+		btn_cancel.setHorizontalAlignment(SwingConstants.LEFT);
+		btn_cancel.setBounds(10, 55, 152, 23);
+		panel_1.add(btn_cancel);
+
+		createandAddTable(rowData, columnNames);
+		// whoAmI();
+
+	}
+
+	private void createandAddTable(String[][] rowData2, String[] columnNames2) {
+
+		jtAnzeige = new JTable(rowData2, columnNames2) {
+
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column) {
+				// set table column uneditable
+				return false;
+			}
+
+		};
+		jtAnzeige.setRowSelectionAllowed(false);
+		jtAnzeige.setBounds(10, 11, 747, 241);
+
+		jtAnzeige.setRowSelectionAllowed(false);
+		jtAnzeige.getTableHeader().setReorderingAllowed(false);
+
+		// / scrollPane removen weil dann tabelle !
+		if (scrollPane != null) {
+			panel.remove(scrollPane);
+		}
+
+		scrollPane = new JScrollPane(jtAnzeige);
+		scrollPane
+				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setBounds(10, 11, 525, 261);
+		panel.add(scrollPane);
 
 	}
 
 	private void whoAmI() {
-		
+
 		String whoAmI = "prof";
 		if (whoAmI.equals("lect")) {
-			
+
 			contentPane.add(pOptionsLec);
-			
+
 		} else {
 			if (whoAmI.equals("prof")) {
-				
+
 				contentPane.add(pOptionsLec);
 				contentPane.add(pOptionsProf);
 
@@ -250,6 +351,4 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		// TODO Auoto-generated method stub
 
 	}
-	
-//	ID vorlesung Note
 }

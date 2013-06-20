@@ -66,27 +66,25 @@ public class HeadOfDepartment extends User implements ILecturer, IProf {
 					stud.add(data.get(i).get(3).toString());
 					failStud.add(stud);
 					stud = null;
-				}
-					
-			}
-			
+				}					
+			}			
 		}
 		return failStud;
 	}
 
 	@Override
 	public ArrayList<String> getAllCourseLectures() {
-		ArrayList<ArrayList<String>> data = Data.read(markFile);
+		ArrayList<ArrayList<String>> data = Data.read(userFile);
 		ArrayList<String>Lectures = new ArrayList<String>();
 		for(int i =0;i<data.size();i++){
-			if(data.get(i).get(1).toString().equals(course)){
-				boolean alreadyexist = false;
-				for(int j = 0; j<Lectures.size();j++){
-					if(data.get(i).get(1).toString().equals(Lectures.get(j).toString()))
-						alreadyexist = true;
+			if(data.get(i).get(5).toString().equals(course)){
+				if(data.get(i).get(2).toString().equals("Professor") || data.get(i).get(2).toString().equals("Dozent")){
+					String pID=data.get(i).get(3).toString();
+					ArrayList<String> LecturesOfID= Load.getLectures(pID);
+					for(int j=0; j<LecturesOfID.size();j++){
+						Lectures.add(LecturesOfID.get(j));
+					}
 				}
-				if(alreadyexist == false)
-				Lectures.add(data.get(i).get(3).toString());				
 			}
 		}
 		return Lectures;
