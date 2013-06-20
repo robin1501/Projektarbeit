@@ -113,7 +113,7 @@ public class Professor extends User implements ILecturer,IProf {
 					String pID=data.get(i).get(3).toString();
 					ArrayList<String> LecturesOfID= Load.getLectures(pID);
 					for(int j=0; j<LecturesOfID.size();j++){
-						Lectures.add(LecturesOfID.get(j));
+						Lectures.add(LecturesOfID.get(j).toString());						
 					}
 				}
 			}

@@ -207,6 +207,15 @@ public class NewUserDialog extends JDialog {
 						// vorlesung wird nicht gesetzt
 						data.add("");						
 						Master.addUser(data);
+						
+						JOptionPane
+						.showMessageDialog(
+								null,
+								" Nutzer wurde angelegt.",
+								"Anlegen erfolgreich",
+								JOptionPane.PLAIN_MESSAGE);
+						
+						setVisible(false);
 
 					}
 				});
@@ -229,6 +238,7 @@ public class NewUserDialog extends JDialog {
 				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
+				
 			}
 
 			JButton btnRegel = new JButton("Passwortregeln");
