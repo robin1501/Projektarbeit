@@ -44,7 +44,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 	private JComboBox cbMyLectures;
 	private JComboBox cbAllLecturesOfCourse;
 	private JLabel lbllectureAverage;
-	private JLabel lblAverage;
+	private JLabel lblAllLectureAverage;
 
 	JScrollPane scrollPane = null;
 
@@ -103,7 +103,13 @@ public class LecturerG extends JFrame implements IDisposeMe {
 
 		JButton btnschnitt = new JButton("Vorlesungsschnitt");
 		btnschnitt.addActionListener(new ActionListener() {
+			
+			/**
+			 * Hier wird der Notenschnitt für die, in der Combobox angezeigte Vorlesung,Vorlesung angezeigt.
+			 * 
+			 */
 			public void actionPerformed(ActionEvent arg0) {
+				
 				int selIndex = cbMyLectures.getSelectedIndex();
 				String SelectedLecture = (String) cbMyLectures.getItemAt(selIndex);
 				double average = Master.getMyDouble("getLectureAverage", null, SelectedLecture);
@@ -116,19 +122,46 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		pOptionsLec.add(btnschnitt);
 
 		JButton btngesamtschnitt = new JButton("Schnitt aller Vorlesungen");
+		btngesamtschnitt.addActionListener(new ActionListener() {
+			/**
+			 * Hier wird der Schnitt aller Vorlesungen des jeweiligen Lehrkörpers angezeigt
+			 */
+			public void actionPerformed(ActionEvent arg0) {
+				ArrayList<String> myLectures = Master.getMyArrayList("getMyLectures",
+						null, null);		
+				double average = Master.getMyDouble("getAllAverage",myLectures , null);
+				
+				lblAllLectureAverage.setText(String.valueOf(average));
+			}
+		});
 		btngesamtschnitt.setHorizontalAlignment(SwingConstants.LEFT);
 		btngesamtschnitt.setBounds(10, 75, 180, 23);
 		pOptionsLec.add(btngesamtschnitt);
 
-		JLabel lbllectureAverage = new JLabel("");
+		lbllectureAverage = new JLabel("");
 		lbllectureAverage.setBounds(200, 45, 72, 19);
 		pOptionsLec.add(lbllectureAverage);
 
-		JLabel lblAllLectureAverage = new JLabel("");
+		lblAllLectureAverage = new JLabel("");
 		lblAllLectureAverage.setBounds(200, 76, 72, 19);
 		pOptionsLec.add(lblAllLectureAverage);
 
 		JButton btnunasigned = new JButton("Ohne Note & Note > 4");
+		btnunasigned.addActionListener(new ActionListener() {
+			
+			/**
+			 * Hier werden alle Studenten in de Tabelle angeziegt zu denen noch keine Noten eingetragen wurden, /n
+			 * oder bei denen die Noten schlechter als 4 sind.
+			 */
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<String> myLectures = Master.getMyArrayList("getMyLectures",
+						null, null);	
+				ArrayList <ArrayList <String >> getAllFailedOrUnmarkedStudents = Master.getMyTwoDimensionalArrayList("getAllFailedOrUnmarkedStudents", myLectures, null);
+				fillTable(getAllFailedOrUnmarkedStudents);
+				
+			}
+			
+		});
 		btnunasigned
 				.setToolTipText("Zeigt alle Ihre Studenten die das Notenziel nicht erreicht haben oder f\u00FCr die noch keine Note abgegeben wurde.");
 		btnunasigned.setHorizontalAlignment(SwingConstants.LEFT);
@@ -141,8 +174,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		panel.setBounds(318, 163, 544, 263);
 		contentPane.add(panel);
 		panel.setLayout(null);
-
-		// /-----
+		
 
 		pOptionsProf.setBorder(new TitledBorder(UIManager
 				.getBorder("TitledBorder.border"), "Professoren-Funktionen",
@@ -179,9 +211,9 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		btnNewButton.setBounds(10, 53, 210, 23);
 		pOptionsProf.add(btnNewButton);
 
-		JLabel lblAverage = new JLabel("");
-		lblAverage.setBounds(20, 113, 85, 19);
-		pOptionsProf.add(lblAverage);
+		JLabel lblAverageprof = new JLabel("");
+		lblAverageprof.setBounds(20, 113, 85, 19);
+		pOptionsProf.add(lblAverageprof);
 
 		pOptionsHead.setBorder(new TitledBorder(UIManager
 				.getBorder("TitledBorder.border"),
@@ -233,8 +265,11 @@ public class LecturerG extends JFrame implements IDisposeMe {
 			 * Die Vorlesung wird der Combobox entnommen.
 			 */
 			public void actionPerformed(ActionEvent arg0) {
-				
-			int selIndex= cbMyLectures.getSelectedIndex();
+						
+			int selIndex = cbMyLectures.getSelectedIndex();
+			String SelectedLecture = (String) cbMyLectures.getItemAt(selIndex);
+			ArrayList <ArrayList <String >> getAllStudentsOfLecture = Master.getMyTwoDimensionalArrayList("getAllStudentsOfLecture", null, SelectedLecture);
+			fillTable(getAllStudentsOfLecture);
 				
 			}
 		});
@@ -282,6 +317,23 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		createandAddTable(rowData, columnNames);
 		// whoAmI();
 
+	}
+
+	protected void fillTable(
+			ArrayList<ArrayList<String>> inserts) {
+		int column = 3;
+		int row = inserts.size();
+
+		rowData = new String[row][column];
+
+		for (int i = 0; i < row; i++) {
+			for (int k = 0; k < column; k++) {
+
+				rowData[i][k] = inserts.get(i).get(k);
+			}
+		}	
+		createandAddTable(rowData, columnNames);
+		
 	}
 
 	private void createandAddTable(String[][] rowData2, String[] columnNames2) {
