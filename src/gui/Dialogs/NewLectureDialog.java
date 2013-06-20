@@ -95,7 +95,7 @@ public class NewLectureDialog extends JDialog {
 				int selIndexLec = cbLectures.getSelectedIndex();
 				int selIndeStaff =	cbStaff.getSelectedIndex();	
 				Master.addLectureToStaff(cbLectures.getItemAt(selIndexLec).toString(), cbStaff.getItemAt(selIndeStaff).toString());
-				
+				setVisible(false);
 			}
 		});
 		btnZuweisen.setBounds(10, 95, 104, 23);

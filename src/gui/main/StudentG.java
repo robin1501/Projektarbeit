@@ -272,13 +272,13 @@ public class StudentG extends JFrame implements IDisposeMe {
 
 	@Override
 	public void disposeMeFromExtern() {
-		lookForChangesFirst();
+		lookForChanges();
 		this.dispose();
 
 	}
 
 	@Override
-	public boolean lookForChangesFirst() {
+	public boolean lookForChanges() {
 		// TODO Auto-generated method stub
 		return true;
 	}
