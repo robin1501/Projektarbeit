@@ -249,7 +249,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 				ArrayList<ArrayList<String>> AllFailedStudentsOfCourse = Master
 						.getMyTwoDimensionalArrayList(
 								"AllFailedStudentsOfCourse",
-								AllLecturesOfCourse, null);
+								null, null);
 				fillTable(AllFailedStudentsOfCourse);
 
 			}
