@@ -1,18 +1,23 @@
 package roles;
 
 import java.util.ArrayList;
+
+import communication.Master;
+import data.Load;
+
 import interfaces.IShowMyMarks;
 
-/** 
- * Ein Student kann seine persönlichen Daten anzeigen,seine Noten in den unterschiedlichen Vorlesungen anzeigen.
- * Noten die schlechter als 4,0 sind werden farblich makiert. * 
- *
+/**
+ * Ein Student kann seine persönlichen Daten anzeigen,seine Noten in den
+ * unterschiedlichen Vorlesungen anzeigen. Noten die schlechter als 4,0 sind
+ * werden farblich makiert. *
+ * 
  */
 
 public class Student extends User implements IShowMyMarks {
 
 	/* Variablen -------------------------------------- */
-	
+
 	private String name;
 	private String firstname;
 	private String id;
@@ -46,31 +51,43 @@ public class Student extends User implements IShowMyMarks {
 	public String getId() {
 		return id;
 	}
-	
+
 	/* Implementationen aus Interfaces ---------------- */
-/*
- *  Kommentar von Daniel ---> bitte den Schnitt auf 2 nach kommastellen gerundet anzeigen!!!!
- *  
- *  (non-Javadoc)
- * @see interfaces.IShowMyMarks#getMyMarks(java.lang.String)
- */
+	/*
+	 * Kommentar von Daniel ---> bitte den Schnitt auf 2 nach kommastellen
+	 * gerundet anzeigen!!!!
+	 * 
+	 * (non-Javadoc)
+	 * 
+	 * @see interfaces.IShowMyMarks#getMyMarks(java.lang.String)
+	 */
 	@Override
-	public ArrayList <ArrayList<String>> getMyMarks() {
-		// id bitte aus dem Objekt ziehen 
-		// sowas wie "student id und vorlesung sollen alle seine noten und vorlesungen hoch geben "deutsch" "2" usw
-		
-		
-		return null;
+	public ArrayList<ArrayList<String>> getMyMarks() {
+		// id bitte aus dem Objekt ziehen
+		// sowas wie
+		// "student id und vorlesung sollen alle seine noten und vorlesungen hoch geben "deutsch" "2"
+		// usw
+		ArrayList<ArrayList<String>> allMarks = Load.getMarks(id);
+
+		return allMarks;
 	}
 
 	@Override
 	public double getMyTotalAverage() {
-		//durchschnitt aus den Noten berechene die in getMyMarks gezogen wurden 
-		return 0;
+		
+		// durchschnitt aus den Noten berechene die in getMyMarks gezogen wurden
+		ArrayList<ArrayList<String>> allMarks = Load.getMarks(id);
+		int sumMarks = 0;
+		int i;
+		for (i = 0; i < allMarks.size(); i++) {
+			sumMarks = sumMarks + Integer.parseInt(allMarks.get(i).toString());
+		}
+		sumMarks = sumMarks / i;
+		return sumMarks;
 	}
 
 	/* Methoden aus Oberklasse ------------------------------- */
-	
+
 	/* Eigene Methoden ------------------------------- */
 
 }

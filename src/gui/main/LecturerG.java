@@ -113,11 +113,17 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		pOptionsProf.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		pOptionsProf.setBounds(668, 11, 230, 143);
 		contentPane.add(pOptionsProf);
+		pOptionsProf.setLayout(null);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(0, 11, 97, 23);
+		pOptionsProf.add(btnNewButton);
 		
 		JPanel pOptionsHead = new JPanel();
 		pOptionsHead.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		pOptionsHead.setBounds(908, 11, 109, 143);
 		contentPane.add(pOptionsHead);
+		pOptionsHead.setLayout(null);
 	}
 
 	@Override
