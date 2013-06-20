@@ -45,13 +45,13 @@ public class Save {
 	}
 
 	// Ein neuer User wird angelegt übergeben werden die einzelnen Spaltendaten
-	public static void addUser(String[] userData) {
+	public static void addUser(ArrayList<String> userData) {
 		ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
 		ArrayList<String> newUser = new ArrayList<String>();
 
 		data = Data.read(userFile);
-		for (int i = 0; i < userData.length; i++) {
-			newUser.add(userData[i]);
+		for (int i = 0; i < userData.size(); i++) {
+			newUser.add(userData.get(i));
 		}
 		data.add(newUser);
 
@@ -117,10 +117,5 @@ public class Save {
 		Data.write(markFile, data);
 
 	}
-
-	public static void SaveUser(ArrayList<String> userdata) {
-		// TODO Auto-generated method stub
-		
-	}	
 
 }

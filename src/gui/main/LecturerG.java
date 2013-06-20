@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
@@ -21,6 +22,8 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.UIManager;
@@ -172,6 +175,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 			 * schlechter als 4 sind.
 			 */
 			public void actionPerformed(ActionEvent e) {
+				lookForChangesFirst();
 				ArrayList<String> myLectures = Master.getMyArrayList(
 						"getMyLectures", null, null);
 				ArrayList<ArrayList<String>> getAllFailedOrUnmarkedStudents = Master
@@ -249,7 +253,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 				ArrayList<ArrayList<String>> AllFailedStudentsOfCourse = Master
 						.getMyTwoDimensionalArrayList(
 								"AllFailedStudentsOfCourse",
-								null, null);
+								AllLecturesOfCourse, null);
 				fillTable(AllFailedStudentsOfCourse);
 
 			}
@@ -313,6 +317,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 			 */
 			public void actionPerformed(ActionEvent arg0) {
 
+				lookForChangesFirst();
 				int selIndex = cbMyLectures.getSelectedIndex();
 				String SelectedLecture = (String) cbMyLectures
 						.getItemAt(selIndex);
@@ -321,7 +326,6 @@ public class LecturerG extends JFrame implements IDisposeMe {
 								"getAllStudentsOfLecture", null,
 								SelectedLecture);
 				fillTable(getAllStudentsOfLecture);
-
 			}
 		});
 		btnNewButton_1.setHorizontalAlignment(SwingConstants.LEFT);
@@ -388,15 +392,16 @@ public class LecturerG extends JFrame implements IDisposeMe {
 
 		createandAddTable(rowData, columnNames);
 		whoAmI();
-		
 
 	}
-/**
- * Füllt die Combobox für die Proffesoren seperat, da sonst Fehler beim Aufruf entstehen.
- * 
- */
+
+	/**
+	 * Füllt die Combobox für die Proffesoren seperat, da sonst Fehler beim
+	 * Aufruf entstehen.
+	 * 
+	 */
 	private void fillsecondBox() {
-		
+
 		if (!Master.getWhoAmI().equals("D")) {
 			ArrayList<String> AllLecturesOfCourse = Master.getMyArrayList(
 					"getAllCourseLectures", null, null);
@@ -447,7 +452,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 
 			public boolean isCellEditable(int row, int column) {
 				// set table column uneditable
-				return false;
+				return true;
 			}
 
 		};
@@ -466,6 +471,12 @@ public class LecturerG extends JFrame implements IDisposeMe {
 				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(10, 11, 525, 261);
 		panel.add(scrollPane);
+
+		jtAnzeige.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent ke) {
+				changes = true;
+			}
+		});
 
 	}
 
@@ -522,8 +533,17 @@ public class LecturerG extends JFrame implements IDisposeMe {
 	public void lookForChangesFirst() {
 
 		if (changes == true) {
-			getCurrentTableValues();
+			int choice = JOptionPane.showOptionDialog(this,
+					"Änderungen speichern?", "Änderungen speichern?",
+					JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
+					null, null, "test");
+			
+			if (choice == JOptionPane.YES_OPTION) {
+				//mache etwas
+				System.out.println("test");
+			}
 
+			changes = false;
 		}
 
 	}
@@ -534,8 +554,6 @@ public class LecturerG extends JFrame implements IDisposeMe {
 	 * 
 	 */
 	private void getCurrentTableValues() {
-
-		
 
 	}
 }
