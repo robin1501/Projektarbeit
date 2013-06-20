@@ -13,7 +13,6 @@ public class danielConsoleTest {
 		// Student my = new Student("Trefzer","Daniel","Dt");
 	Master.setMyDynamicUser('D',"false","Trefzer","danie", "if", "studiengang");
 
-
 	}
 
 

@@ -7,12 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-/**
- * Standard Dialog zur Bestätigung von Usereingaben
- * 
- *
- */
-public class AssingnNewDialog extends JDialog {
+
+public class NewLectureDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -21,7 +17,7 @@ public class AssingnNewDialog extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			AssingnNewDialog dialog = new AssingnNewDialog();
+			NewLectureDialog dialog = new NewLectureDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -32,7 +28,7 @@ public class AssingnNewDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public AssingnNewDialog() {
+	public NewLectureDialog() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
