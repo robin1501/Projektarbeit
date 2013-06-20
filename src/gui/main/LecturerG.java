@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import javax.swing.UIManager;
 
 import communication.Master;
+import data.Save;
 
 /**
  * Die GUI für die Lehrkräfte, die sich je nach Berechtigung und Rolle aufbauen.<br>
@@ -366,7 +367,10 @@ public class LecturerG extends JFrame implements IDisposeMe {
 			 * werden die angezeigten Werte gespeichert.
 			 */
 			public void actionPerformed(ActionEvent e) {
-				lookForChangesFirst();
+				if (!lookForChangesFirst()) {
+					JOptionPane.showMessageDialog(null,
+							"Es wurden keine Änderungen vorgenommen.");
+				}
 
 			}
 		});
@@ -378,12 +382,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		btn_cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changes = false;
-				// Zurücksetzen auf Default werte
-				String columnNames[] = { "User-ID", "Vorlesung", "Note" };
-				String rowData[][] = { { "", "", "" } };
-				;
 				createandAddTable(rowData, columnNames);
-
 			}
 		});
 		btn_cancel.setHorizontalAlignment(SwingConstants.LEFT);
@@ -530,20 +529,35 @@ public class LecturerG extends JFrame implements IDisposeMe {
 	 * Ist dies der Fall wird hier gespeichert andernfalls nicht.
 	 */
 	@Override
-	public void lookForChangesFirst() {
+	public boolean lookForChangesFirst() {
+		ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
+		ArrayList<String> colData;
 
 		if (changes == true) {
+
 			int choice = JOptionPane.showOptionDialog(this,
 					"Änderungen speichern?", "Änderungen speichern?",
 					JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
 					null, null, "test");
-			
+
 			if (choice == JOptionPane.YES_OPTION) {
-				//mache etwas
-				System.out.println("test");
+
+				for (int i = 0; i < rowData.length; i++) {
+					colData = new ArrayList<String>();
+					for (int j = 0; j < rowData[i].length; j++) {
+						jtAnzeige.editCellAt(i, j);
+						colData.add(rowData[i][j]);
+					}
+					data.add(colData);
+				}
+
+				Save.saveMarks(data);
 			}
 
 			changes = false;
+			return true;
+		} else {
+			return false;
 		}
 
 	}
