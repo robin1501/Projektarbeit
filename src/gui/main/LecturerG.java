@@ -388,14 +388,23 @@ public class LecturerG extends JFrame implements IDisposeMe {
 
 		createandAddTable(rowData, columnNames);
 		whoAmI();
-		// contentPane.add(pOptionsProf);
-		// contentPane.add(pOptionsHead);
-		// contentPane.add(pOptionsLec);
+		
 
 	}
-
+/**
+ * Füllt die Combobox für die Proffesoren seperat, da sonst Fehler beim Aufruf entstehen.
+ * 
+ */
 	private void fillsecondBox() {
-		// TODO Auto-generated method stub
+		
+		if (!Master.getWhoAmI().equals("D")) {
+			ArrayList<String> AllLecturesOfCourse = Master.getMyArrayList(
+					"getAllCourseLectures", null, null);
+
+			for (String i : AllLecturesOfCourse) {
+				cbAllLecturesOfCourse.addItem(i);
+			}
+		}
 
 	}
 
@@ -526,14 +535,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 	 */
 	private void getCurrentTableValues() {
 
-		if (!Master.getWhoAmI().equals("D")) {
-			ArrayList<String> AllLecturesOfCourse = Master.getMyArrayList(
-					"getAllCourseLectures", null, null);
-
-			for (String i : AllLecturesOfCourse) {
-				cbAllLecturesOfCourse.addItem(i);
-			}
-		}
+		
 
 	}
 }
