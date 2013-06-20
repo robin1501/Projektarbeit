@@ -85,9 +85,9 @@ public class Load {
 			{
 				courseMark.add(data.get(i).get(2)); //Vorlesung
 				courseMark.add(data.get(i).get(3)); //Note
-			}
+				allMarks.add(courseMark);
+			}		
 			
-			allMarks.add(courseMark);
 		}
 		
 		return allMarks;

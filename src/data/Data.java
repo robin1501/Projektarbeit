@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
 public class Data {
 
 	/**
-	 * Die Methode fileReplacer wird verwendet 
+	 * Da es Probleme mit der Dateinamensauflöung 
 	 * @param file
 	 * @return Datei
 	 */
