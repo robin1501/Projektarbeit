@@ -80,7 +80,7 @@ public class NewLectureDialog extends JDialog {
 		ArrayList <String> staff = Master.getMyArrayList("getAllStaffOfCourse", null, null);
 		
 		for(String i : staff){
-			cbLectures.addItem(i); 
+			cbStaff.addItem(i); 
 		}
 		getContentPane().add(cbStaff);
 

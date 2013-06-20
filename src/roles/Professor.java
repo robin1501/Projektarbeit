@@ -113,7 +113,7 @@ public class Professor extends User implements ILecturer,IProf {
 					String pID=data.get(i).get(3).toString();
 					ArrayList<String> LecturesOfID= Load.getLectures(pID);
 					for(int j=0; j<LecturesOfID.size();j++){
-						Lectures.add(LecturesOfID.get(j));
+						Lectures.add(LecturesOfID.get(j).toString());						
 					}
 				}
 			}
@@ -164,7 +164,7 @@ public class Professor extends User implements ILecturer,IProf {
 		double sumMarks=0,average=0;
 		int count=0;
 		for(int i=0;i<data.size();i++){
-			if(data.get(i).get(2).toString().equals(SelectedLecture)){
+			if(data.get(i).get(2).toString().equals(SelectedLecture) && data.get(i).get(5).toString().equals(course)){
 				if(Double.parseDouble(data.get(i).get(3).toString())!=0){
 					sumMarks= sumMarks + Double.parseDouble(data.get(i).get(3).toString());
 					count ++;

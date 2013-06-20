@@ -115,7 +115,22 @@ public class Save {
 	}
 
 	public static void AssignLectureToStaff(String lect, String staff) {
-		// TODO Auto-generated method stub
+		ArrayList<ArrayList<String>> data = Data.read(userFile);
+		boolean userFound = false;
+		
+		for(int i =0;i<data.size() && !userFound ; i++){
+			if(data.get(i).get(3).toString().equals(staff)){
+				String lec=data.get(i).get(7).toString();
+				if(lec == ""){
+					data.get(i).set(7, lect);
+				}else{
+					lec= data.get(i).get(7).toString()+","+lect;
+					data.get(i).set(7, lec);
+				}
+				userFound=true;
+			}
+		}
+		Data.write(userFile, data);
 		
 	}
 
