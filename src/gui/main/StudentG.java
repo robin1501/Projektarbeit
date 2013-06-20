@@ -151,14 +151,18 @@ public class StudentG extends JFrame implements IDisposeMe {
 
 				// Wenn die Noten bereits abgeholt wurden nicht nochmal neu
 				// holen.
+				//
+				markWorserThanFour();
+				/*
 				if (myMarks != null) {
 					fillTable();
 				} else {
 					myMarks = Master.getMyTwoDimensionalArrayList("getMyMarks",
 							null, null);
 					markWorserThanFour();
-
-				}
+					}
+*/
+				
 			}
 
 		});

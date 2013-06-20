@@ -68,7 +68,11 @@ public class Student extends User implements IShowMyMarks {
 				// "student id und vorlesung sollen alle seine noten und vorlesungen hoch geben "deutsch" "2"
 				// usw
 				ArrayList<ArrayList<String>> allMarks = Load.getMarks(id);
-				
+				for(int i =0;i<allMarks.size();i++){
+					if(Integer.parseInt(allMarks.get(i).get(1).toString())==0){
+						allMarks.get(i).set(1,"Keine Note gesetzt");
+					}
+				}
 				return allMarks;
 	}
 
@@ -78,14 +82,15 @@ public class Student extends User implements IShowMyMarks {
 		// durchschnitt aus den Noten berechene die in getMyMarks gezogen wurden
 		ArrayList<ArrayList<String>> allMarks = Load.getMarks(id);
 		double sumMarks = 0;
-		int i = 0;
+		int	i=0,count =0;
 		while (i < allMarks.size()) {
-
-			sumMarks = sumMarks
-					+ Integer.parseInt(allMarks.get(i).get(1).toString());
+			if(Integer.parseInt(allMarks.get(i).get(1).toString())!= 0){
+				sumMarks = sumMarks + Integer.parseInt(allMarks.get(i).get(1).toString());
+				count++;
+			}
 			i++;
 		}
-		sumMarks = sumMarks / i;
+		sumMarks = sumMarks / count;
 		return sumMarks;
 	}
 

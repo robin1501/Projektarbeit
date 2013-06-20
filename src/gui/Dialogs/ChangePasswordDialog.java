@@ -150,7 +150,7 @@ public class ChangePasswordDialog extends JDialog {
 
 								} else {
 									lblErrorlabel
-											.setText("Das neue Passwort stimmt nicht mit dem Kontrollpasswort überein.");
+											.setText("Die neuen Passwörter stimmen nicht überein.");
 								}
 							}
 
