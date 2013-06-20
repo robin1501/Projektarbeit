@@ -24,7 +24,14 @@ public class Student extends User implements IShowMyMarks {
 	private String course;
 
 	/* Konstruktor ------------------------------------- */
-
+	/**
+	 * Im Konstruktor werden die übergeben Spezifikationen über den aktuell eingeloggten User in die privaten-
+	 * Klassenvariabeln gespeichert.
+	 * @param name
+	 * @param firstname
+	 * @param id
+	 * @param course
+	 */
 	public Student(String name, String firstname, String id, String course) {
 		super();
 		this.name = name;
@@ -35,32 +42,32 @@ public class Student extends User implements IShowMyMarks {
 	}
 
 	/* getter und setter ----------------------------- */
-
+/**
+ * Mit der getFirstname-getter-Methode wird der Vorname zurückgegeben 
+ */
 	public String getFirstname() {
 		return firstname;
 	}
-
+	/**
+	 * Mit der getCourse-getter-Methode wird der Kurs zurückgegeben 
+	 */
 	public String getCourse() {
 		return course;
 	}
-
+	/**
+	 * Mit der getName-getter-Methode wird der Nachname zurückgegeben 
+	 */
 	public String getName() {
 		return name;
 	}
-
+	/**
+	 * Mit der getId-getter-Methode wird die UserID zurückgegeben 
+	 */
 	public String getId() {
 		return id;
 	}
 
 	/* Implementationen aus Interfaces ---------------- */
-	/*
-	 * Kommentar von Daniel ---> bitte den Schnitt auf 2 nach kommastellen
-	 * gerundet anzeigen!!!!
-	 * 
-	 * (non-Javadoc)
-	 * 
-	 * @see interfaces.IShowMyMarks#getMyMarks(java.lang.String)
-	 */
 	/** 
 	 * In der Methode geMyMarks() wird die Load Methode getMarks(UserID) aufgerufen, die eine Liste mit den 
 	 * gesammten Noten des entsprechenden Users zurückgibt.

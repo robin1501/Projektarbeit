@@ -98,14 +98,16 @@ public class HeadOfDepartment extends User implements ILecturer, IProf {
 
 	@Override
 	public ArrayList<ArrayList<String>> getAllStudentsOfLecture(String SelectedLecture) {
-		ArrayList<ArrayList<String>> data = Data.read(userFile);
+		ArrayList<ArrayList<String>> data = Data.read(markFile);
 		ArrayList<String> Student= new ArrayList<String>();
 		ArrayList<ArrayList<String>> Students = new ArrayList<ArrayList<String>>();
 		for(int j=0;j<data.size();j++){
-			if(data.get(j).get(5).equals(SelectedLecture)){
-				for(int i=0;i<3;i++){
-					Student.add(data.get(j).get(i));
-				}Students.add(Student);
+			if(data.get(j).get(2).equals(SelectedLecture)){
+				Student.add(data.get(j).get(0).toString());
+				Student.add(data.get(j).get(2).toString());
+				Student.add(data.get(j).get(3).toString());
+				Students.add(Student); 
+				Student = null;
 			}
 		}		
 		return Students;
@@ -171,23 +173,6 @@ public class HeadOfDepartment extends User implements ILecturer, IProf {
 		return failStud;
 	}
 
-	@Override
-	public double AverageOfAllLecturesInMyCourse() {
-		ArrayList<ArrayList<String>> data = Data.read(markFile);
-		double sumMarks=0,average=0;
-		int count=0;
-		for(int i=0;i<data.size();i++){
-			if(data.get(i).get(2).toString().equals(course)){
-				if(Double.parseDouble(data.get(i).get(2).toString())!=0){
-					sumMarks= sumMarks + Double.parseDouble(data.get(i).get(3).toString());
-					count ++;
-				}
-			}
-			
-		}
-		average = sumMarks / count;
-		return average;
-	}
 	
 
 	

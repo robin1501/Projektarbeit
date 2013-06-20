@@ -26,14 +26,17 @@ import java.util.ArrayList;
 import javax.swing.UIManager;
 
 import communication.Master;
+
 /**
- *Die GUI für die Lehrkräfte, die sich je nach Berechtigung und Rolle aufbauen.<br>
- *Sie bietet die Möglichkeit sich Noten, Durchschnitte, gefährdete Studenten anzeigen zu lassen.<br>
- *Desweitere ist es z.B. als "HeadofDepartment" möglich neue Nutzer und Vorlesungen zu erstellen<br>
+ * Die GUI für die Lehrkräfte, die sich je nach Berechtigung und Rolle aufbauen.<br>
+ * Sie bietet die Möglichkeit sich Noten, Durchschnitte, gefährdete Studenten
+ * anzeigen zu lassen.<br>
+ * Desweitere ist es z.B. als "HeadofDepartment" möglich neue Nutzer und
+ * Vorlesungen zu erstellen<br>
  * und den Vorlesungen die Studenten, die daran teilnehmen sollen zuzuweisen.
  * 
  * 
- *
+ * 
  */
 public class LecturerG extends JFrame implements IDisposeMe {
 
@@ -55,7 +58,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 	private JLabel lblAllLectureAverage;
 	private JLabel lblAverageprof;
 	private boolean changes = false;
-	private	JScrollPane scrollPane = null;
+	private JScrollPane scrollPane = null;
 
 	/**
 	 * Launch the application.
@@ -226,13 +229,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		pOptionsProf.add(btnAverageOfAllLecturesInMyCourse);
 
 		cbAllLecturesOfCourse = new JComboBox();
-
-		ArrayList<String> AllLecturesOfCourse = Master.getMyArrayList(
-				"getAllCourseLectures", null, null);
-
-		for (String i : myLectures) {
-			cbAllLecturesOfCourse.addItem(i);
-		}
+		fillsecondBox();
 
 		cbAllLecturesOfCourse
 				.setToolTipText("Alle Vorlesung Ihres Studiengangs");
@@ -308,8 +305,6 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		btnStudentenassign.setBounds(10, 89, 157, 23);
 		pOptionsHead.add(btnStudentenassign);
 
-		
-
 		JButton btnNewButton_1 = new JButton("Anzeigen");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			/**
@@ -332,8 +327,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		btnNewButton_1.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton_1.setBounds(200, 21, 89, 23);
 		pOptionsLec.add(btnNewButton_1);
-		
-		
+
 		JButton btnNeuVorlesung = new JButton("Neue Vorlesung");
 		btnNeuVorlesung
 				.setToolTipText("Neue Vorlesung erstellen und einer Lehrkraft zuweisen");
@@ -363,12 +357,13 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		btnSave.addActionListener(new ActionListener() {
 			/**
 			 * Hier wird die Methode lookForChangesFirst aufgerufen,<br>
-			 * Sie ermöglicht es zu überprüfen ob etwas geändert wurde. Ist dies der Fall, <br>
+			 * Sie ermöglicht es zu überprüfen ob etwas geändert wurde. Ist dies
+			 * der Fall, <br>
 			 * werden die angezeigten Werte gespeichert.
 			 */
 			public void actionPerformed(ActionEvent e) {
 				lookForChangesFirst();
-				
+
 			}
 		});
 		btnSave.setHorizontalAlignment(SwingConstants.LEFT);
@@ -381,9 +376,10 @@ public class LecturerG extends JFrame implements IDisposeMe {
 				changes = false;
 				// Zurücksetzen auf Default werte
 				String columnNames[] = { "User-ID", "Vorlesung", "Note" };
-				String rowData[][] = { { "", "", "" } };;
-				createandAddTable(rowData,columnNames);
-				
+				String rowData[][] = { { "", "", "" } };
+				;
+				createandAddTable(rowData, columnNames);
+
 			}
 		});
 		btn_cancel.setHorizontalAlignment(SwingConstants.LEFT);
@@ -392,17 +388,24 @@ public class LecturerG extends JFrame implements IDisposeMe {
 
 		createandAddTable(rowData, columnNames);
 		whoAmI();
-//		contentPane.add(pOptionsProf);
-//		contentPane.add(pOptionsHead);
-//		contentPane.add(pOptionsLec);
-
+		// contentPane.add(pOptionsProf);
+		// contentPane.add(pOptionsHead);
+		// contentPane.add(pOptionsLec);
 
 	}
-/**
- * Hier wird die 2 Dimensionale ArrayList in ein 2 Dimensionales Array umgewandelt und sie dann an die Methode <br>
- * createandAddTable übergeben.
- * @param inserts
- */
+
+	private void fillsecondBox() {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * Hier wird die 2 Dimensionale ArrayList in ein 2 Dimensionales Array
+	 * umgewandelt und sie dann an die Methode <br>
+	 * createandAddTable übergeben.
+	 * 
+	 * @param inserts
+	 */
 	protected void fillTable(ArrayList<ArrayList<String>> inserts) {
 		int column = 3;
 		int row = inserts.size();
@@ -418,14 +421,15 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		createandAddTable(rowData, columnNames);
 
 	}
-/**
- * In der Funktion createandAddTable wird die eigentliche Tabelle erstellt.<br>
- * Sie wird erstellt und dann der GUI hinzugefügt.
- * 
- * 
- * @param rowData2
- * @param columnNames2
- */
+
+	/**
+	 * In der Funktion createandAddTable wird die eigentliche Tabelle erstellt.<br>
+	 * Sie wird erstellt und dann der GUI hinzugefügt.
+	 * 
+	 * 
+	 * @param rowData2
+	 * @param columnNames2
+	 */
 	private void createandAddTable(String[][] rowData2, String[] columnNames2) {
 
 		jtAnzeige = new JTable(rowData2, columnNames2) {
@@ -455,20 +459,21 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		panel.add(scrollPane);
 
 	}
-/**
- * Hier wird überpüft mit welchen Rechten diese GUI gestartet wird. <br>
- * Je nach Recht werden unterschiedliche Panels hinzugefügt.<br>
- * 
- */
+
+	/**
+	 * Hier wird überpüft mit welchen Rechten diese GUI gestartet wird. <br>
+	 * Je nach Recht werden unterschiedliche Panels hinzugefügt.<br>
+	 * 
+	 */
 	private void whoAmI() {
 		String iAm = Master.getWhoAmI();
-		
-		if (iAm.equals("lect")) {
+
+		if (iAm.equals("D")) {
 
 			contentPane.add(pOptionsLec);
 
 		} else {
-			if (iAm.equals("prof")) {
+			if (iAm.equals("P")) {
 
 				contentPane.add(pOptionsLec);
 				contentPane.add(pOptionsProf);
@@ -483,39 +488,52 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		}
 
 	}
-/**
- * Um die GUI von externen GUI's zu disposen, wird hier die Funktion disposeMeFromExtern aufgerufen. <br>
- * Sie ruft die Methode lookforChangesFirst auf und schließt erst danach das Fenster.<br>
- * Diese Methode wird zum Beispiel von "ChangePasswordDialog" aufgerufen, nachdem das Passwort geändert wurde.
- * 
- */
+
+	/**
+	 * Um die GUI von externen GUI's zu disposen, wird hier die Funktion
+	 * disposeMeFromExtern aufgerufen. <br>
+	 * Sie ruft die Methode lookforChangesFirst auf und schließt erst danach das
+	 * Fenster.<br>
+	 * Diese Methode wird zum Beispiel von "ChangePasswordDialog" aufgerufen,
+	 * nachdem das Passwort geändert wurde.
+	 * 
+	 */
 	@Override
 	public void disposeMeFromExtern() {
 		lookForChangesFirst();
 		this.dispose();
 
 	}
-/**
- * Hier wird überprüft ob Änderungen statt gefunden haben.<br>
- * Ist dies der Fall wird hier gespeichert andernfalls nicht.
- */
+
+	/**
+	 * Hier wird überprüft ob Änderungen statt gefunden haben.<br>
+	 * Ist dies der Fall wird hier gespeichert andernfalls nicht.
+	 */
 	@Override
 	public void lookForChangesFirst() {
-		
-		if(changes == true){
+
+		if (changes == true) {
 			getCurrentTableValues();
-			
+
 		}
-		
 
 	}
-/**
- * Die Methode getCurrentTableValues ließt die aktuellen Werte der Tabelle <br>
- * ein und gibt sie über den Master an die Save Klasse weiter.
- * 
- */
-private void getCurrentTableValues() {
-	
-	
-}
+
+	/**
+	 * Die Methode getCurrentTableValues ließt die aktuellen Werte der Tabelle <br>
+	 * ein und gibt sie über den Master an die Save Klasse weiter.
+	 * 
+	 */
+	private void getCurrentTableValues() {
+
+		if (!Master.getWhoAmI().equals("D")) {
+			ArrayList<String> AllLecturesOfCourse = Master.getMyArrayList(
+					"getAllCourseLectures", null, null);
+
+			for (String i : AllLecturesOfCourse) {
+				cbAllLecturesOfCourse.addItem(i);
+			}
+		}
+
+	}
 }
