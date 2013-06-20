@@ -176,7 +176,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 			 * schlechter als 4 sind.
 			 */
 			public void actionPerformed(ActionEvent e) {
-				lookForChangesFirst();
+				lookForChanges();
 				ArrayList<String> myLectures = Master.getMyArrayList(
 						"getMyLectures", null, null);
 				ArrayList<ArrayList<String>> getAllFailedOrUnmarkedStudents = Master
@@ -318,7 +318,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 			 */
 			public void actionPerformed(ActionEvent arg0) {
 
-				lookForChangesFirst();
+				lookForChanges();
 				int selIndex = cbMyLectures.getSelectedIndex();
 				String SelectedLecture = (String) cbMyLectures
 						.getItemAt(selIndex);
@@ -361,13 +361,13 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		JButton btnSave = new JButton("Speichern");
 		btnSave.addActionListener(new ActionListener() {
 			/**
-			 * Hier wird die Methode lookForChangesFirst aufgerufen,<br>
+			 * Hier wird die Methode lookForChanges aufgerufen,<br>
 			 * Sie ermöglicht es zu überprüfen ob etwas geändert wurde. Ist dies
 			 * der Fall, <br>
 			 * werden die angezeigten Werte gespeichert.
 			 */
 			public void actionPerformed(ActionEvent e) {
-				if (!lookForChangesFirst()) {
+				if (!lookForChanges()) {
 					JOptionPane.showMessageDialog(null,
 							"Es wurden keine Änderungen vorgenommen.");
 				}
@@ -511,7 +511,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 	/**
 	 * Um die GUI von externen GUI's zu disposen, wird hier die Funktion
 	 * disposeMeFromExtern aufgerufen. <br>
-	 * Sie ruft die Methode lookforChangesFirst auf und schließt erst danach das
+	 * Sie ruft die Methode lookForChanges auf und schließt erst danach das
 	 * Fenster.<br>
 	 * Diese Methode wird zum Beispiel von "ChangePasswordDialog" aufgerufen,
 	 * nachdem das Passwort geändert wurde.
@@ -519,7 +519,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 	 */
 	@Override
 	public void disposeMeFromExtern() {
-		lookForChangesFirst();
+		lookForChanges();
 		this.dispose();
 
 	}
@@ -529,10 +529,11 @@ public class LecturerG extends JFrame implements IDisposeMe {
 	 * Ist dies der Fall wird hier gespeichert andernfalls nicht.
 	 */
 	@Override
-	public boolean lookForChangesFirst() {
+	public boolean lookForChanges() {
 		ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
 		ArrayList<String> colData;
-
+		double mark;
+		
 		if (changes == true) {
 
 			int choice = JOptionPane.showOptionDialog(this,
@@ -545,7 +546,17 @@ public class LecturerG extends JFrame implements IDisposeMe {
 				for (int i = 0; i < rowData.length; i++) {
 					colData = new ArrayList<String>();
 					for (int j = 0; j < rowData[i].length; j++) {
-						jtAnzeige.editCellAt(i, j);
+						if (j == rowData[i].length - 1) {
+							if (isMark(rowData[i][j])) {
+								mark = Double.parseDouble((Math.round(Double.parseDouble(rowData[i][j])*10))+"")/10;
+								rowData[i][j] = mark + "";
+								jtAnzeige.editCellAt(i, j);
+							} else {
+								JOptionPane.showMessageDialog(null,
+										"Falsche Noten eingegeben.");
+								return true;
+							}
+						}
 						colData.add(rowData[i][j]);
 					}
 					data.add(colData);
@@ -562,12 +573,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 
 	}
 
-	/**
-	 * Die Methode getCurrentTableValues ließt die aktuellen Werte der Tabelle <br>
-	 * ein und gibt sie über den Master an die Save Klasse weiter.
-	 * 
-	 */
-	private void getCurrentTableValues() {
-
+	public static boolean isMark(String str) {
+		return str.matches("^-?([1-4]+(\\.[0-9]*))|[1-5]|5\\.0?$");
 	}
 }
