@@ -63,7 +63,7 @@ public class PersonalDataP extends JPanel {
 		lblVorname.setBounds(10, 130, 85, 14);
 		add(lblVorname);
 		
-		JLabel lblId = new JLabel("ID");
+		JLabel lblId = new JLabel("Username");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblId.setBounds(10, 166, 85, 14);
 		add(lblId);

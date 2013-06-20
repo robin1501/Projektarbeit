@@ -68,7 +68,7 @@ public class LoginG extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblId = new JLabel("ID");
+		JLabel lblId = new JLabel("User-ID");
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblId.setBounds(36, 49, 90, 23);
 		contentPane.add(lblId);
