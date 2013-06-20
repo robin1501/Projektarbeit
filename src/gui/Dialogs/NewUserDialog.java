@@ -153,7 +153,6 @@ public class NewUserDialog extends JDialog {
 						data.add(name.getText());
 						data.add(vorname.getText());
 						int selIndex = comboBox_1.getSelectedIndex();
-
 						data.add(comboBox_1.getItemAt(selIndex).toString());
 
 						if (InsertAndValidationChecks.IdCheck(id.getText())) {
@@ -196,6 +195,10 @@ public class NewUserDialog extends JDialog {
 											"Passwort-Regeln",
 											JOptionPane.PLAIN_MESSAGE);
 						}
+						// Nachname;Vorname;Rolle;ID;Passwort;Studiengang;Studiengangsleiter;Vorlesung
+						//data.add()
+						
+						Master.addUser(data);
 
 					}
 				});
