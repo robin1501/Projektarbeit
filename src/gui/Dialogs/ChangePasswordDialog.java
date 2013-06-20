@@ -62,14 +62,14 @@ public class ChangePasswordDialog extends JDialog {
 		setResizable(false);
 		setLocationRelativeTo(null);
 
-		setTitle("Passwort\u00E4ndern");
+		setTitle("Passwort \u00E4ndern");
 		setBounds(100, 100, 347, 268);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
-		JLabel lblPasswortndern = new JLabel("Passwort\u00E4ndern");
+		JLabel lblPasswortndern = new JLabel("Passwort \u00E4ndern");
 		lblPasswortndern.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblPasswortndern.setBounds(10, 11, 148, 27);
 		contentPanel.add(lblPasswortndern);

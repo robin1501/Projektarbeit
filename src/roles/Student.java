@@ -61,31 +61,46 @@ public class Student extends User implements IShowMyMarks {
 	 * 
 	 * @see interfaces.IShowMyMarks#getMyMarks(java.lang.String)
 	 */
+	/** 
+	 * In der Methode geMyMarks() wird die Load Methode getMarks(UserID) aufgerufen, die eine Liste mit den 
+	 * gesammten Noten des entsprechenden Users zurückgibt.
+	 * Daraufhin wird mit einer for-Schleife geprüft ob eine dieser Noten, "0"(nicht gesetzt) ist.
+	 * Fallst dies vorkommt, wird diese durch den String "Keine Note gesetzt" ersetzt um die Anzeige 
+	 * ansprechender zu gestallten.
+	 */
 	@Override
 	public ArrayList<ArrayList<String>> getMyMarks() {
 		// id bitte aus dem Objekt ziehen
-				// sowas wie
-				// "student id und vorlesung sollen alle seine noten und vorlesungen hoch geben "deutsch" "2"
-				// usw
-				ArrayList<ArrayList<String>> allMarks = Load.getMarks(id);
-				for(int i =0;i<allMarks.size();i++){
-					if(Integer.parseInt(allMarks.get(i).get(1).toString())==0){
-						allMarks.get(i).set(1,"Keine Note gesetzt");
-					}
-				}
-				return allMarks;
+		// sowas wie
+		// "student id und vorlesung sollen alle seine noten und vorlesungen hoch geben "deutsch" "2"
+		// usw
+		ArrayList<ArrayList<String>> allMarks = Load.getMarks(id);
+		for(int i =0;i<allMarks.size();i++){
+			if(Double.parseDouble(allMarks.get(i).get(1).toString())==0){
+				allMarks.get(i).set(1,"Keine Note gesetzt");
+			}
+		}
+		return allMarks;
 	}
-
+	/**
+	 * In der Methode getMyTotalAverage() werden alle Noten, wie auch in geMyMarks() geladen, die daraufhin 
+	 * in einer for-Schleife auf noch nicht gestzte Noten ("0") geprüft werden, um nur wirkliche Noten 
+	 * für die Durchschnittsberechnung zu benutzen, gleichzeitig wird eine Countervariable verwaltet, die nur
+	 * bei relevanten Noten hochzählt.
+	 * nach beendigung der for-Schleife wird der aufsummierte Wert der relevanten Noten durch die Countervariable
+	 * geteilt und es wird der daraus resultierende Durchschnitt zurückgegeben.
+	 * 
+	 */
 	@Override
 	public double getMyTotalAverage() {
-
+		
 		// durchschnitt aus den Noten berechene die in getMyMarks gezogen wurden
 		ArrayList<ArrayList<String>> allMarks = Load.getMarks(id);
 		double sumMarks = 0;
 		int	i=0,count =0;
 		while (i < allMarks.size()) {
-			if(Integer.parseInt(allMarks.get(i).get(1).toString())!= 0){
-				sumMarks = sumMarks + Integer.parseInt(allMarks.get(i).get(1).toString());
+			if(Double.parseDouble(allMarks.get(i).get(1).toString())!= 0){
+				sumMarks = sumMarks + Double.parseDouble(allMarks.get(i).get(1).toString());
 				count++;
 			}
 			i++;
