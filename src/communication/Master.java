@@ -461,8 +461,8 @@ public class Master {
 	/**
 	 * 
 	 */
-	public static void SaveUser(ArrayList <String> userdata){
-		Save.SaveUser(userdata);
+	public static void addUser(ArrayList <String> userdata){
+		Save.addUser(userdata);
 	}
 
 }

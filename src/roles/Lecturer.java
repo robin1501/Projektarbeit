@@ -8,8 +8,10 @@ import data.Load;
 
 import interfaces.ILecturer;
 /**
- * 
- * 
+ * Die Lecturer Klasse beschreibt die Möglichkeiten eines Dozenten in der Studentenverwaltung.
+ * Er kann: seine Vorlesungen anzeigen lassen, alle Studenten die eine seiner Vorlesungen besuchen anzeigen lassen,
+ * den erzielten Durchschnitt, der Studenten, aus einer oder aller seiner Vorlesungen ausgeben lassen und alle 
+ * Studenten, die durchgefallen bzw noch keine Note besitzen ausgeben lassen.* 
  *
  */
 public class Lecturer extends User implements ILecturer {
@@ -20,9 +22,6 @@ public class Lecturer extends User implements ILecturer {
 	private String firstname;
 	private String id;
 	private String course;
-	/**
-	 * 
-	 */
 	public static File userFile = Data.fileReplacer("stud_info.csv");
 	public static File markFile = Data.fileReplacer("mark_info.csv");
 
@@ -87,7 +86,7 @@ public class Lecturer extends User implements ILecturer {
 	 */
 	@Override
 	public ArrayList<ArrayList<String>> getAllStudentsOfLecture(String SelectedLecture) {
-		ArrayList<ArrayList<String>> data = Data.read(markFile);
+		ArrayList<ArrayList<String>> data = Data.read(markFile);		
 		ArrayList<String> Student;
 		ArrayList<ArrayList<String>> Students = new ArrayList<ArrayList<String>>();
 		for(int j=0;j<data.size();j++){
@@ -97,7 +96,6 @@ public class Lecturer extends User implements ILecturer {
 				Student.add(data.get(j).get(2).toString());
 				Student.add(data.get(j).get(3).toString());
 				Students.add(Student); 
-				
 			}
 		}		
 		return Students;
@@ -127,7 +125,10 @@ public class Lecturer extends User implements ILecturer {
 	}
 	/**
 	 * Die getAllAverage Methode geht auf die gleiche Weise wie getLectureAverage vor, jedoch vergrößert sich
-	 * Laufzeitkomplexität 
+	 * Laufzeitkomplexität um die Anzahl der Elemente in der ArrayList, die als Parameter übergeben wurde, welche
+	 * sich als verschachtelte for-Schleife abzeichnet.
+	 * Anschließend wird der gerundete Durchschnitt zurückgegeben.
+	 * 
 	 */
 	@Override
 	public double getAllAverage(ArrayList<String> allMyLectures) {
@@ -148,11 +149,16 @@ public class Lecturer extends User implements ILecturer {
 		average= (Math.round(average*100))/100;		
 		return average;
 	}
-
+	/**
+	 * Mit der getAllFailedOrUnmarkedStudents Methode werden mit einer for-Schleife alle Vorlesungen aus der 
+	 * mark_info datei mit den Vorlesungen aus der übergebenen Liste abgeglichen und alle Studenten mit 
+	 * einer noch nicht gesetzten Note oder einer die schlechter als 4 ist, mit ihrer UserID, der entsprechenden vorlesung 
+	 * und der Note in eine zweidimensionale ArrayList gespeichert, die schlussendlich zurückgegeben wird.
+	 */
 	@Override
 	public ArrayList<ArrayList<String>> getAllFailedOrUnmarkedStudents(
 			ArrayList<String> allMyLectures) {
-		ArrayList<String> stud;
+		ArrayList<String> Student;
 		ArrayList<ArrayList<String>> failStud = new ArrayList<ArrayList<String>>();
 		ArrayList<ArrayList<String>> data = Data.read(markFile);
 		for(int i=0;i<data.size();i++){
@@ -160,12 +166,11 @@ public class Lecturer extends User implements ILecturer {
 				if(data.get(i).get(2).toString().equals(allMyLectures.get(j).toString())){
 					if(Double.parseDouble(data.get(i).get(3).toString()) ==0 || Double.parseDouble(data.get(i).get(3).toString())>4)
 					{
-						stud = new ArrayList<String>();
-						stud.add(data.get(i).get(0).toString());
-						stud.add(data.get(i).get(2).toString());
-						stud.add(data.get(i).get(3).toString());
-						failStud.add(stud);
-						
+						Student = new ArrayList<String>();
+						Student.add(data.get(i).get(0).toString());
+						Student.add(data.get(i).get(2).toString());
+						Student.add(data.get(i).get(3).toString());
+						failStud.add(Student);						
 					}
 					
 				}
