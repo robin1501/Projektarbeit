@@ -107,11 +107,12 @@ public class Professor extends User implements ILecturer,IProf {
 	public ArrayList<String> getAllCourseLectures() {
 		ArrayList<ArrayList<String>> data = Data.read(userFile);
 		ArrayList<String>Lectures = new ArrayList<String>();
+		ArrayList<String> LecturesOfID;
 		for(int i =0;i<data.size();i++){
 			if(data.get(i).get(5).toString().equals(course)){
 				if(data.get(i).get(2).toString().equals("Professor") || data.get(i).get(2).toString().equals("Dozent")){
 					String pID=data.get(i).get(3).toString();
-					ArrayList<String> LecturesOfID= Load.getLectures(pID);
+					LecturesOfID= Load.getLectures(pID);
 					for(int j=0; j<LecturesOfID.size();j++){
 						Lectures.add(LecturesOfID.get(j).toString());						
 					}

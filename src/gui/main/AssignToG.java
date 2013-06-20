@@ -96,5 +96,8 @@ public class AssignToG extends JFrame {
 		btnZuweisen = new JButton("Zuweisen");
 		btnZuweisen.setBounds(392, 22, 131, 29);
 		contentPane.add(btnZuweisen);
+		//createAndAndAddTable();
+		
 	}
+	
 }
