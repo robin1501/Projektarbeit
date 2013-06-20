@@ -45,7 +45,7 @@ public class StudentG extends JFrame implements IDisposeMe {
 	private JLabel lblAverage;
 	private ArrayList<ArrayList<String>> myMarks = null;
 	private String columnNames[] = { "Vorlesung", "Note" };
-	private String rowData[][] = {{ "", "" } };;
+	private String rowData[][] = { { "", "" } };;
 	private JPanel tablePanel;
 	JScrollPane scrollPane = null;
 
@@ -179,15 +179,14 @@ public class StudentG extends JFrame implements IDisposeMe {
 	}
 
 	protected void markWorserThanFour() {
+		DefaultTableCellRenderer rend = (DefaultTableCellRenderer) jtNotenAnzeige
+				.getCellRenderer(0, 1);
+		rend.setForeground(Color.RED);
 
-		DefaultTableCellRenderer rend = (DefaultTableCellRenderer)jtNotenAnzeige.getCellRenderer(1,1) ;
-		rend.setBackground(Color.RED);
-		repaint();
 	}
 
 	private void createandAddTable(String[][] rowData2, String[] columnNames2) {
-		
-		
+
 		jtNotenAnzeige = new JTable(rowData2, columnNames2) {
 
 			private static final long serialVersionUID = 1L;
@@ -200,16 +199,11 @@ public class StudentG extends JFrame implements IDisposeMe {
 		};
 		jtNotenAnzeige.setRowSelectionAllowed(false);
 		jtNotenAnzeige.getTableHeader().setReorderingAllowed(false);
-		
-		DefaultTableCellRenderer rend = (DefaultTableCellRenderer)jtNotenAnzeige.getCellRenderer(0,1) ;
-		rend.setForeground(Color.RED);
-		
-		
-		/// scrollPane removen weil dann tabelle !
-		if(scrollPane != null){
+
+		// / scrollPane removen weil dann tabelle !
+		if (scrollPane != null) {
 			tablePanel.remove(scrollPane);
 		}
-		
 
 		scrollPane = new JScrollPane(jtNotenAnzeige);
 		scrollPane

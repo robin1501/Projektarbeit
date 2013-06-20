@@ -67,18 +67,18 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		
 		JComboBox cbMyLectures = new JComboBox();
 		cbMyLectures.setEditable(true);
-		cbMyLectures.setBounds(200, 11, 210, 20);
+		cbMyLectures.setBounds(10, 7, 180, 20);
 		pOptionsLec.add(cbMyLectures);
 		
-		JButton btnNewButton = new JButton("Vorlesungsschnitt");
-		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
-		btnNewButton.setBounds(10, 38, 180, 23);
-		pOptionsLec.add(btnNewButton);
+		JButton btnschnitt = new JButton("Vorlesungsschnitt");
+		btnschnitt.setHorizontalAlignment(SwingConstants.LEFT);
+		btnschnitt.setBounds(10, 38, 180, 23);
+		pOptionsLec.add(btnschnitt);
 		
-		JButton btnNewButton_1 = new JButton("Studiengangsschnitt");
-		btnNewButton_1.setHorizontalAlignment(SwingConstants.LEFT);
-		btnNewButton_1.setBounds(10, 72, 180, 23);
-		pOptionsLec.add(btnNewButton_1);
+		JButton btngesamtschnitt = new JButton("Schnitt aller Vorlesungen");
+		btngesamtschnitt.setHorizontalAlignment(SwingConstants.LEFT);
+		btngesamtschnitt.setBounds(10, 72, 180, 23);
+		pOptionsLec.add(btngesamtschnitt);
 		
 		JLabel lbllectureAverage = new JLabel("");
 		lbllectureAverage.setBounds(200, 42, 210, 19);
@@ -88,9 +88,9 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		lblCourseAverage.setBounds(200, 76, 210, 14);
 		pOptionsLec.add(lblCourseAverage);
 		
-		JButton btnNewButton_2 = new JButton("New button");
-		btnNewButton_2.setBounds(10, 106, 180, 23);
-		pOptionsLec.add(btnNewButton_2);
+		JButton btnunasigned = new JButton("Ohne Note & Note > 4");
+		btnunasigned.setBounds(10, 106, 180, 23);
+		pOptionsLec.add(btnunasigned);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
