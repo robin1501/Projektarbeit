@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
 
 public class NewLectureDialog extends JDialog {
 
@@ -29,26 +30,40 @@ public class NewLectureDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public NewLectureDialog() {
-		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
+		setTitle("Neue Vorlesung");
+		setResizable(false);
+		setBounds(100, 100, 450, 186);
+		getContentPane().setLayout(null);
+		contentPanel.setBounds(0, 0, 444, 1);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		getContentPane().add(contentPanel);
+		contentPanel.setLayout(null);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBounds(0, 114, 444, 33);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			getContentPane().add(buttonPane);
 			{
-				JButton okButton = new JButton("OK");
+				JButton okButton = new JButton("Zuweisen");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Abbrechen");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+		}
+		{
+			JLabel lblNewLabel = new JLabel("Name der Vorlesung");
+			lblNewLabel.setBounds(10, 24, 104, 14);
+			getContentPane().add(lblNewLabel);
+		}
+		{
+			JLabel lblNewLabel_1 = new JLabel("Dozent zuweisen");
+			lblNewLabel_1.setBounds(10, 60, 104, 14);
+			getContentPane().add(lblNewLabel_1);
 		}
 	}
 

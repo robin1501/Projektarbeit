@@ -14,8 +14,9 @@ import interfaces.IProf;
  * Er kann: seine Vorlesungen anzeigen lassen, alle Studenten die eine seiner Vorlesungen besuchen anzeigen lassen,
  * den erzielten Durchschnitt, der Studenten, aus einer oder aller seiner Vorlesungen ausgeben lassen, alle 
  * Studenten, die durchgefallen oder noch keine Note besitzen ausgeben lassen, sich alle Vorlesungen, die in seinem 
- * Studiengang gehalten werden, ausgeben lassen und sich alle Studenten des Studiengangs, die in einem oder mehreren 
- * Vorlesungen eine schlechtere Note als 4,0 erreicht haben, ausgeben lassen.
+ * Studiengang gehalten werden, ausgeben lassen, sich alle Studenten des Studiengangs, die in einem oder mehreren 
+ * Vorlesungen eine schlechtere Note als 4,0 erreicht haben, ausgeben lassen und sich alle Lehrkörper seines 
+ * Studienganges ausgeben lassen.
  *
  */
 public class HeadOfDepartment extends User implements ILecturer, IProf {
@@ -73,7 +74,22 @@ public class HeadOfDepartment extends User implements ILecturer, IProf {
 	}
 	
 	/* Implementationen aus Interfaces ---------------- */
-
+	/**
+	 * Mit der getAllStaffOfCourse Methode können alle Lehrkräft in dem Studiengang des Studiengangsleiters 
+	 * in einer Liste zurückgegeben werden.
+	 * Dafür werden in einer for-Schleife alle Daten in stud_info auf Dozent oder Professor geprüft 
+	 * und die jeweiligen UserIDs in eine Liste gespeichert.
+	 */
+	public ArrayList<String> getAllStaffOfCourse(){
+		ArrayList<String> Staff=new ArrayList<String>();
+		ArrayList<ArrayList<String>> data = Data.read(userFile);
+		for(int i =0;i<data.size();i++){
+			if(data.get(i).get(2).toString().equals("Professor") ||data.get(i).get(2).toString().equals("Dozent")){
+				Staff.add(data.get(i).get(3).toString());
+			}
+		}
+		return Staff;
+	}
 	/**
 	 * Mit der AllFailedStudentsOfCourse Methode wird die mark_info Datei auf alle Noten die größer sind als 4,0
 	 * gefiltert und die UserID, die Vorlesung und die Note in eine neue zweidimensionale ArrayList gespeichert,
