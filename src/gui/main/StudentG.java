@@ -109,8 +109,7 @@ public class StudentG extends JFrame implements IDisposeMe {
 			public void actionPerformed(ActionEvent e) {
 				myMarks = Master.getMyTwoDimensionalArrayList("getMyMarks",
 						null, null);
-				fillTable();
-				// updateTable();
+				fillTable(false);
 
 			}
 
@@ -152,17 +151,16 @@ public class StudentG extends JFrame implements IDisposeMe {
 				// Wenn die Noten bereits abgeholt wurden nicht nochmal neu
 				// holen.
 				//
-				markWorserThanFour();
-				/*
+
 				if (myMarks != null) {
-					fillTable();
+					fillTable(true);
 				} else {
 					myMarks = Master.getMyTwoDimensionalArrayList("getMyMarks",
 							null, null);
-					markWorserThanFour();
-					}
-*/
-				
+					fillTable(true);
+
+				}
+
 			}
 
 		});
@@ -182,12 +180,6 @@ public class StudentG extends JFrame implements IDisposeMe {
 
 	}
 
-	protected void markWorserThanFour() {
-		DefaultTableCellRenderer rend = (DefaultTableCellRenderer) jtNotenAnzeige
-				.getCellRenderer(0, 1);
-		rend.setForeground(Color.RED);
-
-	}
 
 	private void createandAddTable(String[][] rowData2, String[] columnNames2) {
 
@@ -217,7 +209,7 @@ public class StudentG extends JFrame implements IDisposeMe {
 
 	}
 
-	protected void fillTable() {
+	protected void fillTable(boolean marking) {
 
 		int column = 2;
 		int row = myMarks.size();
@@ -230,9 +222,53 @@ public class StudentG extends JFrame implements IDisposeMe {
 				rowData[i][k] = myMarks.get(i).get(k);
 			}
 		}
+		
+		// ob markiert werden soll oder nicht
+		
+		if (marking == false) {
+			
+			createandAddTable(rowData, columnNames);
+			
+		} else {
+			createAndMarkAndAddTable(rowData, columnNames);
 
-		createandAddTable(rowData, columnNames);
+		}
 
+	}
+
+	private void createAndMarkAndAddTable(String[][] rowData2,
+			String[] columnNames2) {
+		/*
+		 * DefaultTableCellRenderer rend = (DefaultTableCellRenderer) jtNotenAnzeige
+				.getCellRenderer(0, 1);
+		rend.setForeground(Color.RED);
+
+		 */
+		jtNotenAnzeige = new JTable(rowData2, columnNames2) {
+
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column) {
+				// set table column uneditable
+				return false;
+			}
+
+		};
+		jtNotenAnzeige.setRowSelectionAllowed(false);
+		jtNotenAnzeige.getTableHeader().setReorderingAllowed(false);
+
+		// / scrollPane removen weil dann tabelle !
+		if (scrollPane != null) {
+			tablePanel.remove(scrollPane);
+		}
+
+		scrollPane = new JScrollPane(jtNotenAnzeige);
+		scrollPane
+				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setBounds(10, 21, 525, 261);
+		tablePanel.add(scrollPane);
+		
+		
 	}
 
 	@Override
@@ -245,6 +281,6 @@ public class StudentG extends JFrame implements IDisposeMe {
 	@Override
 	public void lookForChangesFirst() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

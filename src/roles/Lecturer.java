@@ -92,6 +92,7 @@ public class Lecturer extends User implements ILecturer {
 
 	@Override
 	public double getAllAverage(ArrayList<String> allMyLectures) {
+		
 		ArrayList<ArrayList<String>> data = Data.read(markFile);
 		double sumMarks=0,average=0;
 		int count=0;
