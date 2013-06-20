@@ -116,6 +116,11 @@ public class Save {
 
 		Data.write(markFile, data);
 
+	}
+
+	public static void SaveUser(ArrayList<String> userdata) {
+		// TODO Auto-generated method stub
+		
 	}	
 
 }

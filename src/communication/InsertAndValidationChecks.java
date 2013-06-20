@@ -41,7 +41,8 @@ public class InsertAndValidationChecks {
 
 		if (isSecureLoginInsert && !numberInName) {
 
-			ArrayList<String> userData = Load.TryLoadUser(user, charArrayToString(pswd));
+			ArrayList<String> userData = Load.TryLoadUser(user,
+					charArrayToString(pswd));
 
 			/*
 			 * ArrayList wird wie folgt hochgegeben --> string role, String
@@ -71,16 +72,17 @@ public class InsertAndValidationChecks {
 		return isValidData;
 
 	}
-/**
- * Methode zur Umwandlung von CharArrays in Strings. 
- * 
- * @param pswd
- * @return zu String konvertiertes CharArray
- */
+
+	/**
+	 * Methode zur Umwandlung von CharArrays in Strings.
+	 * 
+	 * @param pswd
+	 * @return zu String konvertiertes CharArray
+	 */
 	private static String charArrayToString(char[] pswd) {
-		
+
 		String retVal = "";
-		for(char i :pswd){
+		for (char i : pswd) {
 			retVal = retVal + Character.toString(i);
 		}
 		return retVal;
@@ -183,8 +185,8 @@ public class InsertAndValidationChecks {
 	 * <br>
 	 * 
 	 * Nun wird dieses Char-Array durchlaufen.<br>
-	 * Jedes Einzelzeichen wird versucht in einen Integerwert umzuwandeln. Gelingt dies
-	 * wird sofort "true" zurückgegeben.<br>
+	 * Jedes Einzelzeichen wird versucht in einen Integerwert umzuwandeln.
+	 * Gelingt dies wird sofort "true" zurückgegeben.<br>
 	 * Schlägt es aber fehl, wird im Catch-Block die retVal auf false gesetzt.
 	 * 
 	 * @param checkString
@@ -213,14 +215,15 @@ public class InsertAndValidationChecks {
 		return retVal;
 
 	}
-/**
- * Überprüfung der Passwortregeln im Dialog "ChangePasswordDialog". <br>
- * Es wird auf Leerzeichen und die Länge des neuen Passwortes getestet.<br>
- * Die Länge des neuen Passwortes soll zwischen 5 und 15 zeichen liegen.<br>
- * 
- * @param newPswd1
- * @return isRegelKonform 
- */
+
+	/**
+	 * Überprüfung der Passwortregeln im Dialog "ChangePasswordDialog". <br>
+	 * Es wird auf Leerzeichen und die Länge des neuen Passwortes getestet.<br>
+	 * Die Länge des neuen Passwortes soll zwischen 5 und 15 zeichen liegen.<br>
+	 * 
+	 * @param newPswd1
+	 * @return isRegelKonform
+	 */
 	public static boolean RegelCheck(char[] newPswd1) {
 		boolean isRegelKonform = false;
 
@@ -232,6 +235,51 @@ public class InsertAndValidationChecks {
 
 		return isRegelKonform;
 
+	}
+
+	/**
+	 * Überprüfung der ID- Richtlinien beim Erstellen neuer Benutzer. <br>
+	 * Es wird auf Leerzeichen, Nummern und die Länge der ID getestet.<br>
+	 * Ebenso auf das Vorhanden sein eines Unterstrichs.<br>
+	 * 
+	 * @param text
+	 * @return idValid
+	 */
+	public static boolean IdCheck(String text) {
+		boolean idValid = false;
+		boolean numberInside = isNumberInsideString(text);
+		boolean noWhiteSpaces = noWhiteSpace(text);
+		boolean hasUnterstrich = unterstrich(text);
+		if(!numberInside && noWhiteSpaces && hasUnterstrich ){
+			idValid = true;
+		}
+
+		return idValid;
+	}
+
+	/**
+	 * Überprüft ob der String der Länge 7 entspricht und ob genau ein
+	 * Unterstrich vorhanden ist.
+	 * 
+	 * @param text
+	 * @return isValid
+	 */
+	private static boolean unterstrich(String text) {
+		boolean isValid = false;
+		int count = 0;
+		char[] test = text.toCharArray();
+		for (char i : test) {
+
+			if (i == '_') {
+				count++;
+
+			}
+		}
+		if(count == 1){
+			isValid = true;
+		}
+
+		return isValid;
 	}
 
 }

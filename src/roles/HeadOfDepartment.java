@@ -54,20 +54,20 @@ public class HeadOfDepartment extends User implements ILecturer, IProf {
 
 	@Override
 	public ArrayList<ArrayList<String>> AllFailedStudentsOfCourse() {
-		ArrayList<String> stud = new ArrayList<String>();
+		ArrayList<String> Student;
 		ArrayList<ArrayList<String>> failStud = new ArrayList<ArrayList<String>>();
 		ArrayList<ArrayList<String>> data = Data.read(markFile);
 		for(int i=0;i<data.size();i++){
 			if(data.get(i).get(1).toString().equals(course)){
-				if(Double.parseDouble(data.get(i).get(2).toString())>4)
+				if(Double.parseDouble(data.get(i).get(3).toString())>4)
 				{
-					stud.add(data.get(i).get(0).toString());
-					stud.add(data.get(i).get(2).toString());
-					stud.add(data.get(i).get(3).toString());
-					failStud.add(stud);
-					stud = null;
-				}					
-			}			
+					Student = new ArrayList<String>();
+					Student.add(data.get(i).get(0).toString());
+					Student.add(data.get(i).get(2).toString());
+					Student.add(data.get(i).get(3).toString());
+					failStud.add(Student);						
+				}
+			}
 		}
 		return failStud;
 	}
@@ -98,16 +98,16 @@ public class HeadOfDepartment extends User implements ILecturer, IProf {
 
 	@Override
 	public ArrayList<ArrayList<String>> getAllStudentsOfLecture(String SelectedLecture) {
-		ArrayList<ArrayList<String>> data = Data.read(markFile);
-		ArrayList<String> Student= new ArrayList<String>();
+		ArrayList<ArrayList<String>> data = Data.read(markFile);		
+		ArrayList<String> Student;
 		ArrayList<ArrayList<String>> Students = new ArrayList<ArrayList<String>>();
 		for(int j=0;j<data.size();j++){
-			if(data.get(j).get(2).equals(SelectedLecture)){
+			if(data.get(j).get(2).toString().equals(SelectedLecture)){
+				Student= new ArrayList<String>();
 				Student.add(data.get(j).get(0).toString());
 				Student.add(data.get(j).get(2).toString());
 				Student.add(data.get(j).get(3).toString());
 				Students.add(Student); 
-				Student = null;
 			}
 		}		
 		return Students;
@@ -120,7 +120,7 @@ public class HeadOfDepartment extends User implements ILecturer, IProf {
 		int count=0;
 		for(int i=0;i<data.size();i++){
 			if(data.get(i).get(2).toString().equals(SelectedLecture)){
-				if(Double.parseDouble(data.get(i).get(2).toString())!=0){
+				if(Double.parseDouble(data.get(i).get(3).toString())!=0){
 					sumMarks= sumMarks + Integer.parseInt(data.get(i).get(3).toString());
 					count ++;
 				}
@@ -138,7 +138,7 @@ public class HeadOfDepartment extends User implements ILecturer, IProf {
 		for(int i=0;i<data.size();i++){
 			for(int j =0; j<allMyLectures.size();j++){
 				if(data.get(i).get(2).toString().equals(allMyLectures.get(j).toString())){
-					if(Double.parseDouble(data.get(i).get(2).toString())!=0){
+					if(Double.parseDouble(data.get(i).get(3).toString())!=0){
 						sumMarks= sumMarks + Double.parseDouble(data.get(i).get(3).toString());
 						count ++;
 					}
@@ -146,25 +146,26 @@ public class HeadOfDepartment extends User implements ILecturer, IProf {
 			}
 		}
 		average = sumMarks / count;
+		average= (Math.round(average*100))/100;		
 		return average;
 	}
 
 	@Override
 	public ArrayList<ArrayList<String>> getAllFailedOrUnmarkedStudents(
 			ArrayList<String> allMyLectures) {
-		ArrayList<String> stud = new ArrayList<String>();
+		ArrayList<String> Student;
 		ArrayList<ArrayList<String>> failStud = new ArrayList<ArrayList<String>>();
 		ArrayList<ArrayList<String>> data = Data.read(markFile);
 		for(int i=0;i<data.size();i++){
 			for(int j =0; j<allMyLectures.size();j++){
 				if(data.get(i).get(2).toString().equals(allMyLectures.get(j).toString())){
-					if(Double.parseDouble(data.get(i).get(2).toString())!=0 || Double.parseDouble(data.get(i).get(2).toString())>4)
+					if(Double.parseDouble(data.get(i).get(3).toString()) ==0 || Double.parseDouble(data.get(i).get(3).toString())>4)
 					{
-						stud.add(data.get(i).get(0).toString());
-						stud.add(data.get(i).get(2).toString());
-						stud.add(data.get(i).get(3).toString());
-						failStud.add(stud);
-						stud = null;
+						Student = new ArrayList<String>();
+						Student.add(data.get(i).get(0).toString());
+						Student.add(data.get(i).get(2).toString());
+						Student.add(data.get(i).get(3).toString());
+						failStud.add(Student);						
 					}
 					
 				}
