@@ -1,27 +1,27 @@
 User_ID;Studiengang;Vorlesung;Note
 Uwe_Bein;Angewandte Informatik;Programmieren II;4
-Chri_Ulm;Angewandte Informatik;Programmieren II;0
-Sab_Lis;Angewandte Informatik;Programmieren II;0
-Mar_Cur;Angewandte Informatik;Programmieren II;0
-Hel_Mij;Angewandte Informatik;Programmieren II;0
-Fra_Dan;Angewandte Informatik;Programmieren II;0
-Rüd_Lan;Angewandte Informatik;Programmieren II;0
-Jut_Gro;Angewandte Informatik;Programmieren II;0
-Uwe_Bein;Angewandte Informatik;Technische Informatik II;0
-Chri_Ulm;Angewandte Informatik;Technische Informatik II;0
-Sab_Lis;Angewandte Informatik;Technische Informatik II;0
-Mar_Cur;Angewandte Informatik;Technische Informatik II;0
-Hel_Mij;Angewandte Informatik;Technische Informatik II;0
-Fra_Dan;Angewandte Informatik;Technische Informatik II;0
-Rüd_Lan;Angewandte Informatik;Technische Informatik II;0
-Jut_Gro;Angewandte Informatik;Technische Informatik II;0
-Chr_Lot;Life Sciene Informatik;Chemie II;0
-Mic_Bal;Life Sciene Informatik;Chemie II;0
-Lut_Fri;Life Sciene Informatik;Chemie II;0
-Han_Hau;Life Sciene Informatik;Chemie II;0
-Man_Xi;Life Sciene Informatik;Chemie II;0
-Chr_Lot;Life Sciene Informatik;Grundlagen der Biologie;0
-Mic_Bal;Life Sciene Informatik;Grundlagen der Biologie;0
-Lut_Fri;Life Sciene Informatik;Grundlagen der Biologie;0
-Han_Hau;Life Sciene Informatik;Grundlagen der Biologie;0
-Man_Xi;Life Sciene Informatik;Grundlagen der Biologie;0
+Chri_Ulm;Angewandte Informatik;Programmieren II;1
+Sab_Lis;Angewandte Informatik;Programmieren II;2
+Mar_Cur;Angewandte Informatik;Programmieren II;4.4
+Hel_Mij;Angewandte Informatik;Programmieren II;5
+Fra_Dan;Angewandte Informatik;Programmieren II;3
+Rüd_Lan;Angewandte Informatik;Programmieren II;2
+Jut_Gro;Angewandte Informatik;Programmieren II;2.5
+Uwe_Bein;Angewandte Informatik;Technische Informatik II;2
+Chri_Ulm;Angewandte Informatik;Technische Informatik II;1.7
+Sab_Lis;Angewandte Informatik;Technische Informatik II;5
+Mar_Cur;Angewandte Informatik;Technische Informatik II;5.2
+Hel_Mij;Angewandte Informatik;Technische Informatik II;3
+Fra_Dan;Angewandte Informatik;Technische Informatik II;1.9
+Rüd_Lan;Angewandte Informatik;Technische Informatik II;1
+Jut_Gro;Angewandte Informatik;Technische Informatik II;2.3
+Chr_Lot;Life Sciene Informatik;Chemie II;4.1
+Mic_Bal;Life Sciene Informatik;Chemie II;5
+Lut_Fri;Life Sciene Informatik;Chemie II;2
+Han_Hau;Life Sciene Informatik;Chemie II;3.6
+Man_Xi;Life Sciene Informatik;Chemie II;1.3
+Chr_Lot;Life Sciene Informatik;Grundlagen der Biologie;4
+Mic_Bal;Life Sciene Informatik;Grundlagen der Biologie;3.2
+Lut_Fri;Life Sciene Informatik;Grundlagen der Biologie;5.4
+Han_Hau;Life Sciene Informatik;Grundlagen der Biologie;6
+Man_Xi;Life Sciene Informatik;Grundlagen der Biologie;4.7

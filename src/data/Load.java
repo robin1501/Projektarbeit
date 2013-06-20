@@ -12,11 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  * 
- * Grunds‰zliche Load Klasse was hier drin passiert ob mit oder ohne Sortierung
- * muss von Robin und NIls gekl‰rt werden. Auﬂerdem muss hier der Aufbau der
- * neunen CSV datei "NOTEN" gekl‰rt werden.
- * 
- * 
+ *
  */
 public class Load {
 

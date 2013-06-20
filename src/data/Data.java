@@ -25,9 +25,12 @@ import javax.swing.JOptionPane;
 public class Data {
 
 	/**
-	 * Da es Probleme mit der Dateinamensauflöung 
+	 * Da es Probleme mit der Dateinamensauflöung gab wurde die Methode fileReplacer erstellt.<br>
+	 * Sie durchsucht den Dateipfad nach Schrägstrichen und der Zeichenfolge "%20" und ersetzt <br>
+	 * diese durch einen Backslash bzw. ein Leerzeichen. Der korrekte Dateipfad wird dann in einer<br>
+	 * File Variablen gespeichert und diese wird dann als Rückgabewert zurückgegeben.
 	 * @param file
-	 * @return Datei
+	 * @return File
 	 */
 	public static File fileReplacer(String file) {
 		File f = null;
@@ -42,6 +45,12 @@ public class Data {
 		return f;
 	}
 
+	/**
+	 * Die Methode read liest alle Daten aus der übergebenen Datei und gibt diese in einer<br>
+	 * 2 dimensionalen Arraylist zurück.	
+	 * @param file
+	 * @return ArrayList<ArrayList<String>>
+	 */
 	public static ArrayList<ArrayList<String>> read(File file) {
 
 		ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
@@ -83,6 +92,13 @@ public class Data {
 		return data;
 	}
 
+	/**
+	 * Die Methode write bekommt Daten in einer 2 dimensionalen Arraylist übergeben und trägt<br>
+	 * diese in die ebenfalls übergebene Datei ein. Hierzu wird die bereits bestehende Datei<br>
+	 * gelöscht und dann die Daten Zeile für Zeile eingetragen.
+	 * @param file
+	 * @param data
+	 */
 	public static void write(File file, ArrayList<ArrayList<String>> data) {
 		try {
 			String row;
