@@ -462,7 +462,7 @@ public class Master {
 	 * 
 	 */
 	public static void SaveUser(ArrayList <String> userdata){
-		Save.SaveUser();
+		Save.SaveUser(userdata);
 	}
 
 }
