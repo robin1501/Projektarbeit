@@ -24,6 +24,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 import javax.swing.UIManager;
@@ -42,7 +44,7 @@ import data.Save;
  * 
  * 
  */
-public class LecturerG extends JFrame implements IDisposeMe {
+public class LecturerG extends JFrame implements IDisposeMe, WindowListener {
 
 	/**
 	 * 
@@ -71,7 +73,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LecturerG frame = new LecturerG();
+					LecturerG frame = new LecturerG();					 
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -84,9 +86,9 @@ public class LecturerG extends JFrame implements IDisposeMe {
 	 * Create the frame.
 	 */
 	public LecturerG() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setTitle("Lehrk\u00F6rper-Hauptansicht");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1103, 466);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -572,8 +574,53 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		}
 
 	}
-
+/**
+ * Prüft, ob eine Note vorhanden ist.
+ */
 	public static boolean isMark(String str) {
 		return str.matches("^-?([1-4]+(\\.[0-9]*))|[1-5]|5\\.0?$");
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		//disposeMeFromExtern();
+		this.dispose();
+		
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
