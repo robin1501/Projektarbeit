@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
 
 public class LecturerG extends JFrame implements IDisposeMe {
 
@@ -50,7 +51,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		setResizable(false);
 		setTitle("Lehrk\u00F6rper-Hauptansicht");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1043, 479);
+		setBounds(100, 100, 1103, 466);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -62,14 +63,14 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		contentPane.add(persoPanel);
 		
 		JPanel pOptionsLec = new JPanel();
-		pOptionsLec.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pOptionsLec.setBounds(318, 11, 340, 143);
+		pOptionsLec.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Dozenten-Funktionen", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pOptionsLec.setBounds(318, 11, 304, 143);
 		contentPane.add(pOptionsLec);
 		pOptionsLec.setLayout(null);
 		
 		JComboBox cbMyLectures = new JComboBox();
 		cbMyLectures.setEditable(true);
-		cbMyLectures.setBounds(10, 7, 180, 20);
+		cbMyLectures.setBounds(10, 21, 180, 23);
 		pOptionsLec.add(cbMyLectures);
 		
 		JButton btnschnitt = new JButton("Vorlesungsschnitt");
@@ -78,69 +79,82 @@ public class LecturerG extends JFrame implements IDisposeMe {
 			}
 		});
 		btnschnitt.setHorizontalAlignment(SwingConstants.LEFT);
-		btnschnitt.setBounds(10, 38, 180, 23);
+		btnschnitt.setBounds(10, 45, 180, 23);
 		pOptionsLec.add(btnschnitt);
 		
 		JButton btngesamtschnitt = new JButton("Schnitt aller Vorlesungen");
 		btngesamtschnitt.setHorizontalAlignment(SwingConstants.LEFT);
-		btngesamtschnitt.setBounds(10, 72, 180, 23);
+		btngesamtschnitt.setBounds(10, 75, 180, 23);
 		pOptionsLec.add(btngesamtschnitt);
 		
 		JLabel lbllectureAverage = new JLabel("");
-		lbllectureAverage.setBounds(200, 42, 104, 19);
+		lbllectureAverage.setBounds(200, 45, 72, 19);
 		pOptionsLec.add(lbllectureAverage);
 		
 		JLabel lblAllLectureAverage = new JLabel("");
-		lblAllLectureAverage.setBounds(200, 76, 104, 19);
+		lblAllLectureAverage.setBounds(200, 76, 72, 19);
 		pOptionsLec.add(lblAllLectureAverage);
 		
 		JButton btnunasigned = new JButton("Ohne Note & Note > 4");
 		btnunasigned.setToolTipText("Zeigt alle Ihre Studenten die das Notenziel nicht erreicht haben oder f\u00FCr die noch keine Note abgegeben wurde.");
 		btnunasigned.setHorizontalAlignment(SwingConstants.LEFT);
-		btnunasigned.setBounds(10, 106, 180, 23);
+		btnunasigned.setBounds(10, 109, 180, 23);
 		pOptionsLec.add(btnunasigned);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(318, 163, 699, 263);
+		panel.setBounds(318, 163, 767, 263);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		table = new JTable();
 		table.setRowSelectionAllowed(false);
-		table.setBounds(10, 11, 679, 241);
+		table.setBounds(10, 11, 747, 241);
 		panel.add(table);
 		
 		JPanel pOptionsProf = new JPanel();
-		pOptionsProf.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pOptionsProf.setBounds(668, 11, 230, 143);
+		pOptionsProf.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Professoren-Funktionen", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pOptionsProf.setBounds(632, 11, 230, 143);
 		contentPane.add(pOptionsProf);
 		pOptionsProf.setLayout(null);
 		
 		JButton btnAverageOfAllLecturesInMyCourse = new JButton("Vorlesungsschnitt anzeigen");
 		btnAverageOfAllLecturesInMyCourse.setHorizontalAlignment(SwingConstants.LEFT);
-		btnAverageOfAllLecturesInMyCourse.setBounds(10, 42, 210, 23);
+		btnAverageOfAllLecturesInMyCourse.setBounds(10, 87, 210, 23);
 		pOptionsProf.add(btnAverageOfAllLecturesInMyCourse);
 		
 		JComboBox cbAllLecturesOfCourse = new JComboBox();
 		cbAllLecturesOfCourse.setToolTipText("Alle Vorlesung Ihres Studiengangs");
-		cbAllLecturesOfCourse.setBounds(10, 11, 210, 20);
+		cbAllLecturesOfCourse.setBounds(10, 19, 210, 23);
 		pOptionsProf.add(cbAllLecturesOfCourse);
 		
 		JButton btnNewButton = new JButton("Noten schlechter als 4");
+		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setToolTipText("Zeigt alle Studenten in Ihrem Studiengang an, die das Notenziel nicht erreicht haben");
-		btnNewButton.setBounds(10, 109, 210, 23);
+		btnNewButton.setBounds(10, 53, 210, 23);
 		pOptionsProf.add(btnNewButton);
 		
 		JLabel lblAverage = new JLabel("");
-		lblAverage.setBounds(10, 76, 85, 19);
+		lblAverage.setBounds(20, 113, 85, 19);
 		pOptionsProf.add(lblAverage);
 		
 		JPanel pOptionsHead = new JPanel();
-		pOptionsHead.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pOptionsHead.setBounds(908, 11, 109, 143);
+		pOptionsHead.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Studiengangsleiter-Funktionen", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pOptionsHead.setBounds(880, 11, 205, 143);
 		contentPane.add(pOptionsHead);
 		pOptionsHead.setLayout(null);
+		
+		JButton btnAddNew = new JButton("Neuer Nutzer");
+		btnAddNew.setHorizontalAlignment(SwingConstants.LEFT);
+		btnAddNew.setBounds(10, 24, 157, 23);
+		pOptionsHead.add(btnAddNew);
+		
+		JButton btnAssign = new JButton("Nutzer&Vorlesung");
+		btnAssign.setToolTipText("Nutzer,Dozenten und Vorlesungen zuweisen");
+		btnAssign.setHorizontalAlignment(SwingConstants.LEFT);
+		btnAssign.setEnabled(true);
+		btnAssign.setBounds(10, 58, 157, 23);
+		pOptionsHead.add(btnAssign);
 	}
 
 	@Override
