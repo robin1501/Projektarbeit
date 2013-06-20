@@ -233,6 +233,7 @@ public class StudentG extends JFrame implements IDisposeMe {
 
 	@Override
 	public void disposeMeFromExtern() {
+		lookForChangesFirst();
 		this.dispose();
 
 	}
