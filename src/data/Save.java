@@ -114,4 +114,9 @@ public class Save {
 
 	}
 
+	public static void AssignLectureToStaff(String lect, String staff) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

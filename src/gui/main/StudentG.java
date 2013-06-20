@@ -17,9 +17,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableColumn;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.SwingConstants;
@@ -32,14 +30,11 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.ScrollPaneConstants;
 
-import com.sun.security.auth.module.JndiLoginModule;
-
 /**
  * Hauptansicht für den Studenten.<br>
  * Die Rechte der Rolle sind den implementierten Interfaces zu entnehmen.<br>
  * Sie besteht aus den persönlichen Daten, der Ansicht seiner Noten und <br>
- * Makierung der Noten, in denen das Ziel von 4,0 nicht erreicht wurde.
- * 
+ * Makierung der Noten, in denen das Ziel von 4,0 nicht erreicht wurde. 
  * 
  */
 public class StudentG extends JFrame implements IDisposeMe {
@@ -70,8 +65,10 @@ public class StudentG extends JFrame implements IDisposeMe {
 	}
 
 	/**
-	 * Create the frame.
-	 * 
+	 * Das Fenster wird initialisiert.
+	 * Alle Spezifikationen des Fensters wie größe, deren verstellbarkeit etc werden definiert.
+	 * Buttons werden erstellt und ihrer Funktion zugewiesen.
+	 * eine leere Tabelle wird erstellt. 
 	 * @param course
 	 * @param id
 	 * @param firstname
@@ -113,7 +110,8 @@ public class StudentG extends JFrame implements IDisposeMe {
 			public void actionPerformed(ActionEvent e) {
 				myMarks = Master.getMyTwoDimensionalArrayList("getMyMarks",
 						null, null);
-				fillTable(false);
+				fillTable();
+				// updateTable();
 
 			}
 
@@ -154,17 +152,14 @@ public class StudentG extends JFrame implements IDisposeMe {
 
 				// Wenn die Noten bereits abgeholt wurden nicht nochmal neu
 				// holen.
-				//
-
 				if (myMarks != null) {
-					fillTable(true);
+					fillTable();
 				} else {
 					myMarks = Master.getMyTwoDimensionalArrayList("getMyMarks",
 							null, null);
-					fillTable(true);
+					markWorserThanFour();
 
 				}
-
 			}
 
 		});
@@ -183,7 +178,21 @@ public class StudentG extends JFrame implements IDisposeMe {
 		createandAddTable(rowData, columnNames);
 
 	}
+	/**
+	 * überprüft ob eine Note schlechter bzw größer als 4 ist und färbt, falls zutreffend, die jeweilige Zahl
+	 * rot ein.
+	 */
+	protected void markWorserThanFour() {
+		DefaultTableCellRenderer rend = (DefaultTableCellRenderer) jtNotenAnzeige
+				.getCellRenderer(0, 1);
+		rend.setForeground(Color.RED);
 
+	}
+	/**
+	 * erstellt eine neue Tabelle mit geladenen Werten und fügt sie dem Fenster hinzu.
+	 * @param rowData2
+	 * @param columnNames2
+	 */
 	private void createandAddTable(String[][] rowData2, String[] columnNames2) {
 
 		jtNotenAnzeige = new JTable(rowData2, columnNames2) {
@@ -211,8 +220,10 @@ public class StudentG extends JFrame implements IDisposeMe {
 		tablePanel.add(scrollPane);
 
 	}
-
-	protected void fillTable(boolean marking) {
+	/**
+	 * füllt eine Tabelle mit Werten
+	 */
+	protected void fillTable() {
 
 		int column = 2;
 		int row = myMarks.size();
@@ -226,60 +237,26 @@ public class StudentG extends JFrame implements IDisposeMe {
 			}
 		}
 
-		// ob markiert werden soll oder nicht
-
-		if (marking == false) {
-
-			createandAddTable(rowData, columnNames);
-
-		} else {
-			createAndMarkAndAddTable(rowData, columnNames);
-
-		}
+		createandAddTable(rowData, columnNames);
 
 	}
-
-	private void createAndMarkAndAddTable(String[][] rowData2,
-			String[] columnNames2) {
-
-		jtNotenAnzeige = new JTable(rowData2, columnNames2) {
-
-			private static final long serialVersionUID = 1L;
-
-			public boolean isCellEditable(int row, int column) {
-				return true;
-			}
-
-		};
-
-		jtNotenAnzeige.setRowSelectionAllowed(false);
-		jtNotenAnzeige.getTableHeader().setReorderingAllowed(false);
-		jtNotenAnzeige.setDefaultRenderer(Object.class, new
-		ColorTableCellRenderer());
-		
-
-		if (scrollPane != null) {
-			tablePanel.remove(scrollPane);
-		}
-
-		scrollPane = new JScrollPane(jtNotenAnzeige);
-		scrollPane
-				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(10, 21, 525, 261);
-		tablePanel.add(scrollPane);
-
-	}
-
+	/**
+	 * Eingebundene Methode,um sich von außerhalb dieser Klasse schließen zu lassen.<br>
+	 * Beim Aufruf schließt sich die Gui.
+	 */
 	@Override
 	public void disposeMeFromExtern() {
-		lookForChangesFirst();
 		this.dispose();
 
 	}
-
+	/**
+	 * Eingebundene Methode die hier nicht benötigt wird, aber wegen dem Interface eingebunden werden muss.
+	 * 
+	 * 
+	 */
 	@Override
-	public void lookForChangesFirst() {
-		// TODO Auto-generated method stub
-
+	public boolean lookForChangesFirst() {
+		// Hier unwichtig
+		return true;
 	}
 }

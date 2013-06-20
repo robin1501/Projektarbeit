@@ -460,9 +460,20 @@ public class Master {
 	}
 	/**
 	 * 
+	 * @param userdata
 	 */
 	public static void addUser(ArrayList <String> userdata){
 		Save.addUser(userdata);
+	}
+/**
+ * 
+ * @param lect
+ * @param staff
+ */
+
+	public static void addLectureToStaff(String lect, String staff) {
+		Save.AssignLectureToStaff(lect,staff);
+		
 	}
 
 }

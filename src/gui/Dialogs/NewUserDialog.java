@@ -35,7 +35,7 @@ public class NewUserDialog extends JDialog {
 	private JComboBox comboBox_1;
 	private JTextField pswdfeld1;
 	private JTextField pswdfeld2;
-
+	private JLabel lblStudiengangs;
 	/**
 	 * Launch the application.
 	 */
@@ -106,10 +106,9 @@ public class NewUserDialog extends JDialog {
 		contentPanel.add(name);
 		name.setColumns(10);
 
-		// JLabel lblStudiengangs = new
-		// JLabel(Master.getMyStrings("getCourse"));
-		// lblStudiengangs.setBounds(171, 177, 122, 14);
-		// contentPanel.add(lblStudiengangs);
+		lblStudiengangs = new JLabel(Master.getMyStrings("getCourse"));
+		 lblStudiengangs.setBounds(171, 177, 122, 14);
+		 contentPanel.add(lblStudiengangs);
 
 		JLabel lblMessenger = new JLabel("");
 		lblMessenger.setForeground(Color.RED);
@@ -195,9 +194,18 @@ public class NewUserDialog extends JDialog {
 											"Passwort-Regeln",
 											JOptionPane.PLAIN_MESSAGE);
 						}
-						// Nachname;Vorname;Rolle;ID;Passwort;Studiengang;Studiengangsleiter;Vorlesung
-						//data.add()
 						
+						data.add(Master.getMyStrings("getCourse"));
+						if(comboBox_1.getItemAt(selIndex).toString().equals("Studiengangsleiter")){
+							
+							data.add("true");
+						}else{
+							
+							data.add("false");
+						}		
+						
+						// vorlesung wird nicht gesetzt
+						data.add("");						
 						Master.addUser(data);
 
 					}
