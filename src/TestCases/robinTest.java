@@ -1,5 +1,7 @@
 package TestCases;
 
+import gui.main.LecturerG;
+
 import java.util.ArrayList;
 
 import data.Load;
@@ -12,7 +14,8 @@ public class robinTest {
 	 */
 	public static void main(String[] args) {
 		
-	
+		
+		System.out.println(LecturerG.isMark("3.9"));
 	
 	}
 
