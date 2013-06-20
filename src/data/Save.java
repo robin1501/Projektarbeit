@@ -46,7 +46,7 @@ public class Save {
 
 	// Ein neuer User wird angelegt
 	// übergeben werden die einzelnen Spaltendaten
-	public static boolean addUser(String[] userData) {
+	public static void addUser(String[] userData) {
 		ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
 		ArrayList<String> newUser = new ArrayList<String>();
 
@@ -57,8 +57,6 @@ public class Save {
 		data.add(newUser);
 
 		Data.write(userFile, data);
-
-		return true;
 	}
 
 	// Eine Vorlesung wird einem User zugeordnet

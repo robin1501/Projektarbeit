@@ -1,27 +1,27 @@
 User_ID;Studiengang;Vorlesung;Note
-Uwe_Bein;;Programmieren II;0
-Chri_Ulm;;Programmieren II;0
-Sab_Lis;;Programmieren II;0
-Mar_Cur;;Programmieren II;0
-Hel_Mij;;Programmieren II;0
-Fra_Dan;;Programmieren II;0
-Rüd_Lan;;Programmieren II;0
-Jut_Gro;;Programmieren II;0
-Uwe_Bein;;Technische Informatik II;0
-Chri_Ulm;;Technische Informatik II;0
-Sab_Lis;;Technische Informatik II;0
-Mar_Cur;;Technische Informatik II;0
-Hel_Mij;;Technische Informatik II;0
-Fra_Dan;;Technische Informatik II;0
-Rüd_Lan;;Technische Informatik II;0
-Jut_Gro;;Technische Informatik II;0
-Chr_Lot;;Chemie II;0
-Mic_Bal;;Chemie II;0
-Lut_Fri;;Chemie II;0
-Han_Hau;;Chemie II;0
-Man_Xi;;Chemie II;0
-Chr_Lot;;Grundlagen der Biologie;0
-Mic_Bal;;Grundlagen der Biologie;0
-Lut_Fri;;Grundlagen der Biologie;0
-Han_Hau;;Grundlagen der Biologie;0
-Man_Xi;;Grundlagen der Biologie;0
+Uwe_Bein;Angewandte Informatik;Programmieren II;0
+Chri_Ulm;Angewandte Informatik;Programmieren II;0
+Sab_Lis;Angewandte Informatik;Programmieren II;0
+Mar_Cur;Angewandte Informatik;Programmieren II;0
+Hel_Mij;Angewandte Informatik;Programmieren II;0
+Fra_Dan;Angewandte Informatik;Programmieren II;0
+Rüd_Lan;Angewandte Informatik;Programmieren II;0
+Jut_Gro;Angewandte Informatik;Programmieren II;0
+Uwe_Bein;Angewandte Informatik;Technische Informatik II;0
+Chri_Ulm;Angewandte Informatik;Technische Informatik II;0
+Sab_Lis;Angewandte Informatik;Technische Informatik II;0
+Mar_Cur;Angewandte Informatik;Technische Informatik II;0
+Hel_Mij;Angewandte Informatik;Technische Informatik II;0
+Fra_Dan;Angewandte Informatik;Technische Informatik II;0
+Rüd_Lan;Angewandte Informatik;Technische Informatik II;0
+Jut_Gro;Angewandte Informatik;Technische Informatik II;0
+Chr_Lot;Life Sciene Informatik;Chemie II;0
+Mic_Bal;Life Sciene Informatik;Chemie II;0
+Lut_Fri;Life Sciene Informatik;Chemie II;0
+Han_Hau;Life Sciene Informatik;Chemie II;0
+Man_Xi;Life Sciene Informatik;Chemie II;0
+Chr_Lot;Life Sciene Informatik;Grundlagen der Biologie;0
+Mic_Bal;Life Sciene Informatik;Grundlagen der Biologie;0
+Lut_Fri;Life Sciene Informatik;Grundlagen der Biologie;0
+Han_Hau;Life Sciene Informatik;Grundlagen der Biologie;0
+Man_Xi;Life Sciene Informatik;Grundlagen der Biologie;0
