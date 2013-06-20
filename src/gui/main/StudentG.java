@@ -236,4 +236,10 @@ public class StudentG extends JFrame implements IDisposeMe {
 		this.dispose();
 
 	}
+
+	@Override
+	public void lookForChangesFirst() {
+		// TODO Auto-generated method stub
+		
+	}
 }

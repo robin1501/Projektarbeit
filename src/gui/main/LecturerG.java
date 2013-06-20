@@ -15,6 +15,8 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LecturerG extends JFrame implements IDisposeMe {
 
@@ -61,7 +63,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		
 		JPanel pOptionsLec = new JPanel();
 		pOptionsLec.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pOptionsLec.setBounds(318, 11, 420, 143);
+		pOptionsLec.setBounds(318, 11, 340, 143);
 		contentPane.add(pOptionsLec);
 		pOptionsLec.setLayout(null);
 		
@@ -71,6 +73,10 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		pOptionsLec.add(cbMyLectures);
 		
 		JButton btnschnitt = new JButton("Vorlesungsschnitt");
+		btnschnitt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnschnitt.setHorizontalAlignment(SwingConstants.LEFT);
 		btnschnitt.setBounds(10, 38, 180, 23);
 		pOptionsLec.add(btnschnitt);
@@ -81,14 +87,15 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		pOptionsLec.add(btngesamtschnitt);
 		
 		JLabel lbllectureAverage = new JLabel("");
-		lbllectureAverage.setBounds(200, 42, 210, 19);
+		lbllectureAverage.setBounds(200, 42, 104, 19);
 		pOptionsLec.add(lbllectureAverage);
 		
-		JLabel lblCourseAverage = new JLabel("");
-		lblCourseAverage.setBounds(200, 76, 210, 14);
-		pOptionsLec.add(lblCourseAverage);
+		JLabel lblAllLectureAverage = new JLabel("");
+		lblAllLectureAverage.setBounds(200, 76, 104, 19);
+		pOptionsLec.add(lblAllLectureAverage);
 		
 		JButton btnunasigned = new JButton("Ohne Note & Note > 4");
+		btnunasigned.setHorizontalAlignment(SwingConstants.LEFT);
 		btnunasigned.setBounds(10, 106, 180, 23);
 		pOptionsLec.add(btnunasigned);
 		
@@ -104,18 +111,24 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		
 		JPanel pOptionsProf = new JPanel();
 		pOptionsProf.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pOptionsProf.setBounds(748, 11, 150, 143);
+		pOptionsProf.setBounds(668, 11, 230, 143);
 		contentPane.add(pOptionsProf);
 		
 		JPanel pOptionsHead = new JPanel();
 		pOptionsHead.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pOptionsHead.setBounds(921, 28, 96, 126);
+		pOptionsHead.setBounds(908, 11, 109, 143);
 		contentPane.add(pOptionsHead);
 	}
 
 	@Override
 	public void disposeMeFromExtern() {
 		this.dispose();
+		
+	}
+
+	@Override
+	public void lookForChangesFirst() {
+		// TODO Auto-generated method stub
 		
 	}
 }
