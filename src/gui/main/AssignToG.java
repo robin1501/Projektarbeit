@@ -8,10 +8,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.ArrayList;
+
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import javax.swing.JButton;
+
+import communication.Master;
 /**
  * Hier werden die Studenten ausgewählt und einem Studiengang zugewiesen.<br>
  * Dies geschieht über ein JTable mit CheckBoxen.<br>
@@ -27,10 +31,10 @@ public class AssignToG extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private JTable jtAnzeige;
-	private String columnNames[] = { "Vorlesung", "Note" };
+	private String columnNames[] = { "User-ID", "Checkbox" };
 	private String rowData[][] = { { "", "" } };
 	private JButton btnZuweisen;;
-
+	private JComboBox cbLectures;
 	/**
 	 * Launch the application.
 	 */
@@ -65,9 +69,15 @@ public class AssignToG extends JFrame {
 		lblNewLabel.setBounds(20, 22, 98, 29);
 		contentPane.add(lblNewLabel);
 		
-		JComboBox cbLectures = new JComboBox();
+		cbLectures = new JComboBox();
 		cbLectures.setBounds(146, 22, 196, 27);
+		ArrayList <String> allLetures = Master.getMyArrayList("getAllCourseLectures", null, null);
+		
+		for(String i: allLetures){
+			cbLectures.addItem(i);
+		}
 		contentPane.add(cbLectures);
+		
 		
 		JPanel tablePanel = new JPanel();
 		tablePanel.setBorder(new TitledBorder(null, "Studenten ausw\u00E4hlen", TitledBorder.LEADING, TitledBorder.TOP, null, null));
