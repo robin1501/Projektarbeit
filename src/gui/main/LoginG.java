@@ -119,6 +119,13 @@ public class LoginG extends JFrame {
 		textField.setBounds(148, 52, 114, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
+		textField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent ke) {
+				if(ke.getKeyCode() == KeyEvent.VK_ENTER){
+					login();
+				}
+			}
+		});
 
 		passwordField = new JPasswordField();
 		passwordField.setBounds(149, 82, 112, 20);
