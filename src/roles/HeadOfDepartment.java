@@ -44,12 +44,7 @@ public class HeadOfDepartment extends User implements ILecturer, IProf {
 	
 	/* Implementationen aus Interfaces ---------------- */
 
-	@Override
-	public double totalAverageOfAllLecturesInMyCourse(
-			ArrayList<String> allCourseLectures) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	@Override
 	public ArrayList<ArrayList<String>> AllFailedStudentsOfCourse(
@@ -93,6 +88,13 @@ public class HeadOfDepartment extends User implements ILecturer, IProf {
 			ArrayList<String> allMyLectures) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public double AverageOfAllLecturesInMyCourse(
+			ArrayList<String> allCourseLectures) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 

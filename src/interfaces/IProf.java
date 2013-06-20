@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public interface IProf {
 
 
-	public double totalAverageOfAllLecturesInMyCourse(ArrayList <String > allCourseLectures);
+	public double AverageOfAllLecturesInMyCourse(ArrayList <String > allCourseLectures);
 	public ArrayList <ArrayList <String >> AllFailedStudentsOfCourse(ArrayList <String > allCourseLectures);
 	public ArrayList <String > getAllCourseLectures(String myCourse);
 	

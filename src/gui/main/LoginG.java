@@ -80,6 +80,7 @@ public class LoginG extends JFrame {
 
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setToolTipText("Click to Login");
+	
 
 		btnLogin.addActionListener(new ActionListener() {
 

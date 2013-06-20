@@ -95,6 +95,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		pOptionsLec.add(lblAllLectureAverage);
 		
 		JButton btnunasigned = new JButton("Ohne Note & Note > 4");
+		btnunasigned.setToolTipText("Zeigt alle Ihre Studenten die das Notenziel nicht erreicht haben oder f\u00FCr die noch keine Note abgegeben wurde.");
 		btnunasigned.setHorizontalAlignment(SwingConstants.LEFT);
 		btnunasigned.setBounds(10, 106, 180, 23);
 		pOptionsLec.add(btnunasigned);
@@ -106,6 +107,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		panel.setLayout(null);
 		
 		table = new JTable();
+		table.setRowSelectionAllowed(false);
 		table.setBounds(10, 11, 679, 241);
 		panel.add(table);
 		
@@ -115,9 +117,24 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		contentPane.add(pOptionsProf);
 		pOptionsProf.setLayout(null);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(0, 11, 97, 23);
+		JButton btnAverageOfAllLecturesInMyCourse = new JButton("Vorlesungsschnitt anzeigen");
+		btnAverageOfAllLecturesInMyCourse.setHorizontalAlignment(SwingConstants.LEFT);
+		btnAverageOfAllLecturesInMyCourse.setBounds(10, 42, 210, 23);
+		pOptionsProf.add(btnAverageOfAllLecturesInMyCourse);
+		
+		JComboBox cbAllLecturesOfCourse = new JComboBox();
+		cbAllLecturesOfCourse.setToolTipText("Alle Vorlesung Ihres Studiengangs");
+		cbAllLecturesOfCourse.setBounds(10, 11, 210, 20);
+		pOptionsProf.add(cbAllLecturesOfCourse);
+		
+		JButton btnNewButton = new JButton("Noten schlechter als 4");
+		btnNewButton.setToolTipText("Zeigt alle Studenten in Ihrem Studiengang an, die das Notenziel nicht erreicht haben");
+		btnNewButton.setBounds(10, 109, 210, 23);
 		pOptionsProf.add(btnNewButton);
+		
+		JLabel lblAverage = new JLabel("");
+		lblAverage.setBounds(10, 76, 85, 19);
+		pOptionsProf.add(lblAverage);
 		
 		JPanel pOptionsHead = new JPanel();
 		pOptionsHead.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
