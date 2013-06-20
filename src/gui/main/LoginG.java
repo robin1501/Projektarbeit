@@ -19,6 +19,9 @@ import communication.Master;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JRadioButtonMenuItem;
 
 /**
@@ -103,17 +106,7 @@ public class LoginG extends JFrame {
 
 			public void actionPerformed(ActionEvent arg0) {
 
-				char[] pswd = passwordField.getPassword();
-				String user = textField.getText();
-
-				if (Master.Login(pswd, user)) {
-
-					dispose();
-
-				} else {
-
-					passwordField.setText("");
-				}
+				login();
 
 			}
 		});
@@ -130,11 +123,32 @@ public class LoginG extends JFrame {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(149, 82, 112, 20);
 		contentPane.add(passwordField);
+		passwordField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent ke) {
+				if(ke.getKeyCode() == KeyEvent.VK_ENTER){
+					login();
+				}
+			}
+		});
 
 		JLabel lblLogin = new JLabel("LOGIN");
 		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblLogin.setBounds(39, 14, 66, 21);
 		contentPane.add(lblLogin);
 		setLocationRelativeTo(null);
+	}
+	
+	public void login(){
+		char[] pswd = passwordField.getPassword();
+		String user = textField.getText();
+
+		if (Master.Login(pswd, user)) {
+
+			dispose();
+
+		} else {
+
+			passwordField.setText("");
+		}
 	}
 }
