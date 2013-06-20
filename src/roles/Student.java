@@ -64,23 +64,26 @@ public class Student extends User implements IShowMyMarks {
 	@Override
 	public ArrayList<ArrayList<String>> getMyMarks() {
 		// id bitte aus dem Objekt ziehen
-		// sowas wie
-		// "student id und vorlesung sollen alle seine noten und vorlesungen hoch geben "deutsch" "2"
-		// usw
-		ArrayList<ArrayList<String>> allMarks = Load.getMarks(id);
-
-		return allMarks;
+				// sowas wie
+				// "student id und vorlesung sollen alle seine noten und vorlesungen hoch geben "deutsch" "2"
+				// usw
+				ArrayList<ArrayList<String>> allMarks = Load.getMarks(id);
+				
+				return allMarks;
 	}
 
 	@Override
 	public double getMyTotalAverage() {
-		
+
 		// durchschnitt aus den Noten berechene die in getMyMarks gezogen wurden
 		ArrayList<ArrayList<String>> allMarks = Load.getMarks(id);
-		int sumMarks = 0;
-		int i;
-		for (i = 0; i < allMarks.size(); i++) {
-			sumMarks = sumMarks + Integer.parseInt(allMarks.get(i).toString());
+		double sumMarks = 0;
+		int i = 0;
+		while (i < allMarks.size()) {
+
+			sumMarks = sumMarks
+					+ Integer.parseInt(allMarks.get(i).get(1).toString());
+			i++;
 		}
 		sumMarks = sumMarks / i;
 		return sumMarks;

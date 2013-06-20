@@ -1,5 +1,7 @@
 package gui.main;
 
+import gui.Dialogs.NewLectureDialog;
+import gui.Dialogs.NewUserDialog;
 import gui.panels.PersonalDataP;
 import interfaces.IDisposeMe;
 
@@ -74,7 +76,6 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		pOptionsLec.setLayout(null);
 
 		JComboBox cbMyLectures = new JComboBox();
-		cbMyLectures.setEditable(true);
 		cbMyLectures.setBounds(10, 21, 180, 23);
 		pOptionsLec.add(cbMyLectures);
 
@@ -159,17 +160,57 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		pOptionsHead.setLayout(null);
 
 		JButton btnAddNew = new JButton("Neuer Nutzer");
+		btnAddNew.setToolTipText("Neue Benutzer werden erstellt");
+		btnAddNew.addActionListener(new ActionListener() {
+			/**
+			 * Öffnet den Dialog, um neue Benutzer anzulegen.
+			 */
+			public void actionPerformed(ActionEvent arg0) {
+				
+				NewUserDialog myNewUser = new NewUserDialog();
+				myNewUser.setVisible(true);
+			}
+		});
 		btnAddNew.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAddNew.setBounds(10, 24, 157, 23);
 		pOptionsHead.add(btnAddNew);
 
-		JButton btnAssign = new JButton("Nutzer&Vorlesung");
-		btnAssign.setToolTipText("Nutzer,Dozenten und Vorlesungen zuweisen");
-		btnAssign.setHorizontalAlignment(SwingConstants.LEFT);
-		btnAssign.setEnabled(true);
-		btnAssign.setBounds(10, 58, 157, 23);
-		pOptionsHead.add(btnAssign);
-		whoAmI();
+		JButton btnStudentenassign = new JButton("Zuweisungen");
+		btnStudentenassign.addActionListener(new ActionListener() {
+			/**
+			 * Öffnet die Gui um Vorlesungen die Studenten, die daran Teilnehmen zuzuweisen.
+			 */
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		btnStudentenassign.setToolTipText("Studenten,Dozenten und Vorlesungen zuweisen");
+		btnStudentenassign.setHorizontalAlignment(SwingConstants.LEFT);
+		btnStudentenassign.setEnabled(true);
+		btnStudentenassign.setBounds(10, 89, 157, 23);
+		pOptionsHead.add(btnStudentenassign);
+		
+		
+		contentPane.add(pOptionsLec);
+		contentPane.add(pOptionsProf);
+		contentPane.add(pOptionsHead);
+		
+		JButton btnNeuVorlesung = new JButton("Neue Vorlesung");
+		btnNeuVorlesung.setToolTipText("Neue Vorlesung erstellen und einer Lehrkraft zuweisen");
+		btnNeuVorlesung.addActionListener(new ActionListener() {
+			/**
+			 * Öffnet den Dialog, um neue Vorlesungen zu erstellen und einem Dozenten zuzuweisen.
+			 */
+			public void actionPerformed(ActionEvent e) {
+				NewLectureDialog myNewLecture = new NewLectureDialog();
+				myNewLecture.setVisible(true);
+			}
+		});
+		btnNeuVorlesung.setHorizontalAlignment(SwingConstants.LEFT);
+		btnNeuVorlesung.setBounds(10, 55, 157, 23);
+		pOptionsHead.add(btnNeuVorlesung);
+		//whoAmI();
 
 	}
 
@@ -209,4 +250,6 @@ public class LecturerG extends JFrame implements IDisposeMe {
 		// TODO Auoto-generated method stub
 
 	}
+	
+//	ID vorlesung Note
 }

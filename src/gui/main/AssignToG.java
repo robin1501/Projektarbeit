@@ -14,7 +14,7 @@ import javax.swing.border.EmptyBorder;
  * 
  *
  */
-public class CreateNewG extends JFrame {
+public class AssignToG extends JFrame {
 
 	private JPanel contentPane;
 
@@ -25,7 +25,7 @@ public class CreateNewG extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CreateNewG frame = new CreateNewG();
+					AssignToG frame = new AssignToG();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class CreateNewG extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CreateNewG() {
+	public AssignToG() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
