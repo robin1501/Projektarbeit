@@ -12,8 +12,23 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Die Klasse dient dazu alle Dateibezogenen Daten abzuarbeiten.<br>
+ * Hierzu gehören:<br>
+ * - Korrekte Auflösung des Dateinamens<br>
+ * - Lesen der Datei<br>
+ * - Schreiben der Datei<br>
+ * 
+ *
+ */
+
 public class Data {
 
+	/**
+	 * Die Methode fileReplacer wird verwendet 
+	 * @param file
+	 * @return Datei
+	 */
 	public static File fileReplacer(String file) {
 		File f = null;
 		URL url = Data.class.getResource(file);
@@ -91,7 +106,7 @@ public class Data {
 
 				fw.write(row + "\n");
 			}
-			
+
 			fw.flush();
 			fw.close();
 
