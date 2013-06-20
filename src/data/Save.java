@@ -44,8 +44,7 @@ public class Save {
 		return true;
 	}
 
-	// Ein neuer User wird angelegt
-	// übergeben werden die einzelnen Spaltendaten
+	// Ein neuer User wird angelegt übergeben werden die einzelnen Spaltendaten
 	public static void addUser(String[] userData) {
 		ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
 		ArrayList<String> newUser = new ArrayList<String>();
