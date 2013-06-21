@@ -212,6 +212,7 @@ public class LecturerG extends JFrame implements IDisposeMe, WindowListener {
 
 		JButton btnAverageOfAllLecturesInMyCourse = new JButton(
 				"Vorlesungsschnitt anzeigen");
+		btnAverageOfAllLecturesInMyCourse.setToolTipText("Schnitt der ausgew\u00E4hlten Vorlesung anzeigen");
 		btnAverageOfAllLecturesInMyCourse
 				.addActionListener(new ActionListener() {
 					/**
@@ -232,7 +233,7 @@ public class LecturerG extends JFrame implements IDisposeMe, WindowListener {
 				});
 		btnAverageOfAllLecturesInMyCourse
 				.setHorizontalAlignment(SwingConstants.LEFT);
-		btnAverageOfAllLecturesInMyCourse.setBounds(10, 87, 210, 23);
+		btnAverageOfAllLecturesInMyCourse.setBounds(10, 53, 210, 23);
 		pOptionsProf.add(btnAverageOfAllLecturesInMyCourse);
 
 		cbAllLecturesOfCourse = new JComboBox();
@@ -264,11 +265,11 @@ public class LecturerG extends JFrame implements IDisposeMe, WindowListener {
 		btnschlechteralsVier.setHorizontalAlignment(SwingConstants.LEFT);
 		btnschlechteralsVier
 				.setToolTipText("Zeigt alle Studenten in Ihrem Studiengang an, die das Notenziel nicht erreicht haben");
-		btnschlechteralsVier.setBounds(10, 53, 210, 23);
+		btnschlechteralsVier.setBounds(10, 109, 210, 23);
 		pOptionsProf.add(btnschlechteralsVier);
 
 		lblAverageprof = new JLabel("");
-		lblAverageprof.setBounds(20, 113, 85, 19);
+		lblAverageprof.setBounds(10, 79, 85, 19);
 		pOptionsProf.add(lblAverageprof);
 
 		pOptionsHead.setBorder(new TitledBorder(UIManager
@@ -302,6 +303,8 @@ public class LecturerG extends JFrame implements IDisposeMe, WindowListener {
 			 * zuzuweisen.
 			 */
 			public void actionPerformed(ActionEvent e) {
+				AssignToG Assigner = new AssignToG();
+				Assigner.setVisible(true);
 
 			}
 		});
@@ -393,6 +396,7 @@ public class LecturerG extends JFrame implements IDisposeMe, WindowListener {
 
 		createandAddTable(rowData, columnNames);
 		whoAmI();
+		
 
 	}
 
