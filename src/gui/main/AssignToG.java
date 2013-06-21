@@ -119,6 +119,7 @@ public class AssignToG extends JFrame {
 				// Save-Funktion aufrufen
 
 				 Master.saveNewAssignments(selLect,selStudis );
+				 setVisible(false);
 
 			}
 		});
