@@ -16,12 +16,15 @@ import communication.Master;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class NewLectureDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JComboBox cbLectures;
 	private JComboBox cbStaff;
+	private JTextField txtFieldLecture;
 
 	/**
 	 * Launch the application.
@@ -64,16 +67,9 @@ public class NewLectureDialog extends JDialog {
 		JLabel lblNewLabel_1 = new JLabel("Dozent zuweisen");
 		lblNewLabel_1.setBounds(10, 60, 104, 14);
 		getContentPane().add(lblNewLabel_1);
-
-		cbLectures = new JComboBox();
-		cbLectures.setBounds(137, 21, 164, 20);
-		ArrayList <String> lectures = Master.getMyArrayList("getAllCourseLectures", null, null);
-	
-		for(String i : lectures){
-			cbLectures.addItem(i); 
-		}
 		
-		getContentPane().add(cbLectures);
+	
+		
 
 		cbStaff = new JComboBox();
 		cbStaff.setBounds(136, 57, 165, 20);
@@ -85,6 +81,7 @@ public class NewLectureDialog extends JDialog {
 		getContentPane().add(cbStaff);
 
 		JButton btnZuweisen = new JButton("Zuweisen");
+		btnZuweisen.setBounds(10, 95, 104, 23);
 		btnZuweisen.addActionListener(new ActionListener() {
 			/**
 			 * Gibt die Daten an den Master weiter. <br>
@@ -92,16 +89,16 @@ public class NewLectureDialog extends JDialog {
 			 * 
 			 */
 			public void actionPerformed(ActionEvent e) {
-				int selIndexLec = cbLectures.getSelectedIndex();
+				
 				int selIndeStaff =	cbStaff.getSelectedIndex();	
-				Master.addLectureToStaff(cbLectures.getItemAt(selIndexLec).toString(), cbStaff.getItemAt(selIndeStaff).toString());
+				Master.addLectureToStaff(txtFieldLecture.getText(), cbStaff.getItemAt(selIndeStaff).toString());
 				setVisible(false);
 			}
 		});
-		btnZuweisen.setBounds(10, 95, 104, 23);
 		getContentPane().add(btnZuweisen);
 
 		JButton btnAbbrechen = new JButton("Abbrechen");
+		btnAbbrechen.setBounds(10, 124, 104, 23);
 		btnAbbrechen.addActionListener(new ActionListener() {
 			/**
 			 * Schlieﬂt den Dialog.
@@ -111,7 +108,11 @@ public class NewLectureDialog extends JDialog {
 				setVisible(false);
 			}
 		});
-		btnAbbrechen.setBounds(10, 124, 104, 23);
 		getContentPane().add(btnAbbrechen);
+		
+		txtFieldLecture = new JTextField();
+		txtFieldLecture.setBounds(136, 21, 165, 20);
+		getContentPane().add(txtFieldLecture);
+		txtFieldLecture.setColumns(10);
 	}
 }
