@@ -112,15 +112,16 @@ public class Lecturer extends User implements ILecturer {
 		double sumMarks=0,average=0;
 		int count=0;
 		for(int i=0;i<data.size();i++){
-			if(data.get(i).get(2).toString().equals(SelectedLecture) && data.get(i).get(5).toString().equals(course)){
+			if(data.get(i).get(2).toString().equals(SelectedLecture) && data.get(i).get(1).toString().equals(course)){
 				if(Double.parseDouble(data.get(i).get(3).toString())!=0){
 					sumMarks= sumMarks + Double.parseDouble(data.get(i).get(3).toString());
 					count ++;
 				}
 			}
 		}
-		average = sumMarks / count;
-		average= (Math.round(average*100))/100;	
+		average = sumMarks / count *100;
+		average= Math.round(average);	
+		average = average /100;
 		return average;
 	}
 	/**
@@ -145,8 +146,9 @@ public class Lecturer extends User implements ILecturer {
 				}
 			}
 		}
-		average = sumMarks / count;
-		average= (Math.round(average*100))/100;		
+		average = sumMarks / count *100;
+		average= Math.round(average);	
+		average = average /100;	
 		return average;
 	}
 	/**
