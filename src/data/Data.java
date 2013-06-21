@@ -49,7 +49,7 @@ public class Data {
 	 * Die Methode read liest alle Daten aus der übergebenen Datei und gibt diese in einer<br>
 	 * 2 dimensionalen Arraylist zurück.	
 	 * @param file
-	 * @return ArrayList<ArrayList<String>>
+	 * @return ArrayList&lt;ArrayList&lt;String&gt;&gt;
 	 */
 	public static ArrayList<ArrayList<String>> read(File file) {
 
