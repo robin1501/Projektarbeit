@@ -136,7 +136,31 @@ public class Save {
 
 	public static void saveAssignmentsStudisToLecture(String selLect,
 			ArrayList<String> selStudis) {
-	
+		ArrayList<ArrayList<String>> data = Data.read(markFile);
+		ArrayList<ArrayList<String>> data2 = Data.read(userFile);
+		boolean userFound= false;
+		ArrayList<String> Stud;
+		try{
+			for(int i =0; i<selStudis.size();i++){
+				for(int j=0; j<data2.size() && userFound ==false;j++){
+					if(selStudis.get(i).toString().equals(data2.get(i).get(3).toString())){
+						
+						userFound=true;
+					}
+				}
+				Stud=new ArrayList<String>();
+				Stud.add(data2.get(i).get(3).toString());
+				Stud.add(data2.get(i).get(5).toString());
+				Stud.add(selLect);
+				Stud.add("0");	
+				data.add(Stud);
+				userFound =  false;
+			}
+			Data.write(markFile, data);
+		}catch(Exception ex){
+			
+		}
+		
 		
 		
 		

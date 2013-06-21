@@ -251,22 +251,23 @@ public class HeadOfDepartment extends User implements ILecturer, IProf, IHead {
 		}
 		return failStud;
 	}
-
+	/**
+	 * Die getAllStudentsOfCourse liefert alle Studenten in dem Studiengang des aktuell eingeloggten <br>
+	 * Studiengangsleiters zurück.
+	 */
 	@Override
 	public ArrayList<String> getAllStudentsOfCourse() {
 		
-		ArrayList <String> retVal = new ArrayList <String> ();
-		retVal.add("1");
-		retVal.add("1");
-		retVal.add("1");
-		retVal.add("1");
-		
-		
-		
-		
-		
-		
-		return retVal;
+		ArrayList <String> Students = new ArrayList <String> ();
+		ArrayList<ArrayList<String>> data = Data.read(userFile);
+		for(int i =0;i<data.size();i++){
+			if(data.get(i).get(5).toString().equals(course)){
+				if(data.get(i).get(2).toString().equals("Student")){
+					Students.add(data.get(i).get(3).toString());
+				}
+			}
+		}
+		return Students;
 	}
 
 	
