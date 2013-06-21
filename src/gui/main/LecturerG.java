@@ -44,7 +44,7 @@ import data.Save;
  * 
  * 
  */
-public class LecturerG extends JFrame implements IDisposeMe, WindowListener {
+public class LecturerG extends JFrame implements IDisposeMe {
 
 	/**
 	 * 
@@ -73,7 +73,7 @@ public class LecturerG extends JFrame implements IDisposeMe, WindowListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LecturerG frame = new LecturerG();					 
+					LecturerG frame = new LecturerG();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -212,7 +212,8 @@ public class LecturerG extends JFrame implements IDisposeMe, WindowListener {
 
 		JButton btnAverageOfAllLecturesInMyCourse = new JButton(
 				"Vorlesungsschnitt anzeigen");
-		btnAverageOfAllLecturesInMyCourse.setToolTipText("Schnitt der ausgew\u00E4hlten Vorlesung anzeigen");
+		btnAverageOfAllLecturesInMyCourse
+				.setToolTipText("Schnitt der ausgew\u00E4hlten Vorlesung anzeigen");
 		btnAverageOfAllLecturesInMyCourse
 				.addActionListener(new ActionListener() {
 					/**
@@ -256,8 +257,7 @@ public class LecturerG extends JFrame implements IDisposeMe, WindowListener {
 						"getAllCourseLectures", null, null);
 				ArrayList<ArrayList<String>> AllFailedStudentsOfCourse = Master
 						.getMyTwoDimensionalArrayList(
-								"AllFailedStudentsOfCourse",
-								null, null);
+								"AllFailedStudentsOfCourse", null, null);
 				fillTable(AllFailedStudentsOfCourse);
 
 			}
@@ -396,7 +396,6 @@ public class LecturerG extends JFrame implements IDisposeMe, WindowListener {
 
 		createandAddTable(rowData, columnNames);
 		whoAmI();
-		
 
 	}
 
@@ -539,7 +538,7 @@ public class LecturerG extends JFrame implements IDisposeMe, WindowListener {
 		ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
 		ArrayList<String> colData;
 		double mark;
-		
+
 		if (changes == true) {
 
 			int choice = JOptionPane.showOptionDialog(this,
@@ -554,7 +553,10 @@ public class LecturerG extends JFrame implements IDisposeMe, WindowListener {
 					for (int j = 0; j < rowData[i].length; j++) {
 						if (j == rowData[i].length - 1) {
 							if (isMark(rowData[i][j])) {
-								mark = Double.parseDouble((Math.round(Double.parseDouble(rowData[i][j])*10))+"")/10;
+								mark = Double
+										.parseDouble((Math.round(Double
+												.parseDouble(rowData[i][j]) * 10))
+												+ "") / 10;
 								rowData[i][j] = mark + "";
 								jtAnzeige.editCellAt(i, j);
 							} else {
@@ -578,53 +580,11 @@ public class LecturerG extends JFrame implements IDisposeMe, WindowListener {
 		}
 
 	}
-/**
- * Prüft, ob eine Note vorhanden ist.
- */
+
+	/**
+	 * Prüft, ob eine Note vorhanden ist.
+	 */
 	public static boolean isMark(String str) {
 		return str.matches("^-?([1-4]+(\\.[0-9]*))|[1-5]|5\\.0?$");
-	}
-
-	@Override
-	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowClosed(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowClosing(WindowEvent e) {
-		//disposeMeFromExtern();
-		this.dispose();
-		
-	}
-
-	@Override
-	public void windowDeactivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowOpened(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }

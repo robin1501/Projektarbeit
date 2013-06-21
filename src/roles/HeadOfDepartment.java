@@ -19,7 +19,7 @@ import interfaces.IProf;
  * Studienganges ausgeben lassen.
  *
  */
-public class HeadOfDepartment extends User implements ILecturer, IProf {
+public class HeadOfDepartment extends User implements ILecturer, IProf, IHead {
 	
 	/* Variablen -------------------------------------- */
 
@@ -250,6 +250,23 @@ public class HeadOfDepartment extends User implements ILecturer, IProf {
 			}
 		}
 		return failStud;
+	}
+
+	@Override
+	public ArrayList<String> getAllStudentsOfCourse() {
+		
+		ArrayList <String> retVal = new ArrayList <String> ();
+		retVal.add("1");
+		retVal.add("1");
+		retVal.add("1");
+		retVal.add("1");
+		
+		
+		
+		
+		
+		
+		return retVal;
 	}
 
 	

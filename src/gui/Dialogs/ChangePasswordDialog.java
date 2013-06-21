@@ -115,8 +115,8 @@ public class ChangePasswordDialog extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					/**
-					 * 
-					 *  
+					 * Abfrage und Erstellung eines neuen Passwort.
+					 * 					   
 					 *  
 					 * */
 					public void actionPerformed(ActionEvent e) {

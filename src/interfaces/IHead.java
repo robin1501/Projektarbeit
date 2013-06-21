@@ -9,4 +9,5 @@ import java.util.ArrayList;
 */
 public interface IHead {
  public ArrayList <String> getAllStaffOfCourse();
+ public ArrayList <String> getAllStudentsOfCourse();
 }
