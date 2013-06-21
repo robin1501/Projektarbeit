@@ -436,7 +436,7 @@ public class Master {
 	 * Passwortänderung. <br>
 	 * 
 	 */
-	private static void openNewLogin() {
+	public static void openNewLogin() {
 		LoginG neuesLogin = new LoginG();
 		neuesLogin.setVisible(true);
 

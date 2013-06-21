@@ -533,6 +533,7 @@ public class LecturerG extends JFrame implements IDisposeMe {
 	@Override
 	public void disposeMeFromExtern() {
 		lookForChanges();
+		Master.openNewLogin();
 		this.dispose();
 
 	}

@@ -32,15 +32,13 @@ public class AssignToG extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTable table;
+	private JPanel tablePanel;
 	private JTable jtAnzeige;
 	private String columnNames[] = { "User-ID", "Checkbox" };
 	private String rowData[][] = { { "", "" } };
 	private JButton btnZuweisen;
 	private JScrollPane scrollPane = null;
 	private JComboBox cbLectures;
-	
-	
 
 	/**
 	 * Launch the application.
@@ -86,48 +84,39 @@ public class AssignToG extends JFrame {
 		}
 		contentPane.add(cbLectures);
 
-		JPanel tablePanel = new JPanel();
+		tablePanel = new JPanel();
 		tablePanel.setBorder(new TitledBorder(null, "Studenten ausw\u00E4hlen",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		tablePanel.setBounds(10, 68, 530, 233);
 		contentPane.add(tablePanel);
 		tablePanel.setLayout(null);
 
-		table = new JTable();
-		table.setBounds(265, 21, 0, 0);
-		tablePanel.add(table);
-
-		jtAnzeige = new JTable();
-		jtAnzeige.setBounds(10, 21, 510, 201);
-		tablePanel.add(jtAnzeige);
-
 		btnZuweisen = new JButton("Zuweisen");
 		btnZuweisen.setBounds(392, 22, 131, 29);
 		contentPane.add(btnZuweisen);
 		fillTable();
-		createAndAndAddTable();
+		createAndAddTable();
 
 	}
 
 	private void fillTable() {
-		
-		ArrayList <String> allStudentsOfCourse = Master.getMyArrayList("getAllStudentsOfCourse", null, null);
+
+		ArrayList<String> allStudentsOfCourse = Master.getMyArrayList(
+				"getAllStudentsOfCourse", null, null);
 		int column = 2;
 		int row = allStudentsOfCourse.size();
 
 		rowData = new String[row][column];
 
-		for (int i = 0; i < row; i++) {			
+		for (int i = 0; i < row; i++) {
 
-				rowData[i][0] = allStudentsOfCourse.get(i);
-			}
+			rowData[i][0] = allStudentsOfCourse.get(i);
+		//	rowData[i][1] = "test";
+
 		}
+	}
 
-		
-		
-	
-
-	private void createAndAndAddTable() {
+	private void createAndAddTable() {
 		jtAnzeige = new JTable(rowData, columnNames) {
 
 			private static final long serialVersionUID = 1L;
@@ -138,28 +127,27 @@ public class AssignToG extends JFrame {
 			}
 
 		};
-		
-		//-----------
-//	    table.getColumn("Spaltenname").setCellRenderer(
-//	            table.getDefaultRenderer(Boolean.class));
-//	      table.getColumn("Spaltenname").setCellEditor(
-//	            table.getDefaultEditor(Boolean.class));
-		//---------------------
+
+		// -----------
+		jtAnzeige.getColumn("Checkbox").setCellRenderer(
+				jtAnzeige.getDefaultRenderer(Boolean.class));
+		jtAnzeige.getColumn("Checkbox").setCellEditor(
+				jtAnzeige.getDefaultEditor(Boolean.class));
+		// ---------------------
+
 		jtAnzeige.setRowSelectionAllowed(false);
 		jtAnzeige.getTableHeader().setReorderingAllowed(false);
 
 		// / scrollPane removen weil dann tabelle !
 		if (scrollPane != null) {
-			table.remove(scrollPane);
+			tablePanel.remove(scrollPane);
 		}
 
 		scrollPane = new JScrollPane(jtAnzeige);
 		scrollPane
 				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(10, 21, 525, 261);
-		table.add(scrollPane);
-		
-		
+		tablePanel.add(scrollPane);
 
 	}
 
