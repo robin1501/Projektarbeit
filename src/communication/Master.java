@@ -28,24 +28,24 @@ import roles.User;
 public class Master {
 
 	/*
-	 * Erstellen und Handeln
-	 *  des DynamischenUsers
+	 * Erstellen und Handeln des DynamischenUsers
 	 */
 
 	private static User myDynamicUser = null;
 	private static String guiName = null;
 	private static StudentG GUIS = null;
-	private static LecturerG GUIL = null;	
+	private static LecturerG GUIL = null;
 	private static String whoAmI = null;
+
 	/**
 	 * Gibt whoAmI zurück.<br>
 	 * Dies wird in der Lecturer GUI benötigt.
+	 * 
 	 * @return whoAmI
 	 */
 	public static String getWhoAmI() {
 		return whoAmI;
 	}
-	
 
 	/**
 	 * In der getUserClass() wird die aktuelle Klasse des Users als String
@@ -133,8 +133,8 @@ public class Master {
 	 * <p>
 	 * <b>Es folgen nun die Methoden der Masterklasse, die die Schnittstellen
 	 * der Klasse bilden.</b><br>
-	 * Es gibt vier Hauptmethoden für die Methoden, welche die double, String und ArrayList
-	 * als Rückgabewerte haben, wie auch für Voidaufrufe.<br>
+	 * Es gibt vier Hauptmethoden für die Methoden, welche die double, String
+	 * und ArrayList als Rückgabewerte haben, wie auch für Voidaufrufe.<br>
 	 * Durch die Interfaces wird definiert in welcher Art alle Objektmethoden
 	 * aufgebaut und benannt sind.<br>
 	 * Dadurch ist es möglich die gewünschte Methode zusammenzustellen und
@@ -409,24 +409,22 @@ public class Master {
 	 * <br>
 	 * Ist die Speicherung erfolgreich, wird das aktuelle Fenster(Ermittlung
 	 * über die User-Klasse) geschlossen und ein neues Loginfenster aufgerufen. <br>
-	 * Das jede HauptGUI einen Disposeaufruf hat, wird über das
-	 * Interface "IDisposeMe" sichergestellt.
+	 * Das jede HauptGUI einen Disposeaufruf hat, wird über das Interface
+	 * "IDisposeMe" sichergestellt.
 	 * 
 	 * @param pswd
 	 */
 	public static void ChangePassword(String pswd) {
 
-		if (Save.ChangePassword(pswd, getMyStrings("getId"))) {
+		Save.ChangePassword(pswd, getMyStrings("getId"));
 
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Passwortänderung erfolgreich.\n Das Fenster wird sich automatisch schließen, sodass Sie sich neu einloggen können.\n Ihre Änderungen werden gespeichert.",
-							"Passwortänderung", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane
+				.showMessageDialog(
+						null,
+						"Passwortänderung erfolgreich.\n Das Fenster wird sich automatisch schließen, sodass Sie sich neu einloggen können.\n Ihre Änderungen werden gespeichert.",
+						"Passwortänderung", JOptionPane.INFORMATION_MESSAGE);
 
-			disposeGUI();
-
-		}
+		disposeGUI();
 
 	}
 
@@ -458,39 +456,43 @@ public class Master {
 		}
 		openNewLogin();
 	}
+
 	/**
-	 * Master-Aufruf, um die neuen Nutzerdaten an die Save-Klasse weiter zu geben.<br>
+	 * Master-Aufruf, um die neuen Nutzerdaten an die Save-Klasse weiter zu
+	 * geben.<br>
 	 * 
 	 * 
 	 * @param userdata
 	 */
-	public static void addUser(ArrayList <String> userdata){
+	public static void addUser(ArrayList<String> userdata) {
 		Save.addUser(userdata);
 	}
-/**
- * Master-Aufruf, um die Vorlesung einem Dozenten zuzuweisen.<br> 
- *  Dies wird hier an die Save-Klasse weitergegeben.
- * @param lect
- * @param staff
- */
+
+	/**
+	 * Master-Aufruf, um die Vorlesung einem Dozenten zuzuweisen.<br>
+	 * Dies wird hier an die Save-Klasse weitergegeben.
+	 * 
+	 * @param lect
+	 * @param staff
+	 */
 
 	public static void addLectureToStaff(String lect, String staff) {
-		Save.AssignLectureToStaff(lect,staff);
-		
+		Save.AssignLectureToStaff(lect, staff);
+
 	}
 
-/**
- * Master-Aufruf, um Studenten einer Vorlesung zuzuweisen.<br> 
- * Dies wird hier an die Save-Klasse weitergegeben.
- *  
- * @param selLect
- * @param selStudis
- */
-public static void saveNewAssignments(String selLect,
-		ArrayList<String> selStudis) {
-	
-	Save.saveAssignmentsStudisToLecture(selLect, selStudis);
-	
-}
+	/**
+	 * Master-Aufruf, um Studenten einer Vorlesung zuzuweisen.<br>
+	 * Dies wird hier an die Save-Klasse weitergegeben.
+	 * 
+	 * @param selLect
+	 * @param selStudis
+	 */
+	public static void saveNewAssignments(String selLect,
+			ArrayList<String> selStudis) {
+
+		Save.saveAssignmentsStudisToLecture(selLect, selStudis);
+
+	}
 
 }
