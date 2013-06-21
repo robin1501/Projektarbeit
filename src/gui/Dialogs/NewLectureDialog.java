@@ -57,7 +57,7 @@ public class NewLectureDialog extends JDialog {
 			}
 		});
 
-		JLabel lblNewLabel = new JLabel("Name der Vorlesung");
+		JLabel lblNewLabel = new JLabel("Vorlesung");
 		lblNewLabel.setBounds(10, 24, 104, 14);
 		getContentPane().add(lblNewLabel);
 

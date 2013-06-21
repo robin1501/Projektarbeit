@@ -83,7 +83,7 @@ public class NewUserDialog extends JDialog {
 		contentPanel.add(lblRolle);
 
 		comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(171, 203, 122, 20);
+		comboBox_1.setBounds(171, 203, 168, 20);
 		comboBox_1.addItem("Student");
 		comboBox_1.addItem("Dozent");
 		comboBox_1.addItem("Professor");
@@ -92,22 +92,22 @@ public class NewUserDialog extends JDialog {
 		contentPanel.add(comboBox_1);
 
 		id = new JTextField();
-		id.setBounds(171, 84, 122, 20);
+		id.setBounds(171, 84, 168, 20);
 		contentPanel.add(id);
 		id.setColumns(10);
 
 		vorname = new JTextField();
-		vorname.setBounds(171, 46, 122, 20);
+		vorname.setBounds(171, 46, 168, 20);
 		contentPanel.add(vorname);
 		vorname.setColumns(10);
 
 		name = new JTextField();
-		name.setBounds(171, 13, 122, 20);
+		name.setBounds(171, 13, 168, 20);
 		contentPanel.add(name);
 		name.setColumns(10);
 
 		lblStudiengangs = new JLabel(Master.getMyStrings("getCourse"));
-		 lblStudiengangs.setBounds(171, 177, 122, 14);
+		 lblStudiengangs.setBounds(171, 177, 168, 14);
 		 contentPanel.add(lblStudiengangs);
 
 		JLabel lblMessenger = new JLabel("");
@@ -120,7 +120,7 @@ public class NewUserDialog extends JDialog {
 		contentPanel.add(lblPasswort);
 
 		pswdfeld1 = new JTextField();
-		pswdfeld1.setBounds(171, 115, 122, 20);
+		pswdfeld1.setBounds(171, 115, 168, 20);
 		contentPanel.add(pswdfeld1);
 		pswdfeld1.setColumns(10);
 
@@ -129,7 +129,7 @@ public class NewUserDialog extends JDialog {
 		contentPanel.add(lblErneutEingeben);
 
 		pswdfeld2 = new JTextField();
-		pswdfeld2.setBounds(171, 146, 122, 20);
+		pswdfeld2.setBounds(171, 146, 168, 20);
 		contentPanel.add(pswdfeld2);
 		pswdfeld2.setColumns(10);
 		{
