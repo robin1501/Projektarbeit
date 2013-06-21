@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
- * Die Klasse dient dazu alle Dateibezogenen Daten abzuarbeiten.<br>
+ * Die Klasse dient dazu alle Dateibezogenen Informationen abzuarbeiten.<br>
  * Hierzu gehören:<br>
  * - Korrekte Auflösung des Dateinamens<br>
  * - Lesen der Datei<br>
@@ -47,7 +47,7 @@ public class Data {
 
 	/**
 	 * Die Methode read liest alle Daten aus der übergebenen Datei und gibt diese in einer<br>
-	 * 2 dimensionalen Arraylist zurück.	
+	 * 2 dimensionalen ArrayList mit dem kompletten Aufbau der jeweiligen Datei zurück.	
 	 * @param file
 	 * @return ArrayList&lt;ArrayList&lt;String&gt;&gt;
 	 */
@@ -93,9 +93,9 @@ public class Data {
 	}
 
 	/**
-	 * Die Methode write bekommt Daten in einer 2 dimensionalen Arraylist übergeben und trägt<br>
+	 * Die Methode write bekommt Daten in einer 2 dimensionalen ArrayList übergeben und trägt<br>
 	 * diese in die ebenfalls übergebene Datei ein. Hierzu wird die bereits bestehende Datei<br>
-	 * gelöscht und dann die Daten Zeile für Zeile eingetragen.
+	 * gelöscht und dann die Daten Zeile für Zeile neu eingetragen.
 	 * @param file
 	 * @param data
 	 */

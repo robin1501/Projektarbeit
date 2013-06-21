@@ -56,11 +56,11 @@ public class Save {
 	 * folgendem Aufbau übergeben:<br>
 	 * - Nachname<br>
 	 * - Vorname<br>
-	 * - Rolle<br>
+	 * - Benutzerrolle<br>
 	 * - ID<br>
 	 * - Passwort<br>
 	 * - Studiengang<br>
-	 * - Studiengangsleiter<br>
+	 * - Ob er ein Studiengangsleiter ist<br>
 	 * - Vorlesung<br><br>
 	 * 
 	 * Der neue User wird dann mit den übergeben Daten an das Ende der Datei eingefügt.
@@ -81,8 +81,8 @@ public class Save {
 	 * - User<br>
 	 * - Vorlesung<br>
 	 * - Note<br><br>
-	 * Die jeweiligen User werden mit Ihren dazugehörigen Vorlesung in der CSV-Datei "mark_info"<br>
-	 * gesucht und die neue Note eingetragen.<br>
+	 * Die jeweiligen User werden mit ihrer dazugehörigen Vorlesung in der CSV-Datei "mark_info"<br>
+	 * gesucht und die neue Note in die dazugehörige Spalte eingetragen.<br>
 	 * Wenn alle User abgearbeitet wurden, wird die CSV-Datei mit den neuen Noten abgespeichert.
 	 * @param newMarks
 	 */
@@ -112,7 +112,7 @@ public class Save {
 	 * ob der jeweilige Dozent/Professor bereits einer Vorlesung zugewiesen ist. Sollte dies der<br>
 	 * Fall sein wird hinter die letzte Vorlesung erst ein Komma und dann die neue Vorlesung<br>
 	 * eingefügt. Anonsten wird die neue Vorlesung ohne weiteren Zusatz in das Feld eingetragen.<br>
-	 * Die Zuweisung wird dann in die CSV-Datei "stud_info" eingetragen.
+	 * Die Zuweisung wird dann in der CSV-Datei "stud_info" abgespeichert.
 	 * @param lect
 	 * @param staff
 	 */
@@ -138,8 +138,8 @@ public class Save {
 
 	/**
 	 * Die Methode bekommt eine Liste von Studenten übergeben und weist diese einer Vorlesung zu.<br>
-	 * Die Studenten werden mit ihrem Studiengang und der jeweiligen Vorlesung in die CSV-Datei "mark_info"<br>
-	 * eingetragen. Die Note zu der Vorlesung wird hierbei mit 0 vorbelegt und kann dann im Nachhinein von<br>
+	 * Die Studenten werden mit ihrem Studiengang und der jeweiligen Vorlesung in der CSV-Datei "mark_info"<br>
+	 * abgespeichert. Die Note zu der Vorlesung wird hierbei mit 0 vorbelegt und kann dann im Nachhinein von<br>
 	 * einem Dozenten eingetragen werden.
 	 * @param selLect
 	 * @param selStudis
