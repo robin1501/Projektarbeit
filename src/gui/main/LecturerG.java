@@ -594,6 +594,6 @@ public class LecturerG extends JFrame implements IDisposeMe {
 	 * Prüft, ob eine Note vorhanden ist.
 	 */
 	public static boolean isMark(String str) {
-		return str.matches("^-?([1-4]+(\\.[0-9]*))|[1-5]|5\\.0?$");
+		return str.matches("^([1-4]{1}(\\.[0-9]*)?)|5(\\.0)?$");
 	}
 }
