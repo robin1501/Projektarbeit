@@ -36,8 +36,8 @@ public class AssignToG extends JFrame {
 	private JPanel contentPane;
 	private JPanel tablePanel;
 	private JTable jtAnzeige;
-	private String columnNames[] = { "User-ID", "Checkbox" };
-	private String rowData[][] = { { "", "" } };
+	private Object columnNames[] = { "User-ID", "Checkbox" };
+	private Object rowData[][] = { { "", "" } };
 	private JButton btnZuweisen;
 	private JScrollPane scrollPane = null;
 	private JComboBox cbLectures;
@@ -96,32 +96,30 @@ public class AssignToG extends JFrame {
 		btnZuweisen = new JButton("Zuweisen");
 		btnZuweisen.addActionListener(new ActionListener() {
 			/**
-			 * Gibt die ausgewählte Vorlesung und die, mit den Checkboxen makierten, <br>
+			 * Gibt die ausgewählte Vorlesung und die, mit den Checkboxen
+			 * makierten, <br>
 			 * Studenten zum Speichern an die Master-Klasse weiter.<br>
 			 */
-			
+
 			public void actionPerformed(ActionEvent arg0) {
 				// Vorlesung übernehmen
 				int selIndex = cbLectures.getSelectedIndex();
 				String selLect = cbLectures.getItemAt(selIndex).toString();
 				// Studenten übergeben
-				ArrayList <String> selStudis = new ArrayList <String> ();
-				for(int i = 0; i < rowData.length ; i++){
-				
-				boolean test = (boolean) jtAnzeige.getValueAt(i,1);
-				if(test == true){
-					
-					selStudis.add(jtAnzeige.getValueAt(i,0).toString());
-				}
-				
-				}
+				ArrayList<String> selStudis = new ArrayList<String>();
+				for (int i = 0; i < rowData.length; i++) {
+
+					boolean test = (boolean) jtAnzeige.getValueAt(i, 1);
+					if (test == true) {
+
+						selStudis.add(jtAnzeige.getValueAt(i, 0).toString());
+					}
+
+				}				
 				// Save-Funktion aufrufen
-				
-				Master.saveNewAssignments(selLect,selStudis );
-				
-				
-				
-				
+
+				 Master.saveNewAssignments(selLect,selStudis );
+
 			}
 		});
 		btnZuweisen.setBounds(392, 22, 131, 29);
@@ -138,12 +136,12 @@ public class AssignToG extends JFrame {
 		int column = 2;
 		int row = allStudentsOfCourse.size();
 
-		rowData = new String[row][column];
+		rowData = new Object[row][column];
 
 		for (int i = 0; i < row; i++) {
 
-			rowData[i][0] = allStudentsOfCourse.get(i);	
-			
+			rowData[i][0] = (Object) allStudentsOfCourse.get(i);
+			rowData[i][1] = new Boolean(false);
 
 		}
 	}
@@ -160,12 +158,12 @@ public class AssignToG extends JFrame {
 
 		};
 
-//		// -----------
+		// // -----------
 		jtAnzeige.getColumn("Checkbox").setCellRenderer(
 				jtAnzeige.getDefaultRenderer(Boolean.class));
 		jtAnzeige.getColumn("Checkbox").setCellEditor(
 				jtAnzeige.getDefaultEditor(Boolean.class));
-//		// ---------------------
+		// // ---------------------
 
 		jtAnzeige.setRowSelectionAllowed(false);
 		jtAnzeige.getTableHeader().setReorderingAllowed(false);
