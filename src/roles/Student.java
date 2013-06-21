@@ -112,8 +112,9 @@ public class Student extends User implements IShowMyMarks {
 			}
 			i++;
 		}
-		sumMarks = sumMarks / count;
-		sumMarks = (Math.round(sumMarks)*100)/100;
+		sumMarks = sumMarks / count *100;		
+		sumMarks = Math.round(sumMarks);
+		sumMarks = sumMarks /100;
 		return sumMarks;
 	}
 
