@@ -106,7 +106,15 @@ public class AssignToG extends JFrame {
 				String selLect = cbLectures.getItemAt(selIndex).toString();
 				// Studenten übergeben
 				ArrayList <String> selStudis = new ArrayList <String> ();
+				for(int i = 0; i < rowData.length ; i++){
 				
+				boolean test = (boolean) jtAnzeige.getValueAt(i,1);
+				if(test == true){
+					
+					selStudis.add(jtAnzeige.getValueAt(i,0).toString());
+				}
+				
+				}
 				// Save-Funktion aufrufen
 				
 				Master.saveNewAssignments(selLect,selStudis );
