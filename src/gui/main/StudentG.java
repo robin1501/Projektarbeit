@@ -29,6 +29,8 @@ import communication.Master;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.ScrollPaneConstants;
 
@@ -82,6 +84,12 @@ public class StudentG extends JFrame implements IDisposeMe {
 		setTitle("Student - Hauptansicht");
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent event) {
+				Master.openNewLogin();
+				setVisible(false);
+			}
+		});
 
 		setBounds(100, 100, 909, 481);
 		contentPane = new JPanel();
@@ -269,17 +277,25 @@ public class StudentG extends JFrame implements IDisposeMe {
 		tablePanel.add(scrollPane);
 
 	}
-
+/**
+ * Funktion, um die StudentenGui von einer anderen GUI aus schließen zu können.<br>
+ * Diese Funktion wird zb vom Passwort-Ändern Dialog aufgerufen.
+ * 
+ */
 	@Override
 	public void disposeMeFromExtern() {
 		lookForChanges();
 		this.dispose();
 
 	}
-
+/**
+ * Look for Changes muss hier wegen dem Interface eingebunden werden. <br><
+ * Hier aber nicht nötig deswegen ist die Methode leer.
+ * 
+ */
 	@Override
 	public boolean lookForChanges() {
-		// TODO Auto-generated method stub
+		// Nothing inside due to Interfaces needs
 		return true;
 	}
 }
