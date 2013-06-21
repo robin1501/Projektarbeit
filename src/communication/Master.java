@@ -476,4 +476,16 @@ public class Master {
 		
 	}
 
+/**
+ * 
+ * @param selLect
+ * @param selStudis
+ */
+public static void saveNewAssignments(String selLect,
+		ArrayList<String> selStudis) {
+	
+	Save.saveAssignmentsStudisToLecture(selLect, selStudis);
+	
+}
+
 }

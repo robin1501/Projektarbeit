@@ -134,4 +134,12 @@ public class Save {
 		
 	}
 
+	public static void saveAssignmentsStudisToLecture(String selLect,
+			ArrayList<String> selStudis) {
+	
+		
+		
+		
+	}
+
 }

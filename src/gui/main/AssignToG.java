@@ -18,6 +18,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JButton;
 
 import communication.Master;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * Hier werden die Studenten ausgewählt und einem Studiengang zugewiesen.<br>
@@ -92,6 +94,28 @@ public class AssignToG extends JFrame {
 		tablePanel.setLayout(null);
 
 		btnZuweisen = new JButton("Zuweisen");
+		btnZuweisen.addActionListener(new ActionListener() {
+			/**
+			 * Gibt die ausgewählte Vorlesung und die, mit den Checkboxen makierten, <br>
+			 * Studenten zum Speichern an die Master-Klasse weiter.<br>
+			 */
+			
+			public void actionPerformed(ActionEvent arg0) {
+				// Vorlesung übernehmen
+				int selIndex = cbLectures.getSelectedIndex();
+				String selLect = cbLectures.getItemAt(selIndex).toString();
+				// Studenten übergeben
+				ArrayList <String> selStudis = new ArrayList <String> ();
+				
+				// Save-Funktion aufrufen
+				
+				Master.saveNewAssignments(selLect,selStudis );
+				
+				
+				
+				
+			}
+		});
 		btnZuweisen.setBounds(392, 22, 131, 29);
 		contentPane.add(btnZuweisen);
 		fillTable();
@@ -110,8 +134,7 @@ public class AssignToG extends JFrame {
 
 		for (int i = 0; i < row; i++) {
 
-			rowData[i][0] = allStudentsOfCourse.get(i);
-		//	rowData[i][1] = "test";
+			rowData[i][0] = allStudentsOfCourse.get(i);	
 
 		}
 	}
