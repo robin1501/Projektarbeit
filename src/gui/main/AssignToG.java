@@ -64,7 +64,7 @@ public class AssignToG extends JFrame {
 	public AssignToG() {
 		setResizable(false);
 		setTitle("Studenten zuweisen");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 566, 350);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -135,6 +135,7 @@ public class AssignToG extends JFrame {
 		for (int i = 0; i < row; i++) {
 
 			rowData[i][0] = allStudentsOfCourse.get(i);	
+			
 
 		}
 	}
@@ -151,12 +152,12 @@ public class AssignToG extends JFrame {
 
 		};
 
-		// -----------
+//		// -----------
 		jtAnzeige.getColumn("Checkbox").setCellRenderer(
 				jtAnzeige.getDefaultRenderer(Boolean.class));
 		jtAnzeige.getColumn("Checkbox").setCellEditor(
 				jtAnzeige.getDefaultEditor(Boolean.class));
-		// ---------------------
+//		// ---------------------
 
 		jtAnzeige.setRowSelectionAllowed(false);
 		jtAnzeige.getTableHeader().setReorderingAllowed(false);

@@ -459,6 +459,8 @@ public class Master {
 		openNewLogin();
 	}
 	/**
+	 * Master-Aufruf, um die neuen Nutzerdaten an die Save-Klasse weiter zu geben.<br>
+	 * 
 	 * 
 	 * @param userdata
 	 */
@@ -466,7 +468,8 @@ public class Master {
 		Save.addUser(userdata);
 	}
 /**
- * 
+ * Master-Aufruf, um die Vorlesung einem Dozenten zuzuweisen.<br> 
+ *  Dies wird hier an die Save-Klasse weitergegeben.
  * @param lect
  * @param staff
  */
@@ -477,7 +480,9 @@ public class Master {
 	}
 
 /**
- * 
+ * Master-Aufruf, um Studenten einer Vorlesung zuzuweisen.<br> 
+ * Dies wird hier an die Save-Klasse weitergegeben.
+ *  
  * @param selLect
  * @param selStudis
  */
